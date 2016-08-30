@@ -26,7 +26,7 @@
         
         <img src="<c:url value="/img/logo.jpg"/>" class="img-responsive center-block">
 
-            jp<br><br><br><br>
+            <br><br><br><br>
 
             <!-- Stack the columns on mobile by making one full-width and the other half-width -->
             <div class="row">
