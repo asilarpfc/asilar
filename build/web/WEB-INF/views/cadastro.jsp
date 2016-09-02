@@ -23,35 +23,16 @@
     </head>
     <body>
         <jsp:include page="navhome.jsp"/>
-        
-        <img src="<c:url value="/img/logo.jpg"/>" class="img-responsive center-block">
 
-            <br><br><br><br>
+    
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="<c:url value="/js/jquery.min.js"/>"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 
-            <!-- Stack the columns on mobile by making one full-width and the other half-width -->
-            <div class="row">
-                <div class="col-xs-2">
-                </div>
-                <div class="col-xs-4">
-                    <a class="btn btn-padrao btn-block" href="<c:url value="/cadastro"/>"> <span class="glyphicon btn-primary"></span>Cadastro</a>  
-                </div>
-                <div class="col-xs-4">
-                    <a class="btn btn-padrao btn-block" href="#"> <span class="glyphicon btn-primary"></span>Estoque</a>
-                </div>
-                <div class="col-xs-2">
-                </div>
-            </div>
-            <br>
+    <script>
 
-            
-        </div>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="<c:url value="/js/jquery.min.js"/>"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
-
-        <script>
-            
-        </script>
+    </script>
     </body>
-</html>
+    </html>

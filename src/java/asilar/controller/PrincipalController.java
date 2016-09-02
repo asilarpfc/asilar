@@ -9,8 +9,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class PrincipalController {
     
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public ModelAndView OpenHome(){
+    public ModelAndView Home(){
         ModelAndView mv = new ModelAndView("/home");
+        return mv;
+    }
+    
+    @RequestMapping(value = "/cadastro", method = RequestMethod.GET)
+    public ModelAndView cadastro(){
+        ModelAndView mv = new ModelAndView("/cadastro");
         return mv;
     }
     

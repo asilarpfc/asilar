@@ -33,7 +33,7 @@
                 <div class="col-xs-2">
                 </div>
                 <div class="col-xs-4">
-                    <a class="btn btn-padrao btn-block" href="<c:url value="/usuario/lista/"/>"> <span class="glyphicon btn-primary"></span>Cadastro</a>  
+                    <a class="btn btn-padrao btn-block" href="<c:url value="/cadastro"/>"> <span class="glyphicon btn-primary"></span>Cadastro</a>  
                 </div>
                 <div class="col-xs-4">
                     <a class="btn btn-padrao btn-block" href="#"> <span class="glyphicon btn-primary"></span>Estoque</a>
