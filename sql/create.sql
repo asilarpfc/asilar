@@ -39,7 +39,7 @@ CREATE TABLE Usuario (
   telefone_residencial varchar(20) NOT NULL, 
   login                varchar(150) NOT NULL, 
   senha                varchar(255) NOT NULL, 
-  tipo_usuario         varchar(30) NOT NULL,
+  tipo_usuario         integer NOT NULL,
   instituicao_fk       bigint NOT NULL,
   PRIMARY KEY (id));
 
