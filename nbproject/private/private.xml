@@ -3,9 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/João%20Pedro/Dropbox/Projetos/Asilar/asilar/src/java/asilar/model/dao/AssistidoDAO.java</file>
             <file>file:/C:/Users/João%20Pedro/Dropbox/Projetos/Asilar/asilar/src/java/asilar/model/dao/UsuarioDAO.java</file>
             <file>file:/C:/Users/João%20Pedro/Dropbox/Projetos/Asilar/asilar/src/java/asilar/model/entity/Usuario.java</file>
+=======
+            <file>file:/C:/Users/Eu/Dropbox/FAI/asilar/web/WEB-INF/views/home.jsp</file>
+            <file>file:/C:/Users/Eu/Dropbox/FAI/asilar/web/WEB-INF/views/cadastro/usuario/lista.jsp</file>
+            <file>file:/C:/Users/Eu/Dropbox/FAI/asilar/web/css/estilos.css</file>
+            <file>file:/C:/Users/Eu/Dropbox/FAI/asilar/src/java/asilar/model/service/UsuarioService.java</file>
+            <file>file:/C:/Users/Eu/Dropbox/FAI/asilar/web/WEB-INF/views/cadastro/barralateral.jsp</file>
+            <file>file:/C:/Users/Eu/Dropbox/FAI/asilar/web/WEB-INF/views/cadastro/assistido/lista.jsp</file>
+            <file>file:/C:/Users/Eu/Dropbox/FAI/asilar/src/java/asilar/model/ServiceLocator.java</file>
+>>>>>>> 4a5a206eee62d91d093c0e0b994b0baf5169b238
         </group>
     </open-files>
 </project-private>

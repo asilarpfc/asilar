@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 package asilar.model.dao;
 
@@ -13,10 +14,21 @@ import java.util.List;
 import java.util.Map;
 
 
+=======
+package asilar.model.dao;
+
+import asilar.model.dao.base.BaseDAO;
+import asilar.model.entity.Usuario;
+import java.sql.Connection;
+import java.util.List;
+import java.util.Map;
+
+>>>>>>> 4a5a206eee62d91d093c0e0b994b0baf5169b238
 public class UsuarioDAO implements BaseDAO<Usuario>{
 
     @Override
     public void update(Connection conn, Usuario entity) throws Exception {
+<<<<<<< HEAD
         String sql = "UPDATE usuario SET id=?, email=?, telefone_celular=?, rg=?, nome=?, cpf=?, \n" +
                 "telefone_residencial=?, login=?, senha=?, tipo_usuario=?, WHERE id=?;";
         
@@ -35,20 +47,28 @@ public class UsuarioDAO implements BaseDAO<Usuario>{
         
         statement.execute();
         statement.close();;
+=======
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+>>>>>>> 4a5a206eee62d91d093c0e0b994b0baf5169b238
     }
 
     @Override
     public void delete(Connection conn, Long id) throws Exception {
+<<<<<<< HEAD
         String sql = "DELETE FROM usuario WHERE id=?;";
         int i = 0;
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setLong(++i, id);
         statement.execute();
         statement.close();
+=======
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+>>>>>>> 4a5a206eee62d91d093c0e0b994b0baf5169b238
     }
 
     @Override
     public void create(Connection conn, Usuario entity) throws Exception {
+<<<<<<< HEAD
         String sql = "INSERT INTO usuario(id, email, telefone_celular, rg, nome, cpf, telefone_residencial, \n" +
                      "login, senha, tipo_usuario)\n" +
                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -73,10 +93,14 @@ public class UsuarioDAO implements BaseDAO<Usuario>{
         rs.close();
         statement.close();
         
+=======
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+>>>>>>> 4a5a206eee62d91d093c0e0b994b0baf5169b238
     }
 
     @Override
     public Usuario readyById(Connection conn, Long id) throws Exception {
+<<<<<<< HEAD
         String sql = "SELECT id, email, telefone_celular, rg, nome, cpf, telefone_residencial, login, senha, \n" +
                      "tipo_usuario FROM usuario;";
         Usuario entity = new Usuario();
@@ -102,10 +126,14 @@ public class UsuarioDAO implements BaseDAO<Usuario>{
         statement.close();
         
         return entity;
+=======
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+>>>>>>> 4a5a206eee62d91d093c0e0b994b0baf5169b238
     }
 
     @Override
     public List<Usuario> readyByCriteria(Connection conn, Map<Long, Object> criteria, Long offset) throws Exception {
+<<<<<<< HEAD
         String sql = "SELECT id, email, telefone_celular, rg, nome, cpf, telefone_residencial, \n" +
                      "login, senha, tipo_usuario FROM usuario;";
         Statement statement = conn.createStatement();
@@ -146,10 +174,14 @@ public class UsuarioDAO implements BaseDAO<Usuario>{
         statement.close();
         return entityList;
                 
+=======
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+>>>>>>> 4a5a206eee62d91d093c0e0b994b0baf5169b238
     }
 
     @Override
     public Long countByCriteria(Connection conn, Map<Long, Object> criteria) throws Exception {
+<<<<<<< HEAD
         
         String sql = "SELECT count(*)  FROM usuario WHERE 1=1";
         Statement statement = conn.createStatement();
@@ -172,4 +204,9 @@ public class UsuarioDAO implements BaseDAO<Usuario>{
     }
     
     
+=======
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+>>>>>>> 4a5a206eee62d91d093c0e0b994b0baf5169b238
 }
