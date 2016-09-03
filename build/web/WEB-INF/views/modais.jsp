@@ -13,8 +13,8 @@
                             <p>Deseja realmente cancelar?&hellip;</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-padrao" data-dismiss="modal" onClick="history.go(-1)">Sim</button>
-                            <button type="button" class="btn btn-padrao" data-dismiss="modal">Não</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" onClick="history.go(-1)"><span class="glyphicon glyphicon-ok"></span> Sim</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Não</button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->

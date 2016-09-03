@@ -56,6 +56,8 @@ public class UsuarioController {
         ModelAndView mv = new ModelAndView("/cadastro/usuario/lista");
         mv.addObject("usuarioList", usuarioList);
         mv.addObject("count", count);
+        String ativo = "usuario";
+        mv.addObject("ativo", ativo);
         return mv;
     }
     

@@ -96,8 +96,8 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-padrao">Cadastrar</button>
-                    <button type="button" class="btn btn-padrao btnCancelar">Cancelar</button>
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Cadastrar</button>
+                    <button type="button" class="btn btn-danger btnCancelar"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
                 </div>
             </div>
 

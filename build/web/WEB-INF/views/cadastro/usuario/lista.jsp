@@ -24,10 +24,10 @@
     <body>
         
         <jsp:include page="../../navusuariolista.jsp"/>
-        
+        <jsp:include page="../barralateral.jsp"/>
         <h1 align="center">Usuarios</h1>
         
-        <a class="btn btn-padrao" href="<c:url value="/cadastro/usuario/novo"/>">Adicionar</a>
+        <a class="btn btn-primary" href="<c:url value="/cadastro/usuario/novo"/>"><span class="glyphicon glyphicon-plus"></span> Adicionar</a>
 
         <div class="table-responsive">
             <table class="table table-hover">
@@ -43,7 +43,7 @@
                     <c:forEach items="${usuarioList}" var="usuario">
                         <tr>
                             <td>${usuario.id}</td>
-                            <td><a class="link-padrao" href="<c:url value="/cadastro/usuario/${usuario.id}/info"/>">${usuario.nome}</a></td>
+                            <td><a href="<c:url value="/cadastro/usuario/${usuario.id}/info"/>">${usuario.nome}</a></td>
                             <td><a class="btn btn-padrao" href="<c:url value="/cadastro/usuario/${usuario.id}/alterar"/>">Alterar</a></td>
                             <td><a class="btn btn-padrao" href="<c:url value="/cadastro/usuario/${usuario.id}/excluir"/>">Excluir</a></td>
                         </tr>

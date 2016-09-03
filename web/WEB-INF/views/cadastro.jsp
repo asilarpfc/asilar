@@ -23,16 +23,16 @@
     </head>
     <body>
         <jsp:include page="navhome.jsp"/>
+        <jsp:include page="cadastro/barralateral.jsp"/>
+        <h1>Teste</h1>
 
-    
-    
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="<c:url value="/js/jquery.min.js"/>"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="<c:url value="/js/jquery.min.js"/>"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 
-    <script>
+        <script>
 
-    </script>
+        </script>
     </body>
-    </html>
+</html>

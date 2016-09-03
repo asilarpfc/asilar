@@ -123,6 +123,8 @@ public class AssistidoController {
             mv.addObject("assistidoList", assistidoList);
             mv.addObject("offset", offset);
             mv.addObject("count", count);
+            String ativo = "assistido";
+            mv.addObject("ativo", ativo);
         }
                 
         return mv;

@@ -30,16 +30,14 @@
 
             <!-- Stack the columns on mobile by making one full-width and the other half-width -->
             <div class="row">
-                <div class="col-xs-2">
+                <div class="col-sm-offset-4">
+                    <div class="col-sm-6">
+                        <a class="btn btn-primary btn-lg btn-block" href="<c:url value="/cadastro/assistido/lista"/>"> <span class="btn-primary"></span>Cadastro</a>  
+                        <a class="btn btn-primary btn-lg btn-block" href="#"> <span class="glyphicon btn-primary"></span>Estoque</a>
+                    </div>
+                    
                 </div>
-                <div class="col-xs-4">
-                    <a class="btn btn-padrao btn-block" href="<c:url value="/cadastro"/>"> <span class="glyphicon btn-primary"></span>Cadastro</a>  
-                </div>
-                <div class="col-xs-4">
-                    <a class="btn btn-padrao btn-block" href="#"> <span class="glyphicon btn-primary"></span>Estoque</a>
-                </div>
-                <div class="col-xs-2">
-                </div>
+                
             </div>
             <br>
 

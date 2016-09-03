@@ -24,10 +24,10 @@
     <body>
         
         <jsp:include page="../../navusuariolista.jsp"/>
-        
+        <jsp:include page="../barralateral.jsp"/>
         <h1 align="center">Assistidos</h1>
         
-        <a class="btn btn-padrao" href="<c:url value="/cadastro/assistido/novo"/>">Adicionar</a>
+        <a class="btn btn-primary" href="<c:url value="/cadastro/assistido/novo"/>"><span class="glyphicon glyphicon-plus"></span> Adicionar</a>
 
         <div class="table-responsive">
             <table class="table table-hover">
@@ -43,9 +43,9 @@
                     <c:forEach items="${assistidoList}" var="assistido">
                         <tr>
                             <td>${assistido.id}</td>
-                            <td><a class="link-padrao" href="<c:url value="/cadastro/assistido/${assistido.id}/info"/>">${assistido.nome}</a></td>
-                            <td><a class="btn btn-padrao" href="<c:url value="/cadastro/assistido/${assistido.id}/alterar"/>">Alterar</a></td>
-                            <td><a class="btn btn-padrao" href="<c:url value="/cadastro/assistido/${assistido.id}/excluir"/>">Excluir</a></td>
+                            <td><a href="<c:url value="/cadastro/assistido/${assistido.id}/info"/>">${assistido.nome}</a></td>
+                            <td><a class="btn btn-primary" href="<c:url value="/cadastro/assistido/${assistido.id}/alterar"/>"><span class="glyphicon glyphicon-edit"></span> Alterar</a></td>
+                            <td><a class="btn btn-danger" href="<c:url value="/cadastro/assistido/${assistido.id}/excluir"/>"><span class="glyphicon glyphicon-trash"></span> Excluir</a></td>
                         </tr>
                     </c:forEach>
                 </tbody>
