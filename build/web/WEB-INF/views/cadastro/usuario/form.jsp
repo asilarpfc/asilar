@@ -88,8 +88,8 @@
                 <div class="col-sm-6">
                     <select class="form-control" name="tipoUsuario" required="">
                         <c:if test="${empty usuario.tipoUsuario}"><option value="">Selecione...</option></c:if>
-                        <option value="Administrador" <c:if test="${usuario.tipoUsuario eq 'Administrador'}"> selected </c:if>>Administrador</option>
-                        <option value="GerenteDeEstoque" <c:if test="${usuario.tipoUsuario eq 'GerenteDeEstoque'}"> selected </c:if>>Gerente de Estoque</option>
+                        <option value="1" <c:if test="${usuario.tipoUsuario eq 1}"> selected </c:if>>Administrador</option>
+                        <option value="2" <c:if test="${usuario.tipoUsuario eq 2}"> selected </c:if>>Gerente de Estoque</option>
                         </select>
                 </div>
              </div>

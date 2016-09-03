@@ -27,7 +27,6 @@
         <img src="<c:url value="/img/logo.jpg"/>" class="img-responsive center-block">
 
             
-
             <!-- Stack the columns on mobile by making one full-width and the other half-width -->
             <div class="row">
                 <div class="col-sm-offset-4">
