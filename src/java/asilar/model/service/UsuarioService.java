@@ -1,47 +1,62 @@
 package asilar.model.service;
 
+import asilar.model.ConnectionManager;
+import asilar.model.dao.UsuarioDAO;
 import asilar.model.entity.Usuario;
 import asilar.model.service.base.BaseUsuarioService;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class UsuarioService implements BaseUsuarioService{
+public class UsuarioService implements BaseUsuarioService {
 
-    private Long sequence = 0L;
-    private List<Usuario> entityList = new ArrayList<Usuario>();
-    
-    private static UsuarioService instance;
-    public static UsuarioService getInstance(){
-        if (instance == null){
-            instance = new UsuarioService();
-        }
-        return instance;
-    }
-    
     @Override
     public void create(Usuario entity) throws Exception {
-        sequence++;
-        entity.setId(sequence);
-        entityList.add(entity);
-        System.out.println(sequence);
+        Connection conn = ConnectionManager.getInstance().getConnection();
+        try {
+            UsuarioDAO dao = new UsuarioDAO();
+            dao.create(conn, entity);
+            conn.commit();
+            conn.close();
+        } catch (Exception e) {
+            conn.rollback();
+            conn.close();
+            throw e;
+        }
     }
 
     @Override
     public Usuario readyById(Long id) throws Exception {
+        Connection conn = ConnectionManager.getInstance().getConnection();
         Usuario entity = new Usuario();
-        for(Usuario aux : entityList){
-            if(aux.getId().equals(id)){
-                entity = aux;
-                break;
-            }
+        UsuarioDAO dao = new UsuarioDAO();
+        try {
+            entity = dao.readyById(conn, id);
+            conn.commit();
+            conn.close();
+        } catch (Exception e) {
+            conn.rollback();
+            conn.close();
+            throw e;
         }
-        System.out.println("read: "+ sequence);
         return entity;
     }
 
     @Override
     public List<Usuario> readyByCriteria(Map<Long, Object> Criteria, Long offset) throws Exception {
+        Connection conn = ConnectionManager.getInstance().getConnection();
+        List<Usuario> entityList = new ArrayList<Usuario>();
+        UsuarioDAO dao = new UsuarioDAO();
+        try {
+            entityList = dao.readyByCriteria(conn, Criteria, offset);
+            conn.commit();
+            conn.close();
+        } catch (Exception e) {
+            conn.rollback();
+            conn.close();
+            throw e;
+        }
         return entityList;
     }
 
@@ -52,29 +67,48 @@ public class UsuarioService implements BaseUsuarioService{
 
     @Override
     public Long countByCriteria(Map<Long, Object> criteria) throws Exception {
+        Connection conn = ConnectionManager.getInstance().getConnection();
         Long count = 0L;
-        count = Long.valueOf(entityList.size());
+        UsuarioDAO dao = new UsuarioDAO();
+        try {
+            count = dao.countByCriteria(conn, criteria);
+            conn.commit();
+            conn.close();
+        } catch (Exception e) {
+            conn.rollback();
+            conn.close();
+            throw e;
+        }
         return count;
     }
 
     @Override
     public void update(Usuario entity) throws Exception {
-        for(Usuario aux : entityList){
-            if(aux.getId().equals(entity.getId())){
-                entityList.remove(aux);
-                entityList.add(entity);
-                break;
-            }
+        Connection conn = ConnectionManager.getInstance().getConnection();
+        UsuarioDAO dao = new UsuarioDAO();
+        try {
+            dao.update(conn, entity);
+            conn.commit();
+            conn.close();
+        } catch (Exception e) {
+            conn.rollback();
+            conn.close();
+            throw e;
         }
     }
 
     @Override
     public void delete(Long id) throws Exception {
-        for(Usuario aux : entityList){
-            if(aux.getId().equals(id)){
-                entityList.remove(aux);
-                break;
-            }
+        Connection conn = ConnectionManager.getInstance().getConnection();
+        UsuarioDAO dao = new UsuarioDAO();
+        try {
+            dao.delete(conn, id);
+            conn.commit();
+            conn.close();
+        } catch (Exception e) {
+            conn.rollback();
+            conn.close();
+            throw e;
         }
     }
 
@@ -82,5 +116,5 @@ public class UsuarioService implements BaseUsuarioService{
     public Map<String, String> validateForUpdate(Map<String, Object> fields) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

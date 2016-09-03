@@ -12,8 +12,7 @@ public class ServiceLocator {
     }
     
     public static BaseUsuarioService getUsuarioService(){
-        return UsuarioService.getInstance();
-        //return new UsuarioService();
+        return new UsuarioService();
     }
     
 }
