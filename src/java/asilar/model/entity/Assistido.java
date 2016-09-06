@@ -8,8 +8,8 @@ public class Assistido extends BaseEntity{
     private String profissao;
     private String nacionalidade;
     private String nome;
-    private String rg;      /*Colocar no MER */
-    private String cpf;     /*Colocar no MER*/
+    private String rg;      
+    private String cpf;     
     private String telfixo;
     private String celular;
     private String banco;
