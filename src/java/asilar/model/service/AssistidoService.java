@@ -179,7 +179,7 @@ public class AssistidoService implements BaseAssistidoService{
 
     @Override
     public Map<String, String> validateForUpdate(Map<String, Object> fields) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.validateForUpdate(fields);
     }
     
 }
