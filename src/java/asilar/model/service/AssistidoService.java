@@ -5,6 +5,7 @@ import asilar.model.dao.AssistidoDAO;
 import asilar.model.entity.Assistido;
 import asilar.model.service.base.BaseAssistidoService;
 import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -61,7 +62,12 @@ public class AssistidoService implements BaseAssistidoService{
 
     @Override
     public Map<String, String> validateForCreate(Map<String, Object> fields) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Map<String, String> errors = new HashMap<String, String>();
+        
+        Assistido assistido = (Assistido) fields.get("assistido");
+        if(assistido.getNome() == null || assistido.getNome().isEmpty()){
+            errors.put("nome", "Campo obrigatório");
+        }
     }
 
     @Override
