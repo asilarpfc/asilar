@@ -79,6 +79,12 @@ public class AssistidoController {
     public ModelAndView update(Assistido assistido){
         
         try {
+            Map<String, Object> fields = new HashMap<>();
+            fields.put("assistido", assistido);
+            fields.put("id", assistido.getId());
+            fields.put("cpf", assistido.getCpf());
+            
+            Map <String, String> errors = ServiceLocator.getAssistidoService().validateForUpdate(fields);
             ServiceLocator.getAssistidoService().update(assistido);
         } catch (Exception e) {
             e.printStackTrace();
