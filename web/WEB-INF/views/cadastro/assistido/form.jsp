@@ -26,7 +26,7 @@
 
         <form class="form-horizontal" method="post">
             <input type="hidden" name="id" value="${assistido.id}">
-           
+
             <div class="form-group">
                 <label for="nome" class="col-sm-2 control-label">Nome:</label>
                 <div class="col-sm-6">
@@ -45,16 +45,17 @@
                 <label for="cpf" class="col-sm-2 control-label">CPF:</label>
                 <div class="col-sm-6">
                     <input type="text" name="cpf" class="form-control" placeholder="CPF" value="${assistido.cpf}" required="">
+                    <c:if test="${not empty errors.cpf}"><span>${errors.cpf}</span></c:if>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="cartaoSus" class="col-sm-2 control-label">Cartão sus:</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="cartaoSus" class="form-control" placeholder="Nº do cartão do sus" value="${assistido.cartaoSus}" required="">
                 </div>
             </div>
-                
-            <div class="form-group">
-                <label for="cartaoSus" class="col-sm-2 control-label">Cartão sus:</label>
-                <div class="col-sm-6">
-                    <input type="text" name="cartaoSus" class="form-control" placeholder="Nº do cartão do sus" value="${assistido.cartaoSus}" required="">
-                </div>
-            </div>
-                
+
             <div class="form-group">
                 <label for="noDoBeneficio" class="col-sm-2 control-label">Nº do Beneficio:</label>
                 <div class="col-sm-6">
@@ -93,7 +94,7 @@
                         <input type="text" name="dataNascimento" class="form-control" placeholder="Data de Nascimento" value="${assistido.dataNascimento}" required="">
                 </div>
             </div>
-            
+
             <div class="form-group">
                 <label for="profissao" class="col-sm-2 control-label">Profissão:</label>
                 <div class="col-sm-6">
@@ -139,14 +140,14 @@
                     <input type="text" name="mae" class="form-control" placeholder="Mãe" value="${assistido.mae}" required="">
                 </div>
             </div>
-                
+
             <div class="form-group">
                 <label for="observacoes" class="col-sm-2 control-label">Observações:</label>
                 <div class="col-sm-6">
                     <textarea name="observacoes" class="form-control" rows="3" placeholder="observacoes" required="">${assistido.observacoes}</textarea>
                 </div>
             </div>
-            
+
             <div class="form-group">
                 <label for="procedencia" class="col-sm-2 control-label">Procedencia:</label>
                 <div class="col-sm-6">
@@ -188,7 +189,7 @@
                     <input type="text" name="estado" class="form-control" placeholder="Estado" value="${assistido.estado}" required="">
                 </div>
             </div>
-                
+
             <h1 align="center">Dados Bancarios:</h1>
             <div class="form-group">
                 <label for="banco" class="col-sm-2 control-label">Banco:</label>
@@ -196,14 +197,14 @@
                     <input type="text" name="banco" class="form-control" placeholder="Nº do banco" value="${assistido.banco}" required="">
                 </div>
             </div>
-                
+
             <div class="form-group">
                 <label for="agencia" class="col-sm-2 control-label">Agencia:</label>
                 <div class="col-sm-6">
                     <input type="text" name="agencia" class="form-control" placeholder="Nº da agencia" value="${assistido.agencia}" required="">
                 </div>
             </div>
-            
+
             <div class="form-group">
                 <label for="conta" class="col-sm-2 control-label">Conta Bancaria:</label>
                 <div class="col-sm-6">
@@ -218,10 +219,10 @@
                     <button type="button" class="btn btn-danger btnCancelar"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
                 </div>
             </div>
-           
+
 
         </form>
-        
+
         <jsp:include page="../../modais.jsp"/>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -23,13 +23,25 @@ public class AssistidoController {
     
     @RequestMapping (value = "/cadastro/assistido/novo", method = RequestMethod.POST)
     public ModelAndView create(Assistido entity){
-        
+        ModelAndView mv = null;
         try {
-            ServiceLocator.getAssistidoService().create(entity);
+            Map<String, Object> fields = new HashMap<>();
+            fields.put("assistido", entity);
+            fields.put("id", entity.getId());
+            fields.put("cpf", entity.getCpf());
+            
+            Map <String, String> errors = ServiceLocator.getAssistidoService().validateForCreate(fields);
+            if(errors.isEmpty()){
+                ServiceLocator.getAssistidoService().create(entity);
+                mv = new ModelAndView("redirect:/cadastro/assistido/lista");
+            }else{
+                mv = new ModelAndView("cadastro/assistido/form");
+                mv.addObject("assistido", entity);
+                mv.addObject("errors", errors);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ModelAndView mv = new ModelAndView("redirect:/cadastro/assistido/lista");
         return mv;
     }
     
