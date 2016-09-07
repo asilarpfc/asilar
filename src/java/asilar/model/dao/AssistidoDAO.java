@@ -172,8 +172,12 @@ public class AssistidoDAO implements BaseDAO<Assistido>{
             if (idNe != null && idNe > 0) {
                 sql += " and assistido.id != '" + idNe + "'";
             }
+            String cpfEq = (String) criteria.get(AssistidoCriteria.CPF_EQ);
+            if (cpfEq != null){
+                sql += " and cpf = '" + cpfEq + "'";
+            }
         }
-        sql += "ORDER BY id ASC";
+        sql += " ORDER BY id ASC";
         
         //paginando
         if (offset != null && offset >= 0) {
