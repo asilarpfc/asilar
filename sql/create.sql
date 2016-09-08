@@ -44,9 +44,9 @@ CREATE TABLE Usuario (
   PRIMARY KEY (id));
 
 DROP TABLE IF EXISTS instituição CASCADE;
-CREATE TABLE instituição (
+CREATE TABLE instituicao (
   id       BIGSERIAL NOT NULL, 
-  cnpg     varchar(20) NOT NULL, 
+  cnpj     varchar(20) NOT NULL, 
   nome     varchar(150) NOT NULL, 
   email    varchar(150), 
   telefone varchar(20), 

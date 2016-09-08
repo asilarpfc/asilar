@@ -179,7 +179,7 @@ public class AssistidoService implements BaseAssistidoService{
 
     @Override
     public Map<String, String> validateForUpdate(Map<String, Object> fields) throws Exception {
-        return this.validateForUpdate(fields);
+        return this.validateForCreate(fields);
     }
     
 }

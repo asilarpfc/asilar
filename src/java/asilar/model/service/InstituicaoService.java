@@ -67,17 +67,49 @@ public class InstituicaoService implements BaseInstituicaoService{
 
     @Override
     public Long countByCriteria(Map<Long, Object> criteria) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn = ConnectionManager.getInstance().getConnection();
+        Long count = 0L;
+        InstituicaoDAO dao = new InstituicaoDAO();
+        try {
+            count = dao.countByCriteria(conn, criteria);
+            conn.commit();
+            conn.close();
+        } catch (Exception e) {
+            conn.rollback();
+            conn.close();
+            throw e;
+        }
+        return count;
     }
 
     @Override
     public void update(Instituicao entity) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn = ConnectionManager.getInstance().getConnection();
+        InstituicaoDAO dao = new InstituicaoDAO();
+        try {
+            dao.update(conn, entity);
+            conn.commit();
+            conn.close();
+        } catch (Exception e) {
+            conn.rollback();
+            conn.close();
+            throw e;
+        }
     }
 
     @Override
     public void delete(Long id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn = ConnectionManager.getInstance().getConnection();
+        InstituicaoDAO dao = new InstituicaoDAO();
+        try {
+            dao.delete(conn, id);
+            conn.commit();
+            conn.close();
+        } catch (Exception e) {
+            conn.rollback();
+            conn.close();
+            throw e;
+        }
     }
 
     @Override
