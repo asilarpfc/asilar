@@ -43,7 +43,7 @@ CREATE TABLE Usuario (
   instituicao_fk       bigint NOT NULL,
   PRIMARY KEY (id));
 
-DROP TABLE IF EXISTS instituição CASCADE;
+DROP TABLE IF EXISTS instituicao CASCADE;
 CREATE TABLE instituicao (
   id       BIGSERIAL NOT NULL, 
   cnpj     varchar(20) NOT NULL, 
