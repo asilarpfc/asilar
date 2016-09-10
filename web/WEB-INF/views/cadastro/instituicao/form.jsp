@@ -31,6 +31,7 @@
                 <label for="nome" class="col-sm-2 control-label">Nome:</label>
                 <div class="col-sm-6">
                     <input type="text" name="nome" class="form-control" placeholder="Nome" value="${instituicao.nome}" required="">
+                    <c:if test="${not empty errors.nome}"><span>${errors.nome}</span></c:if>        
                 </div>
             </div>
 
@@ -38,6 +39,7 @@
                 <label for="cnpj" class="col-sm-2 control-label">CNPJ:</label>
                 <div class="col-sm-6">
                     <input type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="${instituicao.cnpj}" required="">
+                    <c:if test="${not empty errors.cnpj}"><span>${errors.cnpj}</span></c:if>
                 </div>
             </div>
                 
@@ -45,6 +47,7 @@
                 <label for="telefone" class="col-sm-2 control-label">Telefone:</label>
                 <div class="col-sm-6">
                     <input type="text" name="telefone" class="form-control" placeholder="Telefone" value="${instituicao.telefone}" required="">
+                    <c:if test="${not empty errors.telefone}"><span>${errors.telefone}</span></c:if>
                 </div>
             </div>
                 
@@ -52,6 +55,7 @@
                 <label for="email" class="col-sm-2 control-label">E-MAIL:</label>
                 <div class="col-sm-6">
                     <input type="text" name="email" class="form-control" placeholder="E-MAIL" value="${instituicao.email}" required="">
+                    <c:if test="${not empty errors.email}"><span>${errors.email}</span></c:if>
                 </div>
             </div>
             
@@ -59,6 +63,7 @@
                 <label for="rua" class="col-sm-2 control-label">Rua:</label>
                 <div class="col-sm-6">
                     <input type="text" name="rua" class="form-control" placeholder="Rua" value="${instituicao.rua}" required="">
+                    <c:if test="${not empty errors.rua}"><span>${errors.rua}</span></c:if>
                 </div>
             </div>
 
@@ -66,6 +71,7 @@
                 <label for="numero" class="col-sm-2 control-label">Numero:</label>
                 <div class="col-sm-6">
                     <input type="text" name="numero" class="form-control" placeholder="Numero" value="${instituicao.numero}" required="">
+                    <c:if test="${not empty errors.numero}"><span>${errors.numero}</span></c:if>
                 </div>
             </div>
 
@@ -73,6 +79,7 @@
                 <label for="bairro" class="col-sm-2 control-label">Bairro:</label>
                 <div class="col-sm-6">
                     <input type="text" name="bairro" class="form-control" placeholder="Bairro" value="${instituicao.bairro}" required="">
+                    <c:if test="${not empty errors.bairro}"><span>${errors.bairro}</span></c:if>
                 </div>
             </div>
 
@@ -80,6 +87,7 @@
                 <label for="cep" class="col-sm-2 control-label">CEP:</label>
                 <div class="col-sm-6">
                     <input type="text" name="cep" class="form-control" placeholder="CEP" value="${instituicao.cep}" required="">
+                    <c:if test="${not empty errors.cep}"><span>${errors.cep}</span></c:if>
                 </div>
             </div>
              
@@ -87,12 +95,14 @@
                 <label for="cidade" class="col-sm-2 control-label">Cidade:</label>
                 <div class="col-sm-6">
                     <input type="text" name="cidade" class="form-control" placeholder="Cidade" value="${instituicao.cidade}" required="">
+                    <c:if test="${not empty errors.cidade}"><span>${errors.cidade}</span></c:if>
                 </div>
             </div>
             <div class="form-group">
                 <label for="estade" class="col-sm-2 control-label">Eestado:</label>
                 <div class="col-sm-6">
                     <input type="text" name="estado" class="form-control" placeholder="Estado" value="${instituicao.estado}" required="">
+                    <c:if test="${not empty errors.estado}"><span>${errors.estado}</span></c:if>
                 </div>
             </div>
                 

@@ -31,6 +31,7 @@
                 <label for="nome" class="col-sm-2 control-label">Nome:</label>
                 <div class="col-sm-6">
                     <input type="text" name="nome" class="form-control" placeholder="Nome" value="${usuario.nome}" required="">
+                    <c:if test="${not empty errors.nome}"><span>${errors.nome}</span></c:if>
                 </div>
             </div>
                 
@@ -38,6 +39,7 @@
                 <label for="login" class="col-sm-2 control-label">Login:</label>
                 <div class="col-sm-6">
                     <input type="text" name="login" class="form-control" placeholder="Login" value="${usuario.login}" required="">
+                    <c:if test="${not empty errors.login}"><span>${errors.login}</span></c:if>
                 </div>
             </div>
                 
@@ -45,6 +47,7 @@
                 <label for="senha" class="col-sm-2 control-label">Senha:</label>
                 <div class="col-sm-6">
                     <input type="password" name="senha" class="form-control" placeholder="Senha" value="${usuario.senha}" required="">
+                    <c:if test="${not empty errors.senha}"><span>${errors.senha}</span></c:if>
                 </div>
             </div>
 
@@ -52,6 +55,7 @@
                 <label for="rg" class="col-sm-2 control-label">RG:</label>
                 <div class="col-sm-6">
                     <input type="text" name="rg" class="form-control" placeholder="RG" value="${usuario.rg}" required="">
+                    <c:if test="${not empty errors.rg}"><span>${errors.rg}</span></c:if>
                 </div>
             </div>
 
@@ -59,6 +63,7 @@
                 <label for="cpf" class="col-sm-2 control-label">CPF:</label>
                 <div class="col-sm-6">
                     <input type="text" name="cpf" class="form-control" placeholder="CPF" value="${usuario.cpf}" required="">
+                    <c:if test="${not empty errors.cpf}"><span>${errors.cpf}</span></c:if>
                 </div>
             </div>
             
@@ -66,6 +71,7 @@
                 <label for="telfixo" class="col-sm-2 control-label">Telefone Fixo:</label>
                 <div class="col-sm-6">
                     <input type="text" name="telfixo" class="form-control" placeholder="Telefone Fixo" value="${usuario.telfixo}" required="">
+                    <c:if test="${not empty errors.telfixo}"><span>${errors.telfixo}</span></c:if>
                 </div>
             </div>
 
@@ -73,6 +79,7 @@
                 <label for="celular" class="col-sm-2 control-label">Celular:</label>
                 <div class="col-sm-6">
                     <input type="text" name="celular" class="form-control" placeholder="Celular" value="${usuario.celular}" required="">
+                    <c:if test="${not empty errors.celular}"><span>${errors.celular}</span></c:if>
                 </div>
             </div>
 
@@ -80,6 +87,7 @@
                 <label for="email" class="col-sm-2 control-label">E-Mail:</label>
                 <div class="col-sm-6">
                     <input type="email" name="email" class="form-control" placeholder="Celular" value="${usuario.email}" required="">
+                    <c:if test="${not empty errors.email}"><span>${errors.email}</span></c:if>
                 </div>
             </div>
                 
