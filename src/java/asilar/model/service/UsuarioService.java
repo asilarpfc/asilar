@@ -139,9 +139,7 @@ public class UsuarioService implements BaseUsuarioService {
 
         Usuario usuarioLogado = null;
         if (login != null && !login.isEmpty() && senha != null && !senha.isEmpty()) {
-            if(!senha.equals("123456")){
-                senha = this.encodePassword(senha);
-            }
+            senha = this.encodePassword(senha);
             Map<Long, Object> criteria = new HashMap<>();
             criteria.put(UsuarioCriteria.LOGIN_EQ, login);
             criteria.put(UsuarioCriteria.SENHA_EQ, senha);

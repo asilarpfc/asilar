@@ -99,7 +99,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="estade" class="col-sm-2 control-label">Eestado:</label>
+                <label for="estade" class="col-sm-2 control-label">Estado:</label>
                 <div class="col-sm-6">
                     <input type="text" name="estado" class="form-control" placeholder="Estado" value="${instituicao.estado}" required="">
                     <c:if test="${not empty errors.estado}"><span>${errors.estado}</span></c:if>
