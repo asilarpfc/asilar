@@ -37,7 +37,7 @@ CREATE TABLE Usuario (
   nome                 varchar(60) NOT NULL, 
   cpf                  varchar(30) NOT NULL, 
   telefone_residencial varchar(20) NOT NULL, 
-  login                varchar(150) NOT NULL, 
+  usuario              varchar(150) NOT NULL, 
   senha                varchar(255) NOT NULL, 
   tipo_usuario         integer NOT NULL,
   instituicao_fk       bigint NOT NULL,

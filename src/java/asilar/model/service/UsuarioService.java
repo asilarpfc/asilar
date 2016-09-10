@@ -151,7 +151,7 @@ public class UsuarioService implements BaseUsuarioService {
 
             if (usuarioList != null && usuarioList.size() == 1) {
                 Usuario usuarioRetornado = usuarioList.get(0);
-                if (usuarioRetornado.getLogin().equals(login)) {
+                if (usuarioRetornado.getUsuario().equals(login)) {
                     if (usuarioRetornado.getSenha().equals(senha)) {
                         usuarioLogado = usuarioRetornado;
                     }

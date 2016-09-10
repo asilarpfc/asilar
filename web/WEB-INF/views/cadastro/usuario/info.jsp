@@ -29,7 +29,7 @@
         
         <div class="col-sm-offset-1">
             <ul class="list-group col-sm-10">
-                <li class="list-group-item"><b>Login:</b> ${usuario.login}</li>
+                <li class="list-group-item"><b>Usuario:</b> ${usuario.usuario}</li>
                 <li class="list-group-item"><b>CPF:</b> ${usuario.cpf}</li>
                 <li class="list-group-item"><b>RG:</b> ${usuario.rg}</li>
                 <li class="list-group-item"><b>Telefone:</b> ${usuario.telfixo}</li>
