@@ -86,7 +86,7 @@
             <div class="form-group">
                 <label for="email" class="col-sm-2 control-label">E-Mail:</label>
                 <div class="col-sm-6">
-                    <input type="email" name="email" class="form-control" placeholder="Celular" value="${usuario.email}" required="">
+                    <input type="email" name="email" class="form-control" placeholder="E-Mail" value="${usuario.email}" required="">
                     <c:if test="${not empty errors.email}"><span>${errors.email}</span></c:if>
                 </div>
             </div>

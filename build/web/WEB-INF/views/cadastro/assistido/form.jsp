@@ -30,7 +30,7 @@
             <div class="form-group">
                 <label for="nome" class="col-sm-2 control-label">Nome:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="nome" class="form-control" placeholder="Nome" value="${assistido.nome}" required="">
+                    <input type="text" name="nome" class="form-control" placeholder="Nome" value="${assistido.nome}" maxlength="150" required="">
                     <c:if test="${not empty errors.nome}"><span>${errors.nome}</span></c:if>
                 </div>
             </div>

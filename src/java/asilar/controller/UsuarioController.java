@@ -34,6 +34,7 @@ public class UsuarioController {
            
            Map<String, String> errors = ServiceLocator.getUsuarioService().validateForCreate(fields);
            if(errors.isEmpty()){
+               entity.setSenha(ServiceLocator.getUsuarioService().encodePassword(entity.getSenha()));
                ServiceLocator.getUsuarioService().create(entity);
                mv = new ModelAndView("redirect:/cadastro/usuario/lista");               
            }else{
@@ -46,13 +47,7 @@ public class UsuarioController {
             ex.printStackTrace();
             
         }
-        /*try {
-            usuario.setSenha(ServiceLocator.getUsuarioService().encodePassword(usuario.getSenha()));
-            ServiceLocator.getUsuarioService().create(usuario);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        ModelAndView mv = new ModelAndView("redirect:/cadastro/usuario/lista");*/
+        
         return mv;
     }
 
