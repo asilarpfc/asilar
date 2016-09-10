@@ -77,14 +77,27 @@ public class AssistidoController {
     
     @RequestMapping (value = "/cadastro/assistido/{id}/alterar", method = RequestMethod.POST)
     public ModelAndView update(Assistido assistido){
-        
+        ModelAndView mv = null;
         try {
-            ServiceLocator.getAssistidoService().update(assistido);
+            Map<String, Object> fields = new HashMap<>();
+            fields.put("assistido", assistido);
+            fields.put("id", assistido.getId());
+            fields.put("cpf", assistido.getCpf());
+            
+            Map <String, String> errors = ServiceLocator.getAssistidoService().validateForUpdate(fields);
+            if(errors.isEmpty()){
+                ServiceLocator.getAssistidoService().update(assistido);
+                mv = new ModelAndView("redirect:/cadastro/assistido/lista");
+            }else{
+                mv = new ModelAndView("/cadastro/assistido/form");
+                mv.addObject("assistido", assistido);
+                mv.addObject("errors", errors);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
         
-        ModelAndView mv = new ModelAndView("redirect:/cadastro/assistido/lista");
+        
         return mv;
     }
     

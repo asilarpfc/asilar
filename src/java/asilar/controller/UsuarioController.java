@@ -25,6 +25,7 @@ public class UsuarioController {
     @RequestMapping(value = "/cadastro/usuario/novo", method = RequestMethod.POST)
     public ModelAndView create(Usuario usuario) {
         try {
+            usuario.setSenha(ServiceLocator.getUsuarioService().encodePassword(usuario.getSenha()));
             ServiceLocator.getUsuarioService().create(usuario);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -103,6 +104,7 @@ public class UsuarioController {
     @RequestMapping(value = "/cadastro/usuario/{id}/alterar", method = RequestMethod.POST)
     public ModelAndView update(Usuario usuario) {
         try {
+            usuario.setSenha(ServiceLocator.getUsuarioService().encodePassword(usuario.getSenha()));
             ServiceLocator.getUsuarioService().update(usuario);
         } catch (Exception e) {
             e.printStackTrace();

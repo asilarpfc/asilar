@@ -18,7 +18,7 @@ public class AssistidoDAO implements BaseDAO<Assistido>{
         String sql = "UPDATE assistido SET profissao=?, nacionalidade=?, nome=?, rg=?, cpf=?, telfixo=?, \n" +
                     "celular=?, banco=?, agencia=?, conta=?, naturalidade=?, estado_civil=?, \n" +
                     "mae=?, pai=?, rua=?, bairro=?, numero=?, cidade=?, estado=?, \n" +
-                    "sexo=?, data_nascimento=?, observacoes=?, procedencia=? cartao_sus=?, no_do_beneficio=? WHERE id = ?;";
+                    "sexo=?, data_nascimento=?, observacoes=?, procedencia=?, cartao_sus=?, no_do_beneficio=? WHERE id = ?;";
         int i = 0;
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(++i, entity.getProfissao());

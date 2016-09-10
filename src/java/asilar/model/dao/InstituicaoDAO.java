@@ -17,7 +17,7 @@ public class InstituicaoDAO implements BaseDAO<Instituicao>{
     @Override
     public void update(Connection conn, Instituicao entity) throws Exception {
     
-        String sql = "UPDATE instituição SET cnpg=?, nome=?, email=?, telefone=?, rua=?, numero=?, bairro=?, \n" +
+        String sql = "UPDATE instituicao SET cnpj=?, nome=?, email=?, telefone=?, rua=?, numero=?, bairro=?, \n" +
                      "cep=?, cidade=?, estado=? WHERE id=?;";        
         int i = 0;
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -31,6 +31,7 @@ public class InstituicaoDAO implements BaseDAO<Instituicao>{
         statement.setString(++i, entity.getCep());
         statement.setString(++i, entity.getCidade());
         statement.setString(++i, entity.getEstado());
+        statement.setLong(++i, entity.getId());
         
         statement.execute();
         statement.close();
@@ -48,8 +49,8 @@ public class InstituicaoDAO implements BaseDAO<Instituicao>{
 
     @Override
     public void create(Connection conn, Instituicao entity) throws Exception {
-        String sql = "INSERT INTO instituição(cnpg, nome, email, telefone, rua, numero, bairro, cep, cidade, estado)\n" +
-                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURING id;";
+        String sql = "INSERT INTO instituicao(cnpj, nome, email, telefone, rua, numero, bairro, cep, cidade, estado)\n" +
+                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id;";
         int i = 0;
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(++i, entity.getCnpj());
@@ -74,8 +75,8 @@ public class InstituicaoDAO implements BaseDAO<Instituicao>{
 
     @Override
     public Instituicao readyById(Connection conn, Long id) throws Exception {
-        String sql = "SELECT id, cnpg, nome, email, telefone, rua, numero, bairro, cep, cidade, estado\n" +
-                     "FROM instituição WHERE id=?;";
+        String sql = "SELECT id, cnpj, nome, email, telefone, rua, numero, bairro, cep, cidade, estado\n" +
+                     "FROM instituicao WHERE id=?;";
         int i = 0;
         Instituicao entity = new Instituicao();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -85,15 +86,15 @@ public class InstituicaoDAO implements BaseDAO<Instituicao>{
         if(rs.next()){
             entity.setId(rs.getLong("id"));
             entity.setCnpj(rs.getString("cnpj"));
-            entity.setCnpj(rs.getString("nome"));
-            entity.setCnpj(rs.getString("email"));
-            entity.setCnpj(rs.getString("telefone"));
-            entity.setCnpj(rs.getString("rua"));
-            entity.setCnpj(rs.getString("numero"));
-            entity.setCnpj(rs.getString("bairro"));
-            entity.setCnpj(rs.getString("cep"));
-            entity.setCnpj(rs.getString("cidade"));
-            entity.setCnpj(rs.getString("estado"));
+            entity.setNome(rs.getString("nome"));
+            entity.setEmail(rs.getString("email"));
+            entity.setTelefone(rs.getString("telefone"));
+            entity.setRua(rs.getString("rua"));
+            entity.setNumero(rs.getString("numero"));
+            entity.setBairro(rs.getString("bairro"));
+            entity.setCep(rs.getString("cep"));
+            entity.setCidade(rs.getString("cidade"));
+            entity.setEstado(rs.getString("estado"));
             
         }
         rs.close();
@@ -104,8 +105,8 @@ public class InstituicaoDAO implements BaseDAO<Instituicao>{
 
     @Override
     public List<Instituicao> readyByCriteria(Connection conn, Map<Long, Object> criteria, Long offset) throws Exception {
-        String sql = "SELECT id, cnpg, nome, email, telefone, rua, numero, bairro, cep, cidade, estado\n" +
-                     "FROM instituição WHERE 1=1;";
+        String sql = "SELECT id, cnpj, nome, email, telefone, rua, numero, bairro, cep, cidade, estado\n" +
+                     "FROM instituicao WHERE 1=1;";
         Statement statement = conn.createStatement();
         if(criteria != null && criteria.size() > 0){
             String nome = (String) criteria.get(InstituicaoCriteria.NOME_ILIKE);

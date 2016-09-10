@@ -1,6 +1,7 @@
 package asilar.model.entity;
 
 import asilar.model.entity.base.BaseEntity;
+import java.sql.Timestamp;
 
 public class Instituicao extends BaseEntity{
     private String cnpj;
@@ -13,7 +14,7 @@ public class Instituicao extends BaseEntity{
     private String cep;
     private String cidade;
     private String estado;
-
+    
     public String getCnpj() {
         return cnpj;
     }
