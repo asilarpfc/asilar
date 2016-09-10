@@ -113,12 +113,14 @@ public class AssistidoService implements BaseAssistidoService{
             Map<Long, Object> criteria = new HashMap<>();
             Long id = (Long) fields.get("id");
             String cpf = (String) fields.get("cpf");
+            String usuario = (String) fields.get("usuario");
             if (id != null && id > 0) {
                 criteria.put(AssistidoCriteria.ID_NE, id);
             }
             if (cpf != null && !cpf.isEmpty()) {
                 criteria.put(AssistidoCriteria.CPF_EQ, cpf);
             }
+            
 
             List<Assistido> pacienteList
                     = ServiceLocator.getAssistidoService().readyByCriteria(criteria, null);

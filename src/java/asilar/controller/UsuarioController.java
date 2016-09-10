@@ -23,14 +23,36 @@ public class UsuarioController {
     }
 
     @RequestMapping(value = "/cadastro/usuario/novo", method = RequestMethod.POST)
-    public ModelAndView create(Usuario usuario) {
-        try {
+    public ModelAndView create(Usuario entity) {
+        ModelAndView mv = null;
+        try{
+           Map<String, Object> fields = new HashMap<>();
+           fields.put("usuario", entity);
+           fields.put("id", entity.getId());
+           fields.put("cpf", entity.getCpf());
+           fields.put("mesmoUsuario", entity.getUsuario());
+           
+           Map<String, String> errors = ServiceLocator.getUsuarioService().validateForCreate(fields);
+           if(errors.isEmpty()){
+               ServiceLocator.getUsuarioService().create(entity);
+               mv = new ModelAndView("redirect:/cadastro/usuario/lista");               
+           }else{
+               mv = new ModelAndView("cadastro/usuario/form");
+               mv.addObject("usuario", entity);
+               mv.addObject("errors", errors);
+           }
+            
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            
+        }
+        /*try {
             usuario.setSenha(ServiceLocator.getUsuarioService().encodePassword(usuario.getSenha()));
             ServiceLocator.getUsuarioService().create(usuario);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        ModelAndView mv = new ModelAndView("redirect:/cadastro/usuario/lista");
+        ModelAndView mv = new ModelAndView("redirect:/cadastro/usuario/lista");*/
         return mv;
     }
 

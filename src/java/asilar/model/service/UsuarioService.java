@@ -1,6 +1,7 @@
 package asilar.model.service;
 
 import asilar.model.ConnectionManager;
+import asilar.model.ServiceLocator;
 import asilar.model.criteria.UsuarioCriteria;
 import asilar.model.dao.UsuarioDAO;
 import asilar.model.entity.Usuario;
@@ -66,7 +67,64 @@ public class UsuarioService implements BaseUsuarioService {
 
     @Override
     public Map<String, String> validateForCreate(Map<String, Object> fields) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        Map<String, String> errors = new HashMap<String, String>(); 
+        Usuario usuario = (Usuario) fields.get("usuario");
+        if(usuario.getNome() == null || usuario.getNome().trim().equals("")){
+            errors.put("nome", "Campo Obrigatório");
+        }else if(usuario.getUsuario() == null || usuario.getUsuario().trim().equals("")){
+            errors.put("usuario", "Campo Obrigatório");
+        }else if(usuario.getSenha() == null || usuario.getSenha().trim().equals("")){
+            errors.put("senha", "Campo Obrigatório");
+        }else if(usuario.getRg() == null || usuario.getRg().trim().equals("")){
+            errors.put("rg", "Campo Obrigatório");
+        }else if(usuario.getCpf() == null || usuario.getCpf().trim().equals("")){
+            errors.put("cpf", "Campo Obrigatório");
+        }else if(usuario.getTelfixo() == null || usuario.getTelfixo().trim().equals("")){
+            errors.put("telfixo", "Campo Obrigatório");
+        }else if(usuario.getCelular() == null || usuario.getCelular().trim().equals("")){
+            errors.put("celular", "Campo Obrigatório");
+        }else if(usuario.getEmail() == null || usuario.getEmail().trim().equals("")){
+            errors.put("email", "Campo Obrigatório");
+        }else if(usuario.getTipoUsuario() == null || usuario.getTipoUsuario().equals("")){
+            errors.put("tipoUsuario", "Campo Usuário");
+        }else{
+            
+            Map<Long, Object> criteria = new HashMap<>();
+            Long id = (Long) fields.get("id");
+            String cpf = (String) fields.get("cpf");
+            String mesmoUsuario = (String) fields.get("mesmoUsuario");
+            if(id != null && id > 0){
+                criteria.put(UsuarioCriteria.ID_NE, id);
+            }
+            if(cpf != null && !cpf.isEmpty()){
+                criteria.put(UsuarioCriteria.CPF_EQ, cpf);
+            } 
+            
+            List<Usuario> usuarioList = ServiceLocator.getUsuarioService().readyByCriteria(criteria, null);
+            
+            if(!usuarioList.isEmpty()){
+                errors.put("cpf", "este CPF já se encontra em uso");
+            }
+            usuarioList = null;
+            criteria = null;
+            criteria = new HashMap<>();
+             if(id != null && id > 0){
+                criteria.put(UsuarioCriteria.ID_NE, id);
+            }
+            if(mesmoUsuario != null && !mesmoUsuario.isEmpty()){
+                criteria.put(UsuarioCriteria.USUARIO_EQ, mesmoUsuario);
+            }
+            
+            usuarioList = ServiceLocator.getUsuarioService().readyByCriteria(criteria, null);
+            
+            if(!usuarioList.isEmpty()){
+                errors.put("usuario", "este Usuario já se encontra em uso");
+            }
+            
+            
+        }
+        return errors;
     }
 
     @Override
@@ -143,7 +201,7 @@ public class UsuarioService implements BaseUsuarioService {
                 senha = this.encodePassword(senha);
             }
             Map<Long, Object> criteria = new HashMap<>();
-            criteria.put(UsuarioCriteria.LOGIN_EQ, login);
+            criteria.put(UsuarioCriteria.USUARIO_EQ, login);
             criteria.put(UsuarioCriteria.SENHA_EQ, senha);
 
             List<Usuario> usuarioList

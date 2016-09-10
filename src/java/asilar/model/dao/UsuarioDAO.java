@@ -116,7 +116,7 @@ public class UsuarioDAO implements BaseDAO<Usuario>{
                 sql += " and usuario.id != '" + idNe + "'";
             }
             
-            String usuarioEq = (String) criteria.get(UsuarioCriteria.LOGIN_EQ);
+            String usuarioEq = (String) criteria.get(UsuarioCriteria.USUARIO_EQ);
             if(usuarioEq != null){
                 sql += " and usuario.usuario = '" + usuarioEq + "'";
             }
@@ -130,14 +130,18 @@ public class UsuarioDAO implements BaseDAO<Usuario>{
             if(senhaEq != null){
                 sql += " and usuario.senha = '" + senhaEq +"'";
             }
-        }
+            String cpfEq = (String) criteria.get(UsuarioCriteria.CPF_EQ);
+            if(cpfEq != null){
+                sql += " and usuario.cpf = '" + cpfEq + "'";
+            } 
+        }    
+        
         sql += "ORDER BY id ASC";
         
         //paginando
         if (offset != null && offset >= 0) {
             sql += " limit 10 offset " + offset + "";
         }
-        
         ResultSet rs = statement.executeQuery(sql);
         List<Usuario> entityList = new ArrayList<Usuario>();
         
