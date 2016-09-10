@@ -1,11 +1,15 @@
 package asilar.model.service;
 
 import asilar.model.ConnectionManager;
+import asilar.model.criteria.UsuarioCriteria;
 import asilar.model.dao.UsuarioDAO;
 import asilar.model.entity.Usuario;
 import asilar.model.service.base.BaseUsuarioService;
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -115,6 +119,47 @@ public class UsuarioService implements BaseUsuarioService {
     @Override
     public Map<String, String> validateForUpdate(Map<String, Object> fields) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+        @Override
+        public String encodePassword(String input) throws Exception {
+        input += "255ve";
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(input.getBytes());
+            BigInteger number = new BigInteger(1, messageDigest);
+            return number.toString(16);
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
+    }
+
+        @Override
+        public Usuario login(String login, String senha) throws Exception {
+
+        Usuario usuarioLogado = null;
+        if (login != null && !login.isEmpty() && senha != null && !senha.isEmpty()) {
+            if(!senha.equals("123456")){
+                senha = this.encodePassword(senha);
+            }
+            Map<Long, Object> criteria = new HashMap<>();
+            criteria.put(UsuarioCriteria.LOGIN_EQ, login);
+            criteria.put(UsuarioCriteria.SENHA_EQ, senha);
+
+            List<Usuario> usuarioList
+                    = this.readyByCriteria(criteria, null);
+
+            if (usuarioList != null && usuarioList.size() == 1) {
+                Usuario usuarioRetornado = usuarioList.get(0);
+                if (usuarioRetornado.getLogin().equals(login)) {
+                    if (usuarioRetornado.getSenha().equals(senha)) {
+                        usuarioLogado = usuarioRetornado;
+                    }
+                }
+            }
+        }
+        return usuarioLogado;
+
     }
 
 }

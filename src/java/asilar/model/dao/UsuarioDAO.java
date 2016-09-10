@@ -110,9 +110,25 @@ public class UsuarioDAO implements BaseDAO<Usuario>{
             if (nome != null) {
                 sql += " AND nome ilike '%" + nome + "%'";
             }
+            
             Long idNe = (Long) criteria.get(UsuarioCriteria.ID_NE);
             if (idNe != null && idNe > 0) {
                 sql += " and usuario.id != '" + idNe + "'";
+            }
+            
+            String loginEq = (String) criteria.get(UsuarioCriteria.LOGIN_EQ);
+            if(loginEq != null){
+                sql += " and usuario.login = '" + loginEq + "'";
+            }
+            
+            String emailEq = (String) criteria.get(UsuarioCriteria.EMAIL_EQ);
+            if(emailEq != null){
+                sql += " and usuario.email = '" + emailEq + "'";
+            }
+            
+            String senhaEq = (String) criteria.get(UsuarioCriteria.SENHA_EQ);
+            if(senhaEq != null){
+                sql += " and usuario.senha = '" + senhaEq +"'";
             }
         }
         sql += "ORDER BY id ASC";
