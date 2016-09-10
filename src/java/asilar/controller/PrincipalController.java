@@ -55,4 +55,10 @@ public class PrincipalController {
         return mv;
     }
     
+    @RequestMapping(value = "/erro", method = RequestMethod.GET)
+    public ModelAndView erroMessage(){
+        ModelAndView mv = new ModelAndView("/erro");
+        return mv;
+    }
+    
 }

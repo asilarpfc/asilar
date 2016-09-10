@@ -14,9 +14,9 @@
     <mvc:resources mapping="/img/**" location="/img/" />
     <mvc:resources mapping="/js/**" location="/js/" />
     
-    <!--<mvc:interceptors>
-        <bean class="kpot.interceptor.AAinterceptor"/>
-    </mvc:interceptors>!-->     
+    <mvc:interceptors>
+        <bean class="asilar.interceptor.AAinterceptor"/>
+    </mvc:interceptors>
    
     
     <mvc:annotation-driven />
