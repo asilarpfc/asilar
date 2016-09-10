@@ -36,10 +36,10 @@
             </div>
                 
             <div class="form-group">
-                <label for="login" class="col-sm-2 control-label">Login:</label>
+                <label for="usuario" class="col-sm-2 control-label">Usuario:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="login" class="form-control" placeholder="Login" value="${usuario.login}" required="">
-                    <c:if test="${not empty errors.login}"><span>${errors.login}</span></c:if>
+                    <input type="text" name="usuario" class="form-control" placeholder="Usuario" value="${usuario.usuario}" required="">
+                    <c:if test="${not empty errors.usuario}"><span>${errors.usuario}</span></c:if>
                 </div>
             </div>
                 

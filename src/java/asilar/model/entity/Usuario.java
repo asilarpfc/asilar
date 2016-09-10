@@ -7,7 +7,7 @@ import asilar.model.entity.base.BaseEntity;
 public class Usuario extends BaseEntity{
     
     private String nome;
-    private String login;
+    private String usuario;
     private String senha;
     private String rg;
     private String cpf;
@@ -16,12 +16,12 @@ public class Usuario extends BaseEntity{
     private String email;
     private Integer tipoUsuario;
     
-    public String getLogin() {
-        return login;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getSenha() {

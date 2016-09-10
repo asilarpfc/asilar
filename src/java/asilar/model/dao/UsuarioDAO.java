@@ -15,7 +15,7 @@ public class UsuarioDAO implements BaseDAO<Usuario>{
     @Override
     public void update(Connection conn, Usuario entity) throws Exception {
         String sql = "UPDATE usuario SET email=?, telefone_celular=?, rg=?, nome=?, cpf=?, \n" +
-                "telefone_residencial=?, login=?, senha=?, tipo_usuario=? WHERE id=?;";
+                "telefone_residencial=?, usuario=?, senha=?, tipo_usuario=? WHERE id=?;";
         
         int i = 0;
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -25,7 +25,7 @@ public class UsuarioDAO implements BaseDAO<Usuario>{
         statement.setString(++i, entity.getNome());
         statement.setString(++i, entity.getCpf());
         statement.setString(++i, entity.getTelfixo());
-        statement.setString(++i, entity.getLogin());
+        statement.setString(++i, entity.getUsuario());
         statement.setString(++i, entity.getSenha());
         statement.setInt(++i, entity.getTipoUsuario());
         statement.setLong(++i, entity.getId());
@@ -46,7 +46,7 @@ public class UsuarioDAO implements BaseDAO<Usuario>{
     @Override
     public void create(Connection conn, Usuario entity) throws Exception {
         String sql = "INSERT INTO usuario(email, telefone_celular, rg, nome, cpf, telefone_residencial, \n" +
-                     "login, senha, tipo_usuario, instituicao_fk)\n" +
+                     "usuario, senha, tipo_usuario, instituicao_fk)\n" +
                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id;";
         int i = 0;
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -56,7 +56,7 @@ public class UsuarioDAO implements BaseDAO<Usuario>{
         statement.setString(++i, entity.getNome());
         statement.setString(++i, entity.getCpf());
         statement.setString(++i, entity.getTelfixo());
-        statement.setString(++i, entity.getLogin());
+        statement.setString(++i, entity.getUsuario());
         statement.setString(++i, entity.getSenha());
         statement.setInt(++i, entity.getTipoUsuario());
         statement.setLong(++i, 1L);
@@ -73,7 +73,7 @@ public class UsuarioDAO implements BaseDAO<Usuario>{
 
     @Override
     public Usuario readyById(Connection conn, Long id) throws Exception {
-        String sql = "SELECT id, email, telefone_celular, rg, nome, cpf, telefone_residencial, login, senha, \n" +
+        String sql = "SELECT id, email, telefone_celular, rg, nome, cpf, telefone_residencial, usuario, senha, \n" +
                      "tipo_usuario FROM usuario WHERE id=?;";
         Usuario entity = new Usuario();
         int i = 0;
@@ -89,7 +89,7 @@ public class UsuarioDAO implements BaseDAO<Usuario>{
             entity.setNome(rs.getString("nome"));
             entity.setCpf(rs.getString("cpf"));
             entity.setTelfixo(rs.getString("telefone_residencial"));
-            entity.setLogin(rs.getString("login"));
+            entity.setUsuario(rs.getString("usuario"));
             entity.setSenha(rs.getString("senha"));
             entity.setTipoUsuario(rs.getInt("tipo_usuario"));  /*Ver se está certo*/
             
@@ -103,7 +103,7 @@ public class UsuarioDAO implements BaseDAO<Usuario>{
     @Override
     public List<Usuario> readyByCriteria(Connection conn, Map<Long, Object> criteria, Long offset) throws Exception {
         String sql = "SELECT id, email, telefone_celular, rg, nome, cpf, telefone_residencial, \n" +
-                     "login, senha, tipo_usuario FROM usuario WHERE 1=1";
+                     "usuario, senha, tipo_usuario FROM usuario WHERE 1=1";
         Statement statement = conn.createStatement();
         if(criteria != null && criteria.size() > 0){
             String nome = (String) criteria.get(UsuarioCriteria.NOME_ILIKE);
@@ -116,9 +116,9 @@ public class UsuarioDAO implements BaseDAO<Usuario>{
                 sql += " and usuario.id != '" + idNe + "'";
             }
             
-            String loginEq = (String) criteria.get(UsuarioCriteria.LOGIN_EQ);
-            if(loginEq != null){
-                sql += " and usuario.login = '" + loginEq + "'";
+            String usuarioEq = (String) criteria.get(UsuarioCriteria.LOGIN_EQ);
+            if(usuarioEq != null){
+                sql += " and usuario.usuario = '" + usuarioEq + "'";
             }
             
             String emailEq = (String) criteria.get(UsuarioCriteria.EMAIL_EQ);
@@ -150,7 +150,7 @@ public class UsuarioDAO implements BaseDAO<Usuario>{
             entity.setNome(rs.getString("nome"));
             entity.setCpf(rs.getString("cpf"));
             entity.setTelfixo(rs.getString("telefone_residencial"));
-            entity.setLogin(rs.getString("login"));
+            entity.setUsuario(rs.getString("usuario"));
             entity.setSenha(rs.getString("senha"));
             entity.setTipoUsuario(rs.getInt("tipo_usuario")); /*Ver se está certo*/
             entityList.add(entity);
