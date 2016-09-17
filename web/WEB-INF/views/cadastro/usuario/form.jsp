@@ -27,11 +27,12 @@
         <form class="form-horizontal" method="post">
             <input type="hidden" name="id" value="${usuario.id}">
            
-            <div class="form-group">
+            <div class="form-group <c:if test="${not empty errors.nome}">has-error has-feedback</c:if>">
                 <label for="nome" class="col-sm-2 control-label">Nome:</label>
                 <div class="col-sm-6">
                     <input type="text" name="nome" class="form-control" placeholder="Nome" value="${usuario.nome}" required="">
-                    <c:if test="${not empty errors.nome}"><span>${errors.nome}</span></c:if>
+                    <c:if test="${not empty errors.nome}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                    <c:if test="${not empty errors.nome}"><span class="alert-danger">${errors.nome}</span></c:if>
                 </div>
             </div>
                 

@@ -15,6 +15,7 @@ public class Usuario extends BaseEntity{
     private String celular;
     private String email;
     private Integer tipoUsuario;
+    private Instituicao instituicao;
     
     public String getUsuario() {
         return usuario;
@@ -90,6 +91,14 @@ public class Usuario extends BaseEntity{
 
     public void setTipoUsuario(int tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+    public Instituicao getInstituicao() {
+        return instituicao;
+    }
+
+    public void setInstituicao(Instituicao instituicao) {
+        this.instituicao = instituicao;
     }
 
     
