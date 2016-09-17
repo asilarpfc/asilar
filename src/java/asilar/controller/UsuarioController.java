@@ -31,6 +31,7 @@ public class UsuarioController {
            fields.put("id", entity.getId());
            fields.put("cpf", entity.getCpf());
            fields.put("mesmoUsuario", entity.getUsuario());
+           fields.put("mesmoEmail", entity.getEmail());
            
            Map<String, String> errors = ServiceLocator.getUsuarioService().validateForCreate(fields);
            if(errors.isEmpty()){
@@ -120,14 +121,29 @@ public class UsuarioController {
 
     @RequestMapping(value = "/cadastro/usuario/{id}/alterar", method = RequestMethod.POST)
     public ModelAndView update(Usuario usuario) {
+        ModelAndView mv = null;
         try {
-            usuario.setSenha(ServiceLocator.getUsuarioService().encodePassword(usuario.getSenha()));
-            ServiceLocator.getUsuarioService().update(usuario);
+            Map<String, Object> fields = new HashMap<>();
+           fields.put("usuario", usuario);
+           fields.put("id", usuario.getId());
+           fields.put("cpf", usuario.getCpf());
+           fields.put("mesmoUsuario", usuario.getUsuario());
+           fields.put("mesmoEmail", usuario.getEmail());
+           
+           Map<String, String> errors = ServiceLocator.getUsuarioService().validateForUpdate(fields);
+           if(errors.isEmpty()){
+               usuario.setSenha(ServiceLocator.getUsuarioService().encodePassword(usuario.getSenha()));
+               ServiceLocator.getUsuarioService().update(usuario);
+               mv = new ModelAndView("redirect:/cadastro/usuario/lista");               
+           }else{
+               mv = new ModelAndView("cadastro/usuario/form");
+               mv.addObject("usuario", usuario);
+               mv.addObject("errors", errors);
+           }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        ModelAndView mv = new ModelAndView("redirect:/cadastro/usuario/lista");
         return mv;
     }
 

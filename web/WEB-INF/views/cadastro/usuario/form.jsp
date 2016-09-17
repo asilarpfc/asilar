@@ -35,11 +35,12 @@
                 </div>
             </div>
                 
-            <div class="form-group">
+            <div class="form-group <c:if test="${not empty errors.usuario}">has-error has-feedback</c:if>">
                 <label for="usuario" class="col-sm-2 control-label">Usuario:</label>
                 <div class="col-sm-6">
                     <input type="text" name="usuario" class="form-control" placeholder="Usuario" value="${usuario.usuario}" required="">
-                    <c:if test="${not empty errors.usuario}"><span>${errors.usuario}</span></c:if>
+                    <c:if test="${not empty errors.usuario}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                    <c:if test="${not empty errors.usuario}"><span class="alert-danger">${errors.usuario}</span></c:if>
                 </div>
             </div>
                 
@@ -59,11 +60,12 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group <c:if test="${not empty errors.cpf}">has-error has-feedback</c:if>">
                 <label for="cpf" class="col-sm-2 control-label">CPF:</label>
                 <div class="col-sm-6">
                     <input type="text" name="cpf" class="form-control" placeholder="CPF" value="${usuario.cpf}" required="">
-                    <c:if test="${not empty errors.cpf}"><span>${errors.cpf}</span></c:if>
+                    <c:if test="${not empty errors.cpf}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                    <c:if test="${not empty errors.cpf}"><span class="alert-danger">${errors.cpf}</span></c:if>
                 </div>
             </div>
             
@@ -83,11 +85,12 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group <c:if test="${not empty errors.email}">has-error has-feedback</c:if>">
                 <label for="email" class="col-sm-2 control-label">E-Mail:</label>
                 <div class="col-sm-6">
                     <input type="email" name="email" class="form-control" placeholder="E-Mail" value="${usuario.email}" required="">
-                    <c:if test="${not empty errors.email}"><span>${errors.email}</span></c:if>
+                    <c:if test="${not empty errors.email}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                    <c:if test="${not empty errors.email}"><span class="alert-danger">${errors.email}</span></c:if>
                 </div>
             </div>
                 

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AssistidoController {
     
+    
     @RequestMapping (value = "/cadastro/assistido/novo", method = RequestMethod.GET)
     public ModelAndView create(){
         ModelAndView mv = new ModelAndView("/cadastro/assistido/form");
@@ -22,7 +24,7 @@ public class AssistidoController {
     }
     
     @RequestMapping (value = "/cadastro/assistido/novo", method = RequestMethod.POST)
-    public ModelAndView create(Assistido entity){
+    public ModelAndView create(@ModelAttribute Assistido entity){
         ModelAndView mv = null;
         try {
             Map<String, Object> fields = new HashMap<>();

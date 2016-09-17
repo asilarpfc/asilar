@@ -93,7 +93,6 @@ public class UsuarioService implements BaseUsuarioService {
             Map<Long, Object> criteria = new HashMap<>();
             Long id = (Long) fields.get("id");
             String cpf = (String) fields.get("cpf");
-            String mesmoUsuario = (String) fields.get("mesmoUsuario");
             if(id != null && id > 0){
                 criteria.put(UsuarioCriteria.ID_NE, id);
             }
@@ -106,10 +105,10 @@ public class UsuarioService implements BaseUsuarioService {
             if(!usuarioList.isEmpty()){
                 errors.put("cpf", "este CPF já se encontra em uso");
             }
-            usuarioList = null;
-            criteria = null;
-            criteria = new HashMap<>();
-             if(id != null && id > 0){
+            usuarioList.clear();
+            criteria.clear();
+            String mesmoUsuario = (String) fields.get("mesmoUsuario"); 
+            if(id != null && id > 0){
                 criteria.put(UsuarioCriteria.ID_NE, id);
             }
             if(mesmoUsuario != null && !mesmoUsuario.isEmpty()){
@@ -122,6 +121,20 @@ public class UsuarioService implements BaseUsuarioService {
                 errors.put("usuario", "este Usuario já se encontra em uso");
             }
             
+            criteria.clear();
+            usuarioList.clear();
+            String mesmoEmail = (String) fields.get("mesmoEmail");
+            if(id != null && id > 0){
+                criteria.put(UsuarioCriteria.ID_NE, id);
+            }
+            if(mesmoEmail != null && !mesmoEmail.isEmpty()){
+                criteria.put(UsuarioCriteria.EMAIL_EQ, mesmoEmail);
+            }
+            usuarioList = ServiceLocator.getUsuarioService().readyByCriteria(criteria, null);
+            
+            if(!usuarioList.isEmpty()){
+                errors.put("email", "este e-mail já se encontra em uso");
+            }
             
         }
         return errors;
@@ -176,7 +189,7 @@ public class UsuarioService implements BaseUsuarioService {
 
     @Override
     public Map<String, String> validateForUpdate(Map<String, Object> fields) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.validateForCreate(fields);
     }
     
         @Override

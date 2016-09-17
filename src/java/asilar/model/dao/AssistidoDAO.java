@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class AssistidoDAO implements BaseDAO<Assistido>{
+public class AssistidoDAO implements BaseDAO<Assistido> {
 
     @Override
     public void update(Connection conn, Assistido entity) throws Exception {
-        String sql = "UPDATE assistido SET profissao=?, nacionalidade=?, nome=?, rg=?, cpf=?, telfixo=?, \n" +
-                    "celular=?, banco=?, agencia=?, conta=?, naturalidade=?, estado_civil=?, \n" +
-                    "mae=?, pai=?, rua=?, bairro=?, numero=?, cidade=?, estado=?, \n" +
-                    "sexo=?, data_nascimento=?, observacoes=?, procedencia=?, cartao_sus=?, no_do_beneficio=? WHERE id = ?;";
+        String sql = "UPDATE assistido SET profissao=?, nacionalidade=?, nome=?, rg=?, cpf=?, telfixo=?, \n"
+                + "celular=?, banco=?, agencia=?, conta=?, naturalidade=?, estado_civil=?, \n"
+                + "mae=?, pai=?, rua=?, bairro=?, numero=?, cidade=?, estado=?, \n"
+                + "sexo=?, data_nascimento=?, observacoes=?, procedencia=?, cartao_sus=?, no_do_beneficio=? WHERE id = ?;";
         int i = 0;
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(++i, entity.getProfissao());
@@ -41,13 +41,13 @@ public class AssistidoDAO implements BaseDAO<Assistido>{
         statement.setString(++i, entity.getCidade());
         statement.setString(++i, entity.getEstado());
         statement.setString(++i, entity.getSexo());
-        statement.setString(++i, entity.getDataNascimento());
+        statement.setDate(++i, new java.sql.Date(entity.getDataNascimento().getTime()));
         statement.setString(++i, entity.getObservacoes());
         statement.setString(++i, entity.getProcedencia());
         statement.setString(++i, entity.getCartaoSus());
         statement.setString(++i, entity.getNoDoBeneficio());
         statement.setLong(++i, entity.getId());
-        
+
         statement.execute();
         statement.close();
     }
@@ -64,12 +64,12 @@ public class AssistidoDAO implements BaseDAO<Assistido>{
 
     @Override
     public void create(Connection conn, Assistido entity) throws Exception {
-        String sql = "INSERT INTO assistido(profissao, nacionalidade, nome, rg, cpf, telfixo, celular, \n" +
-                    "banco, agencia, conta, naturalidade, estado_civil, mae, pai, \n" +
-                    "rua, bairro, numero, cidade, estado, sexo, data_nascimento, observacoes, \n" +
-                    "procedencia, cartao_sus, no_do_beneficio)\n" +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id;";
-        
+        String sql = "INSERT INTO assistido(profissao, nacionalidade, nome, rg, cpf, telfixo, celular, \n"
+                + "banco, agencia, conta, naturalidade, estado_civil, mae, pai, \n"
+                + "rua, bairro, numero, cidade, estado, sexo, data_nascimento, observacoes, \n"
+                + "procedencia, cartao_sus, no_do_beneficio)\n"
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id;";
+
         int i = 0;
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(++i, entity.getProfissao());
@@ -92,35 +92,35 @@ public class AssistidoDAO implements BaseDAO<Assistido>{
         statement.setString(++i, entity.getCidade());
         statement.setString(++i, entity.getEstado());
         statement.setString(++i, entity.getSexo());
-        statement.setString(++i, entity.getDataNascimento());
+        statement.setDate(++i, new java.sql.Date(entity.getDataNascimento().getTime()));
         statement.setString(++i, entity.getObservacoes());
         statement.setString(++i, entity.getProcedencia());
         statement.setString(++i, entity.getCartaoSus());
         statement.setString(++i, entity.getNoDoBeneficio());
-        
-       ResultSet rs = statement.executeQuery();
-        if(rs.next()){
+
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
             entity.setId(rs.getLong("id"));
         }
-        
+
         rs.close();
         statement.close();
     }
 
     @Override
     public Assistido readyById(Connection conn, Long id) throws Exception {
-        String sql = "SELECT id, profissao, nacionalidade, nome, rg, cpf, telfixo, celular, \n" +
-                    "banco, agencia, conta, naturalidade, estado_civil, mae, pai, \n" +
-                    "rua, bairro, numero, cidade, estado, sexo, data_nascimento, observacoes, \n" +
-                    "procedencia, cartao_sus, no_do_beneficio FROM assistido WHERE id =?;";
-        
+        String sql = "SELECT id, profissao, nacionalidade, nome, rg, cpf, telfixo, celular, \n"
+                + "banco, agencia, conta, naturalidade, estado_civil, mae, pai, \n"
+                + "rua, bairro, numero, cidade, estado, sexo, data_nascimento, observacoes, \n"
+                + "procedencia, cartao_sus, no_do_beneficio FROM assistido WHERE id =?;";
+
         int i = 0;
         Assistido entity = new Assistido();
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setLong(++i, id);
         ResultSet rs = statement.executeQuery();
-        
-        if(rs.next()){
+
+        if (rs.next()) {
             entity.setId(rs.getLong("id"));
             entity.setProfissao(rs.getString("profissao"));
             entity.setNacionalidade(rs.getString("nacionalidade"));
@@ -142,28 +142,28 @@ public class AssistidoDAO implements BaseDAO<Assistido>{
             entity.setCidade(rs.getString("cidade"));
             entity.setEstado(rs.getString("estado"));
             entity.setSexo(rs.getString("sexo"));
-            entity.setDataNascimento(rs.getString("data_nascimento"));
+            entity.setDataNascimento(rs.getDate("data_nascimento"));
             entity.setObservacoes(rs.getString("observacoes"));
             entity.setProcedencia(rs.getString("procedencia"));
             entity.setCartaoSus(rs.getString("cartao_sus"));
             entity.setNoDoBeneficio(rs.getString("no_do_beneficio"));
         }
-        
+
         rs.close();
         statement.close();
-        
+
         return entity;
     }
 
     @Override
     public List<Assistido> readyByCriteria(Connection conn, Map<Long, Object> criteria, Long offset) throws Exception {
-        String sql = "SELECT id, profissao, nacionalidade, nome, rg, cpf, telfixo, celular,\n" +
-                    "banco, agencia, conta, naturalidade, estado_civil, mae, pai,\n" +
-                    "rua, bairro, numero, cidade, estado, sexo, data_nascimento, observacoes,\n" +
-                    "procedencia, cartao_sus, no_do_beneficio  FROM assistido WHERE 1=1";
-        
+        String sql = "SELECT id, profissao, nacionalidade, nome, rg, cpf, telfixo, celular,\n"
+                + "banco, agencia, conta, naturalidade, estado_civil, mae, pai,\n"
+                + "rua, bairro, numero, cidade, estado, sexo, data_nascimento, observacoes,\n"
+                + "procedencia, cartao_sus, no_do_beneficio  FROM assistido WHERE 1=1";
+
         Statement statement = conn.createStatement();
-        if(criteria != null && criteria.size() > 0){
+        if (criteria != null && criteria.size() > 0) {
             String nome = (String) criteria.get(AssistidoCriteria.NOME_ILIKE);
             if (nome != null) {
                 sql += " AND nome ilike '%" + nome + "%'";
@@ -173,20 +173,20 @@ public class AssistidoDAO implements BaseDAO<Assistido>{
                 sql += " and assistido.id != '" + idNe + "'";
             }
             String cpfEq = (String) criteria.get(AssistidoCriteria.CPF_EQ);
-            if (cpfEq != null){
+            if (cpfEq != null) {
                 sql += " and cpf = '" + cpfEq + "'";
             }
         }
         sql += " ORDER BY id ASC";
-        
+
         //paginando
         if (offset != null && offset >= 0) {
             sql += " limit 10 offset " + offset + "";
         }
-        
+
         ResultSet rs = statement.executeQuery(sql);
         List<Assistido> entityList = new ArrayList<Assistido>();
-        while(rs.next()){
+        while (rs.next()) {
             Assistido entity = new Assistido();
             entity.setId(rs.getLong("id"));
             entity.setProfissao(rs.getString("profissao"));
@@ -209,7 +209,7 @@ public class AssistidoDAO implements BaseDAO<Assistido>{
             entity.setCidade(rs.getString("cidade"));
             entity.setEstado(rs.getString("estado"));
             entity.setSexo(rs.getString("sexo"));
-            entity.setDataNascimento(rs.getString("data_nascimento"));
+            entity.setDataNascimento(rs.getDate("data_nascimento"));
             entity.setObservacoes(rs.getString("observacoes"));
             entity.setProcedencia(rs.getString("procedencia"));
             entity.setCartaoSus(rs.getString("cartao_sus"));
@@ -224,9 +224,9 @@ public class AssistidoDAO implements BaseDAO<Assistido>{
     @Override
     public Long countByCriteria(Connection conn, Map<Long, Object> criteria) throws Exception {
         String sql = "SELECT count(*)  FROM assistido WHERE 1=1";
-        
+
         Statement statement = conn.createStatement();
-        if(criteria != null && criteria.size() > 0){
+        if (criteria != null && criteria.size() > 0) {
             String nome = (String) criteria.get(AssistidoCriteria.NOME_ILIKE);
             if (nome != null) {
                 sql += " AND nome ilike '%" + nome + "%'";
@@ -236,13 +236,13 @@ public class AssistidoDAO implements BaseDAO<Assistido>{
                 sql += " and assistido.id != '" + idNe + "'";
             }
         }
-        
+
         ResultSet rs = statement.executeQuery(sql);
         Long count = 0L;
-        if (rs.next()){
+        if (rs.next()) {
             count = rs.getLong("count");
         }
         return count;
     }
-    
+
 }

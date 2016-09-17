@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@page language="java" contentType="text/html;charset=ISO-8859-1" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -41,7 +42,7 @@
                 <li class="list-group-item"><b>Profissão:</b> ${assistido.profissao}</li>
                 <li class="list-group-item"><b>Telefone:</b> ${assistido.telfixo}</li>
                 <li class="list-group-item"><b>Celular:</b> ${assistido.celular}</li>
-                <li class="list-group-item"><b>Data de Nascimento:</b> ${assistido.dataNascimento}</li>
+                <li class="list-group-item"><b>Data de Nascimento:</b> <fmt:formatDate value="${assistido.dataNascimento}" pattern="dd/MM/yyyy"/></li>
                 <li class="list-group-item"><b>Naturalidade:</b> ${assistido.naturalidade}</li>
                 <li class="list-group-item"><b>Nacionalidade:</b> ${assistido.nacionalidade}</li>
                 <li class="list-group-item"><b>Observações:</b> ${assistido.observacoes}</li>

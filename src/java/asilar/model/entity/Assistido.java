@@ -1,6 +1,8 @@
 package asilar.model.entity;
 
 import asilar.model.entity.base.BaseEntity;
+import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class Assistido extends BaseEntity{
     
@@ -25,7 +27,8 @@ public class Assistido extends BaseEntity{
     private String cidade;
     private String estado;
     private String sexo;
-    private String dataNascimento;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date dataNascimento;
     private String observacoes;
     private String procedencia;
     private String cartaoSus;
@@ -175,14 +178,7 @@ public class Assistido extends BaseEntity{
         this.sexo = sexo;
     }
 
-    public String getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
+   
     public String getObservacoes() {
         return observacoes;
     }
@@ -229,6 +225,14 @@ public class Assistido extends BaseEntity{
 
     public void setNoDoBeneficio(String noDoBeneficio) {
         this.noDoBeneficio = noDoBeneficio;
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
     
     

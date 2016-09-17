@@ -21,7 +21,7 @@ CREATE TABLE assistido (
   cidade          varchar(150) NOT NULL, 
   estado          varchar(5) NOT NULL, 
   sexo            varchar(10) NOT NULL, 
-  data_Nascimento varchar(15) NOT NULL, 
+  data_Nascimento  date NOT NULL, 
   observacoes      text NOT NULL, 
   procedencia     text NOT NULL,
   cartao_sus      varchar(20) NOT NULL, 

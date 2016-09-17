@@ -101,7 +101,7 @@ public class AssistidoService implements BaseAssistidoService{
             errors.put("cidade", "Campo obrigatório");
         }else if(assistido.getSexo() == null || assistido.getSexo().trim().equals("")){
             errors.put("sexo", "Campo obrigatório");
-        }else if(assistido.getDataNascimento() == null || assistido.getDataNascimento().trim().equals("")){
+        }else if(assistido.getDataNascimento() == null){
             errors.put("nascimento", "Campo obrigatório");
         }else if(assistido.getObservacoes() == null || assistido.getObservacoes().trim().equals("")){
             errors.put("observacoes", "Campo obrigatório");
@@ -127,6 +127,7 @@ public class AssistidoService implements BaseAssistidoService{
 
             if (!pacienteList.isEmpty()) {
                 errors.put("cpf", "Este CPF ja se encontra em uso!");
+                System.out.println("erro cpf encontrado");
             }
         }
         return errors;
