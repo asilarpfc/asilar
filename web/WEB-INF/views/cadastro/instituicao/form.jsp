@@ -30,79 +30,89 @@
             <div class="form-group">
                 <label for="nome" class="col-sm-2 control-label">Nome:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="nome" class="form-control" placeholder="Nome" value="${instituicao.nome}" required="">
-                    <c:if test="${not empty errors.nome}"><span>${errors.nome}</span></c:if>        
+                    <input type="text" name="nome" class="form-control" placeholder="Nome" value="${instituicao.nome}" required="" maxlength="150">
+                    <c:if test="${not empty errors.nome}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                    <c:if test="${not empty errors.nome}"><span class="alert-danger">${errors.nome}</span></c:if>        
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="cnpj" class="col-sm-2 control-label">CNPJ:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="${instituicao.cnpj}" required="">
-                    <c:if test="${not empty errors.cnpj}"><span>${errors.cnpj}</span></c:if>
+                    <input type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="${instituicao.cnpj}" required="" maxlength="20">
+                    <c:if test="${not empty errors.cnpj}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                    <c:if test="${not empty errors.cnpj}"><span class="alert-danger">${errors.cnpj}</span></c:if>
                 </div>
             </div>
                 
             <div class="form-group">
                 <label for="telefone" class="col-sm-2 control-label">Telefone:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="telefone" class="form-control" placeholder="Telefone" value="${instituicao.telefone}" required="">
-                    <c:if test="${not empty errors.telefone}"><span>${errors.telefone}</span></c:if>
+                    <input type="text" name="telefone" class="form-control" placeholder="Telefone" value="${instituicao.telefone}" required="" maxlength="20">
+                    <c:if test="${not empty errors.telefone}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                    <c:if test="${not empty errors.telefone}"><span class="alert-danger">${errors.telefone}</span></c:if>
                 </div>
             </div>
                 
             <div class="form-group">
                 <label for="email" class="col-sm-2 control-label">E-MAIL:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="email" class="form-control" placeholder="E-MAIL" value="${instituicao.email}" required="">
-                    <c:if test="${not empty errors.email}"><span>${errors.email}</span></c:if>
+                    <input type="text" name="email" class="form-control" placeholder="E-MAIL" value="${instituicao.email}" required="" maxlength="150">
+                    <c:if test="${not empty errors.email}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                    <c:if test="${not empty errors.email}"><span class="alert-danger">${errors.email}</span></c:if>
                 </div>
             </div>
             
             <div class="form-group">
                 <label for="rua" class="col-sm-2 control-label">Rua:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="rua" class="form-control" placeholder="Rua" value="${instituicao.rua}" required="">
-                    <c:if test="${not empty errors.rua}"><span>${errors.rua}</span></c:if>
+                    <input type="text" name="rua" class="form-control" placeholder="Rua" value="${instituicao.rua}" required="" maxlength="150">
+                    <c:if test="${not empty errors.rua}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                    <c:if test="${not empty errors.rua}"><span class="alert-danger">${errors.rua}</span></c:if>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="numero" class="col-sm-2 control-label">Numero:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="numero" class="form-control" placeholder="Numero" value="${instituicao.numero}" required="">
-                    <c:if test="${not empty errors.numero}"><span>${errors.numero}</span></c:if>
+                    <input type="text" name="numero" class="form-control" placeholder="Numero" value="${instituicao.numero}" required="" maxlength="5">
+                    <c:if test="${not empty errors.numero}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                    <c:if test="${not empty errors.numero}"><span class="alert-danger">${errors.numero}</span></c:if>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="bairro" class="col-sm-2 control-label">Bairro:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="bairro" class="form-control" placeholder="Bairro" value="${instituicao.bairro}" required="">
-                    <c:if test="${not empty errors.bairro}"><span>${errors.bairro}</span></c:if>
+                    <input type="text" name="bairro" class="form-control" placeholder="Bairro" value="${instituicao.bairro}" required="" maxlength="150">
+                    <c:if test="${not empty errors.bairro}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                    <c:if test="${not empty errors.bairro}"><span class="alert-danger">${errors.bairro}</span></c:if>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="cep" class="col-sm-2 control-label">CEP:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="cep" class="form-control" placeholder="CEP" value="${instituicao.cep}" required="">
-                    <c:if test="${not empty errors.cep}"><span>${errors.cep}</span></c:if>
+                    <input type="text" name="cep" class="form-control" placeholder="CEP" value="${instituicao.cep}" required="" maxlength="15">
+                    <c:if test="${not empty errors.cep}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                    <c:if test="${not empty errors.cep}"><span class="alert-danger">${errors.cep}</span></c:if>
                 </div>
             </div>
              
             <div class="form-group">
                 <label for="cidade" class="col-sm-2 control-label">Cidade:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="cidade" class="form-control" placeholder="Cidade" value="${instituicao.cidade}" required="">
-                    <c:if test="${not empty errors.cidade}"><span>${errors.cidade}</span></c:if>
+                    <input type="text" name="cidade" class="form-control" placeholder="Cidade" value="${instituicao.cidade}" required="" maxlength="150">
+                    <c:if test="${not empty errors.cidade}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                    <c:if test="${not empty errors.cidade}"><span class="alert-danger">${errors.cidade}</span></c:if>
                 </div>
             </div>
             <div class="form-group">
                 <label for="estade" class="col-sm-2 control-label">Estado:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="estado" class="form-control" placeholder="Estado" value="${instituicao.estado}" required="">
-                    <c:if test="${not empty errors.estado}"><span>${errors.estado}</span></c:if>
+                    <input type="text" name="estado" class="form-control" placeholder="Estado" value="${instituicao.estado}" required="" maxlength="5">
+                    <c:if test="${not empty errors.estado}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                    <c:if test="${not empty errors.estado}"><span class="alert-danger">${errors.estado}</span></c:if>
                 </div>
             </div>
                 
