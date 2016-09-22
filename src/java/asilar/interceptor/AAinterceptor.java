@@ -57,7 +57,7 @@ public class AAinterceptor extends HandlerInterceptorAdapter {
                 if(permissoes == 1 && uri.equals(context + "/cadastro/instituicao/novo")) shallPass = true;
                 else if(permissoes == 2 && uri.equals(context + "/cadastro/usuario/novo")) shallPass = true;
                 else if (permissoes == 3 && uri.equals(context + "/login")) shallPass = true;
-                else if (permissoes == 4 && uri.equals(context + "/erro")) shallPass = true;
+                else if (uri.equals(context + "/erro")) shallPass = true;
             }
 
             if (!shallPass) {

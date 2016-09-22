@@ -57,4 +57,16 @@ CREATE TABLE instituicao (
   cidade   varchar(150) NOT NULL, 
   estado   varchar(5) NOT NULL, 
   PRIMARY KEY (id));
-  
+
+DROP TABLE IF EXISTS registro CASCADE;
+CREATE TABLE registro (
+  id            BIGSERIAL NOT NULL, 
+  Data_entrada date NOT NULL, 
+  Data_saida   date, 
+  Usuario_fk   int8 NOT NULL, 
+  Assistido_fk int8 NOT NULL, 
+  PRIMARY KEY (id));
+
+ALTER TABLE usuario DROP CONSTRAINT IF EXISTS usuario_instituicao_fk;
+ALTER TABLE usuario ADD CONSTRAINT usuario_instituicao_fk FOREIGN KEY (instituicao_fk) REFERENCES instituicao (id)
+ON UPDATE RESTRICT ON DELETE RESTRICT;

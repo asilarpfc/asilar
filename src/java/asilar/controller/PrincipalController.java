@@ -1,6 +1,7 @@
 package asilar.controller;
 
 import asilar.model.ServiceLocator;
+import asilar.model.entity.Instituicao;
 import asilar.model.entity.Usuario;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ public class PrincipalController {
     
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView home(){
+       
         ModelAndView mv = new ModelAndView("/home");
         return mv;
     }
@@ -33,10 +35,12 @@ public class PrincipalController {
     public ModelAndView login(String login, String senha, HttpSession session) {
             
         Usuario usuarioLogado = null;
+        Instituicao instituicao = null;
         String erro = "Login ou senha incorretos!!";
         ModelAndView mv = null;
         try {
             usuarioLogado = ServiceLocator.getUsuarioService().login(login, senha);
+            instituicao = ServiceLocator.getInstituicaoService().readyByCriteria(null, null).get(0);
         } catch (Exception e) {
             e.printStackTrace();
         }

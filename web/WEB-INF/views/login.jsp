@@ -33,9 +33,8 @@
                     
                   
             <form class="form-signin" method="post">
-                <h2 class="form-signin-heading">Identificação</h2>
                 <label for="inputEmail" class="sr-only">Login</label>
-                <input type="text" name="login" id="inputEmail" class="form-control" placeholder="Login" required autofocus>
+                <input type="text" name="login" id="inputEmail" class="form-control" placeholder="Usuario" required autofocus>
                 <br>
                 <label for="inputPassword" class="sr-only">Senha</label>
                 <input type="password" id="inputPassword" class="form-control" placeholder="Senha" name="senha" required>

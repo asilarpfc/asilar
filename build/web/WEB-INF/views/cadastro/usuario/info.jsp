@@ -12,7 +12,7 @@
 
         <!-- Bootstrap -->
         <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
-
+        <link href="<c:url value="/css/estilos.css"/>" rel="stylesheet">
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -22,7 +22,8 @@
     </head>
     <body>
         
-        <jsp:include page="../../navusuarioinfo.jsp"/>
+        <jsp:include page="../../navusuariolista.jsp"/>
+        <jsp:include page="../barralateral.jsp"/>
         
         <h1 align="center">${usuario.nome}</h1>
         

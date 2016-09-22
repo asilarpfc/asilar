@@ -32,6 +32,7 @@ public class UsuarioController {
            fields.put("cpf", entity.getCpf());
            fields.put("mesmoUsuario", entity.getUsuario());
            fields.put("mesmoEmail", entity.getEmail());
+           entity.setInstituicao(ServiceLocator.getInstituicaoService().readyByCriteria(null, null).get(0));
            
            Map<String, String> errors = ServiceLocator.getUsuarioService().validateForCreate(fields);
            if(errors.isEmpty()){
@@ -62,6 +63,8 @@ public class UsuarioController {
         }
         ModelAndView mv = new ModelAndView("/cadastro/usuario/info");
         mv.addObject("usuario", usuario);
+        String ativo = "usuario";
+        mv.addObject("ativo", ativo);
         return mv;
     }
 
@@ -116,6 +119,8 @@ public class UsuarioController {
 
         ModelAndView mv = new ModelAndView("/cadastro/usuario/form");
         mv.addObject("usuario", usuario);
+        String ativo = "usuario";
+        mv.addObject("ativo", ativo);
         return mv;
     }
 

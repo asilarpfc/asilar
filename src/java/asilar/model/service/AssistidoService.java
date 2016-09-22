@@ -127,7 +127,6 @@ public class AssistidoService implements BaseAssistidoService{
 
             if (!pacienteList.isEmpty()) {
                 errors.put("cpf", "Este CPF ja se encontra em uso!");
-                System.out.println("erro cpf encontrado");
             }
         }
         return errors;

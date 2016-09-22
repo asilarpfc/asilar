@@ -106,7 +106,7 @@ public class InstituicaoDAO implements BaseDAO<Instituicao>{
     @Override
     public List<Instituicao> readyByCriteria(Connection conn, Map<Long, Object> criteria, Long offset) throws Exception {
         String sql = "SELECT id, cnpj, nome, email, telefone, rua, numero, bairro, cep, cidade, estado\n" +
-                     "FROM instituicao WHERE 1=1;";
+                     "FROM instituicao WHERE 1=1";
         Statement statement = conn.createStatement();
         if(criteria != null && criteria.size() > 0){
             String nome = (String) criteria.get(InstituicaoCriteria.NOME_ILIKE);
@@ -118,7 +118,7 @@ public class InstituicaoDAO implements BaseDAO<Instituicao>{
                 sql += " and instituicao.id != '" + idNe + "'";
             }
         }
-        sql += "ORDER BY id ASC";
+        sql += " ORDER BY id ASC";
         
         //paginando
         if (offset != null && offset >= 0) {
@@ -130,15 +130,15 @@ public class InstituicaoDAO implements BaseDAO<Instituicao>{
             Instituicao entity = new Instituicao();
             entity.setId(rs.getLong("id"));
             entity.setCnpj(rs.getString("cnpj"));
-            entity.setCnpj(rs.getString("nome"));
-            entity.setCnpj(rs.getString("email"));
-            entity.setCnpj(rs.getString("telefone"));
-            entity.setCnpj(rs.getString("rua"));
-            entity.setCnpj(rs.getString("numero"));
-            entity.setCnpj(rs.getString("bairro"));
-            entity.setCnpj(rs.getString("cep"));
-            entity.setCnpj(rs.getString("cidade"));
-            entity.setCnpj(rs.getString("estado"));
+            entity.setNome(rs.getString("nome"));
+            entity.setEmail(rs.getString("email"));
+            entity.setTelefone(rs.getString("telefone"));
+            entity.setRua(rs.getString("rua"));
+            entity.setNumero(rs.getString("numero"));
+            entity.setBairro(rs.getString("bairro"));
+            entity.setCep(rs.getString("cep"));
+            entity.setCidade(rs.getString("cidade"));
+            entity.setEstado(rs.getString("estado"));
             entityList.add(entity);
         }
         rs.close();

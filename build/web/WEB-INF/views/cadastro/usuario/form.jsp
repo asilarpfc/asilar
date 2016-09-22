@@ -21,10 +21,11 @@
         <![endif]-->
     </head>
     <body>
-        <jsp:include page="../../navusuarioform.jsp"/>
+        <jsp:include page="../../navusuariolista.jsp"/>
+        <jsp:include page="../barralateral.jsp"/>
         <h1 align="center">Cadastrar Usuario</h1>
 
-        <form class="form-horizontal" method="post">
+        <form class="form-horizontal col-lg-offset-2" method="post">
             <input type="hidden" name="id" value="${usuario.id}">
            
             <div class="form-group <c:if test="${not empty errors.nome}">has-error has-feedback</c:if>">

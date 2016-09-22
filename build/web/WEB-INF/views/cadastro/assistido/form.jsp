@@ -22,10 +22,11 @@
         <![endif]-->
     </head>
     <body>
-        <jsp:include page="../../navusuarioform.jsp"/>
+        <jsp:include page="../../navusuariolista.jsp"/>
+        <jsp:include page="../barralateral.jsp"/>
         <h1 align="center">Cadastrar Assistido</h1>
 
-        <form class="form-horizontal" method="post" onsubmit="return fctValidaData(datNasc.value);">
+        <form class="form-horizontal col-lg-offset-2" method="post" onsubmit="return fctValidaData(datNasc.value);">
             <input type="hidden" name="id" value="${assistido.id}">
 
             <div class="form-group">
@@ -79,7 +80,7 @@
                 <div class="form-group">
                     <label for="celular" class="col-sm-2 control-label">Celular:</label>
                     <div class="col-sm-6">
-                        <input type="text" name="celular" class="form-control" placeholder="Celular" value="${assistido.celular}" required="">
+                        <input id="celular" type="text" name="celular" class="form-control" placeholder="Celular" value="${assistido.celular}" required="">
                     <c:if test="${not empty errors.celular}"><span>${errors.celular}</span></c:if>
                     </div>
                 </div>
@@ -238,7 +239,7 @@
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Cadastrar</button>
-                        <button type="button" class="btn btn-danger btnCancelar"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-cancelar"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
                     </div>
                 </div>
 

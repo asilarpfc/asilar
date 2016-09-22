@@ -58,6 +58,8 @@ public class AssistidoController {
         
         ModelAndView mv = new ModelAndView("/cadastro/assistido/info");
         mv.addObject("assistido", assistido);
+        String ativo = "assistido";
+        mv.addObject("ativo", ativo);
         return mv;
     }
     
@@ -74,6 +76,8 @@ public class AssistidoController {
         
         ModelAndView mv = new ModelAndView("/cadastro/assistido/form");
         mv.addObject("assistido", assistido);
+        String ativo = "assistido";
+        mv.addObject("ativo", ativo);
         return mv;
     }
     
@@ -116,7 +120,7 @@ public class AssistidoController {
     
     
     @RequestMapping (value = "/cadastro/assistido/lista", method = RequestMethod.GET)
-    public ModelAndView readbyCriteria(String nome, Long offset){
+    public ModelAndView readbyCriteria(String nome, String cpf ,Long offset){
         
         boolean redirect = false;
         if (offset == null || offset < 0) {
@@ -127,8 +131,18 @@ public class AssistidoController {
         List<Assistido> assistidoList = null;
         Map<Long, Object> criteria = new HashMap<Long, Object>();
         criteria.put(AssistidoCriteria.NOME_ILIKE, nome);
+        criteria.put(AssistidoCriteria.CPF_EQ, cpf);
         Long count = 0L;
         
+        String uri = "";
+        
+        if(nome != null && !nome.isEmpty()){
+            uri +="nome="+nome;
+        }
+        if(cpf != null && !cpf.isEmpty()){
+            uri +="&cpf="+cpf;
+        }
+        uri +="&offset="+offset;
         try {
             assistidoList = ServiceLocator.getAssistidoService().readyByCriteria(criteria, offset);
             count = ServiceLocator.getAssistidoService().countByCriteria(criteria);
@@ -139,12 +153,8 @@ public class AssistidoController {
         ModelAndView mv = null;
         
         if(redirect){
-            if(nome == null || nome.isEmpty()){
-                mv = new ModelAndView("redirect:/cadastro/assistido/lista?offset=" + offset +"");
+                mv = new ModelAndView("redirect:/cadastro/assistido/lista?" + uri);
             }else{
-                mv = new ModelAndView("redirect:/cadastro/assistido/lista?nome=" + nome + "&offset=" + offset +"");
-            }
-        }else{
             mv = new ModelAndView("/cadastro/assistido/lista");
             mv.addObject("nome", nome);
             mv.addObject("assistidoList", assistidoList);

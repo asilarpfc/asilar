@@ -31,6 +31,7 @@
             <div class="row">
                 <div class="col-sm-offset-4">
                     <div class="col-sm-6">
+                        <h1>${instituicao.nome}</h1>
                         <a class="btn btn-primary btn-lg btn-block" href="<c:url value="/cadastro/assistido/lista"/>"> <span class="btn-primary"></span>Cadastro</a>  
                         <a class="btn btn-primary btn-lg btn-block" href="#"> <span class="glyphicon btn-primary"></span>Estoque</a>
                     </div>
