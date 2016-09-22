@@ -20,6 +20,8 @@ public class AssistidoController {
     @RequestMapping (value = "/cadastro/assistido/novo", method = RequestMethod.GET)
     public ModelAndView create(){
         ModelAndView mv = new ModelAndView("/cadastro/assistido/form");
+        String ativo = "assistido";
+        mv.addObject("ativo", ativo);
         return mv;
     }
     
