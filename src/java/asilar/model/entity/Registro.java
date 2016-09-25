@@ -7,8 +7,9 @@ public class Registro extends BaseEntity{
     
     private Date dataEntrada;
     private Date dataSaida;
-    private Usuario usuario;
+    private Usuario usuarioEntrada;
     private Assistido assistido;
+    private Usuario usuarioSaida;
 
     public Date getDataEntrada() {
         return dataEntrada;
@@ -26,12 +27,12 @@ public class Registro extends BaseEntity{
         this.dataSaida = dataSaida;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Usuario getUsuarioEntrada() {
+        return usuarioEntrada;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuarioEntrada(Usuario usuarioEntrada) {
+        this.usuarioEntrada = usuarioEntrada;
     }
 
     public Assistido getAssistido() {
@@ -40,5 +41,13 @@ public class Registro extends BaseEntity{
 
     public void setAssistido(Assistido assistido) {
         this.assistido = assistido;
+    }
+
+    public Usuario getUsuarioSaida() {
+        return usuarioSaida;
+    }
+
+    public void setUsuarioSaida(Usuario usuarioSaida) {
+        this.usuarioSaida = usuarioSaida;
     }
 }

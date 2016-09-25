@@ -23,7 +23,7 @@
     <body>
         
         <jsp:include page="../../navusuariolista.jsp"/>
-        <jsp:include page="../barralateral.jsp"/>
+        <jsp:include page="../../barralateral.jsp"/>
         
         <h1 align="center">${usuario.nome}</h1>
         

@@ -22,7 +22,7 @@
     </head>
     <body>
         <jsp:include page="../../navusuariolista.jsp"/>
-        <jsp:include page="../barralateral.jsp"/>
+        <jsp:include page="../../barralateral.jsp"/>
         <h1 align="center">Cadastrar Usuario</h1>
 
         <form class="form-horizontal col-lg-offset-2" method="post">

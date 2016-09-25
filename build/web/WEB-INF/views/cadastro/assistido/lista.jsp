@@ -24,7 +24,7 @@
     <body>
 
         <jsp:include page="../../navusuariolista.jsp"/>
-        <jsp:include page="../barralateral.jsp"/>
+        <jsp:include page="../../barralateral.jsp"/>
 
         <c:if test="${empty assistidoList}">
             <a class="btn btn-primary" href="<c:url value="/cadastro/assistido/novo"/>"><span class="glyphicon glyphicon-plus"></span> Adicionar</a>

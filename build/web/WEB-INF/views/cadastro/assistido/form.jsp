@@ -23,7 +23,7 @@
     </head>
     <body>
         <jsp:include page="../../navusuariolista.jsp"/>
-        <jsp:include page="../barralateral.jsp"/>
+        <jsp:include page="../../barralateral.jsp"/>
         <h1 align="center">Cadastrar Assistido</h1>
 
         <form class="form-horizontal col-lg-offset-2" method="post" onsubmit="return fctValidaData(datNasc.value);">
@@ -32,7 +32,7 @@
             <div class="form-group">
                 <label for="nome" class="col-sm-2 control-label">Nome:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="nome" class="form-control" placeholder="Nome" value="${assistido.nome}" maxlength="150" required="">
+                    <input type="text" name="nome" class="form-control" placeholder="Nome" value="${assistido.nome}" maxlength="150" >
                     <c:if test="${not empty errors.nome}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                     <c:if test="${not empty errors.nome}"><span class="alert-danger">${errors.telfixo}</span></c:if>
                     </div>
@@ -48,12 +48,12 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group <c:if test="${not empty errors.cpf}"> has-error has-feedback</c:if>">
                     <label for="cpf" class="col-sm-2 control-label">CPF:</label>
                     <div class="col-sm-6">
                         <input id="cpf" type="text" name="cpf" class="form-control" placeholder="CPF" value="${assistido.cpf}" maxlength="20" required="">
                         <c:if test="${not empty errors.cpf}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
-                        <c:if test="${not empty errors.cpf}"><span class="alert-danger">${errors.usuario}</span></c:if>
+                        <c:if test="${not empty errors.cpf}"><span class="alert-danger">${errors.cpf}</span></c:if>
                     </div>
                 </div>
 
@@ -104,12 +104,12 @@
                     </div>
                 </div>
 
-                <div id="formDatNasc" class="form-group">
+                            <div id="formDatNasc" class="form-group <c:if test="${not empty errors.dataNascimento}"> has-error has-feedback</c:if>">
                     <label for="dataNascimento" class="col-sm-2 control-label">Data de Nascimento:</label>
                     <div class="col-sm-6" id="divDataNasc">
                         <input id="datNasc" type="date" name="dataNascimento" class="form-control" placeholder="Data de Nascimento" value="<fmt:formatDate value="${assistido.dataNascimento}" pattern="dd/MM/yyyy"/>" required="" maxlength="15">
                         <c:if test="${not empty errors.dataNascimento}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
-                        <c:if test="${not empty errors.dataNascimento}"><span class="alert-danger">${errors.daraNascimento}</span></c:if>
+                        <c:if test="${not empty errors.dataNascimento}"><span class="alert-danger">${errors.dataNascimento}</span></c:if>
                     </div>
                 </div>
 

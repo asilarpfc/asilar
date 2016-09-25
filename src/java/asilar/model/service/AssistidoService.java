@@ -102,7 +102,7 @@ public class AssistidoService implements BaseAssistidoService{
         }else if(assistido.getSexo() == null || assistido.getSexo().trim().equals("")){
             errors.put("sexo", "Campo obrigatório");
         }else if(assistido.getDataNascimento() == null){
-            errors.put("nascimento", "Campo obrigatório");
+            errors.put("dataNascimento", "Campo obrigatório ou data incorreta");
         }else if(assistido.getObservacoes() == null || assistido.getObservacoes().trim().equals("")){
             errors.put("observacoes", "Campo obrigatório");
         }else if(assistido.getProcedencia() == null || assistido.getProcedencia().trim().equals("")){

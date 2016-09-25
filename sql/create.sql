@@ -60,11 +60,12 @@ CREATE TABLE instituicao (
 
 DROP TABLE IF EXISTS registro CASCADE;
 CREATE TABLE registro (
-  id            BIGSERIAL NOT NULL, 
-  Data_entrada date NOT NULL, 
-  Data_saida   date, 
-  Usuario_fk   int8 NOT NULL, 
-  Assistido_fk int8 NOT NULL, 
+  id                  BIGSERIAL NOT NULL, 
+  data_entrada       date NOT NULL, 
+  data_saida         date, 
+  usuario_entrada_fk int8 NOT NULL, 
+  Assistido_fk       int8 NOT NULL, 
+  usuario_saida_fk   int8, 
   PRIMARY KEY (id));
 
 ALTER TABLE usuario DROP CONSTRAINT IF EXISTS usuario_instituicao_fk;

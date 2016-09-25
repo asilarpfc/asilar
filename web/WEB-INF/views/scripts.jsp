@@ -8,7 +8,7 @@
         $('#celular').mask('(00) 00000-0009');
     });
 
-    function fctValidaData(obj)
+   function fctValidaData(obj)
     {
         var data = obj;
         var dia = data.substring(0, 2)

@@ -19,6 +19,8 @@ public class UsuarioController {
     @RequestMapping(value = "/cadastro/usuario/novo", method = RequestMethod.GET)
     public ModelAndView create() {
         ModelAndView mv = new ModelAndView("/cadastro/usuario/form");
+        String ativo = "usuario";
+        mv.addObject("ativo", ativo);
         return mv;
     }
 

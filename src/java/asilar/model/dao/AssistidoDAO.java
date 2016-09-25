@@ -242,6 +242,10 @@ public class AssistidoDAO implements BaseDAO<Assistido> {
         if (rs.next()) {
             count = rs.getLong("count");
         }
+        
+        rs.close();
+        statement.close();
+        
         return count;
     }
 

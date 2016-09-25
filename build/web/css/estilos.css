@@ -2,3 +2,7 @@
     border-radius: 20px;
     background-color: #f2f2f2;
 }
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+     background-color: #f2f2f2;
+}

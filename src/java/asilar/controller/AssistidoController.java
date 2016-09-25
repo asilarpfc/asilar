@@ -3,14 +3,17 @@ package asilar.controller;
 import asilar.model.ServiceLocator;
 import asilar.model.criteria.AssistidoCriteria;
 import asilar.model.entity.Assistido;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -26,7 +29,45 @@ public class AssistidoController {
     }
     
     @RequestMapping (value = "/cadastro/assistido/novo", method = RequestMethod.POST)
-    public ModelAndView create(@ModelAttribute Assistido entity){
+    public ModelAndView create(WebRequest request){
+        
+        Assistido entity = new Assistido();
+        
+        entity.setNome(request.getParameter("nome"));
+        entity.setRg(request.getParameter("rg"));
+        entity.setCpf(request.getParameter("cpf"));
+        entity.setCartaoSus(request.getParameter("cartaoSus"));
+        entity.setNoDoBeneficio(request.getParameter("noDoBeneficio"));
+        entity.setTelfixo(request.getParameter("telfixo"));
+        entity.setCelular(request.getParameter("celular"));
+        entity.setEstadoCivil(request.getParameter("estadoCivil"));
+        entity.setProfissao(request.getParameter("profissao"));
+        entity.setNaturalidade(request.getParameter("naturalidade"));
+        entity.setNacionalidade(request.getParameter("nacionalidade"));
+        entity.setSexo(request.getParameter("sexo"));
+        entity.setPai(request.getParameter("pai"));
+        entity.setMae(request.getParameter("mae"));
+        entity.setObservacoes(request.getParameter("observacoes"));
+        entity.setProcedencia(request.getParameter("procedencia"));
+        entity.setRua(request.getParameter("rua"));
+        entity.setNumero(request.getParameter("numero"));
+        entity.setBairro(request.getParameter("bairro"));
+        entity.setCidade(request.getParameter("cidade"));
+        entity.setEstado(request.getParameter("estado"));
+        entity.setBanco(request.getParameter("banco"));
+        entity.setAgencia(request.getParameter("agencia"));
+        entity.setConta(request.getParameter("conta"));
+        
+        Date data = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        format.setLenient(false);
+        try {
+            data = format.parse(request.getParameter("dataNascimento"));
+            entity.setDataNascimento(data);
+        } catch (ParseException ex) {
+            }
+        
+        
         ModelAndView mv = null;
         try {
             Map<String, Object> fields = new HashMap<>();
@@ -62,6 +103,8 @@ public class AssistidoController {
         mv.addObject("assistido", assistido);
         String ativo = "assistido";
         mv.addObject("ativo", ativo);
+        String tab = "info";
+        mv.addObject("tab", tab);
         return mv;
     }
     
@@ -84,7 +127,44 @@ public class AssistidoController {
     }
     
     @RequestMapping (value = "/cadastro/assistido/{id}/alterar", method = RequestMethod.POST)
-    public ModelAndView update(Assistido assistido){
+    public ModelAndView update(WebRequest request){
+        Assistido assistido = new Assistido();
+        
+        assistido.setId(Long.parseLong(request.getParameter("id")));
+        assistido.setNome(request.getParameter("nome"));
+        assistido.setRg(request.getParameter("rg"));
+        assistido.setCpf(request.getParameter("cpf"));
+        assistido.setCartaoSus(request.getParameter("cartaoSus"));
+        assistido.setNoDoBeneficio(request.getParameter("noDoBeneficio"));
+        assistido.setTelfixo(request.getParameter("telfixo"));
+        assistido.setCelular(request.getParameter("celular"));
+        assistido.setEstadoCivil(request.getParameter("estadoCivil"));
+        assistido.setProfissao(request.getParameter("profissao"));
+        assistido.setNaturalidade(request.getParameter("naturalidade"));
+        assistido.setNacionalidade(request.getParameter("nacionalidade"));
+        assistido.setSexo(request.getParameter("sexo"));
+        assistido.setPai(request.getParameter("pai"));
+        assistido.setMae(request.getParameter("mae"));
+        assistido.setObservacoes(request.getParameter("observacoes"));
+        assistido.setProcedencia(request.getParameter("procedencia"));
+        assistido.setRua(request.getParameter("rua"));
+        assistido.setNumero(request.getParameter("numero"));
+        assistido.setBairro(request.getParameter("bairro"));
+        assistido.setCidade(request.getParameter("cidade"));
+        assistido.setEstado(request.getParameter("estado"));
+        assistido.setBanco(request.getParameter("banco"));
+        assistido.setAgencia(request.getParameter("agencia"));
+        assistido.setConta(request.getParameter("conta"));
+        
+        Date data = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        format.setLenient(false);
+        try {
+            data = format.parse(request.getParameter("dataNascimento"));
+            assistido.setDataNascimento(data);
+        } catch (ParseException ex) {
+            }
+        
         ModelAndView mv = null;
         try {
             Map<String, Object> fields = new HashMap<>();
@@ -104,7 +184,6 @@ public class AssistidoController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
         
         return mv;
     }

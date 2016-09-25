@@ -22,13 +22,20 @@
         <![endif]-->
     </head>
     <body>
-        
+
         <jsp:include page="../../navusuariolista.jsp"/>
-        <jsp:include page="../barralateral.jsp"/>
+        <jsp:include page="../../barralateral.jsp"/>
+
+        <ul class="nav nav-tabs">
+            <li <c:if test="${tab eq 'info'}"> class="active"</c:if>><a href="<c:url value="/cadastro/assistido/${assistido.id}/info"/>">Informações</a></li>
+            <li <c:if test="${tab eq 'registro'}"> class="active"</c:if>><a href="<c:url value="/cadastro/assistido/${assistido.id}/registro"/>">Registro</a></li>
+        </ul>
+
+
         <h1 align="center">${assistido.nome}</h1>
-        
-        
-        <div class="col-sm-offset-1">
+
+
+        <div class="col-sm-offset-2">
             <ul class="list-group col-sm-10">
                 <li class="list-group-item"><b>Procedencia:</b> ${assistido.procedencia}</li>
                 <li class="list-group-item"><b>Estado Civil:</b> ${assistido.estadoCivil}</li>
@@ -58,7 +65,7 @@
                 <li class="list-group-item"><b>Conta:</b> ${assistido.conta}</li>
             </ul>
         </div>
-        
+
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="<c:url value="/js/jquery.min.js"/>"></script>
