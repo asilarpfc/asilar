@@ -75,6 +75,7 @@ public class AssistidoController {
             fields.put("id", entity.getId());
             fields.put("cpf", entity.getCpf());
             
+            
             Map <String, String> errors = ServiceLocator.getAssistidoService().validateForCreate(fields);
             if(errors.isEmpty()){
                 ServiceLocator.getAssistidoService().create(entity);

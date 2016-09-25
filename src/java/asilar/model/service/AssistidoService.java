@@ -74,7 +74,7 @@ public class AssistidoService implements BaseAssistidoService{
         }else if(assistido.getNacionalidade() == null || assistido.getNacionalidade().trim().equals("")){
             errors.put("nacionalidade", "Campo obrigatório");
         }else if(assistido.getRg() == null || assistido.getRg().trim().equals("")){
-            errors.put("nacionalidade", "Campo obrigatório");
+            errors.put("rg", "Campo obrigatório");
         }else if(assistido.getCpf() == null || assistido.getCpf().trim().equals("")){
             errors.put("cpf", "Campo obrigatório");
         }else if(assistido.getBanco() == null || assistido.getBanco().trim().equals("")){
@@ -101,14 +101,22 @@ public class AssistidoService implements BaseAssistidoService{
             errors.put("cidade", "Campo obrigatório");
         }else if(assistido.getSexo() == null || assistido.getSexo().trim().equals("")){
             errors.put("sexo", "Campo obrigatório");
-        }else if(assistido.getDataNascimento() == null){
-            errors.put("dataNascimento", "Campo obrigatório ou data incorreta");
+        }else if(assistido.getDataNascimento() == null || assistido.getDataNascimento().equals("")){
+            errors.put("dataNascimento", "Campo obrigatório");
         }else if(assistido.getObservacoes() == null || assistido.getObservacoes().trim().equals("")){
             errors.put("observacoes", "Campo obrigatório");
         }else if(assistido.getProcedencia() == null || assistido.getProcedencia().trim().equals("")){
-            errors.put("cartaoSus", "Campo obrigatório");
+            errors.put("procedencia", "Campo obrigatório");
         }else if(assistido.getNoDoBeneficio() == null || assistido.getNoDoBeneficio().trim().equals("")){
             errors.put("noDoBeneficio", "Campo obrigatório");
+        }else if(assistido.getCartaoSus() == null || assistido.getCartaoSus().trim().equals("")){
+            errors.put("cartaoSus", "Campo obrigatório");
+        }else if(assistido.getTelfixo() == null || assistido.getTelfixo().trim().equals("")){
+            errors.put("telfixo", "Campo obrigatório");
+        }else if(assistido.getCelular() == null || assistido.getCelular().trim().equals("")){
+            errors.put("celular", "Campo obrigatório");
+        }else if(assistido.getEstado() == null || assistido.getEstado().trim().equals("")){
+            errors.put("estado", "Campo obrigatório");
         }else{
             Map<Long, Object> criteria = new HashMap<>();
             Long id = (Long) fields.get("id");
