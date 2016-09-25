@@ -21,7 +21,7 @@
         <![endif]-->
     </head>
     <body>
-        <jsp:include page="../../navusuarioform.jsp"/>
+        <jsp:include page="../../navusuariolista.jsp"/>
         <h1 align="center">Cadastrar de instituição</h1>
 
         <form class="form-horizontal" method="post">
