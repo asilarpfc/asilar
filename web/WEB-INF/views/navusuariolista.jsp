@@ -16,10 +16,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${usuarioLogado.nome}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Alterar senha</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        <li><a data-toggle="modal" data-target="#modal-sair">Sair</a></li>
                     </ul>
                 </li>
             </ul>

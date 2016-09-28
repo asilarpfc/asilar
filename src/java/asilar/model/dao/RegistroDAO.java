@@ -27,6 +27,7 @@ public class RegistroDAO implements BaseDAO<Registro>{
         statement.setLong(++i, entity.getUsuarioEntrada().getId());
         statement.setLong(++i, entity.getAssistido().getId());
         statement.setLong(++i, entity.getUsuarioSaida().getId());
+        statement.setLong(++i, entity.getId());
         
         statement.execute();
         statement.close();
@@ -49,10 +50,15 @@ public class RegistroDAO implements BaseDAO<Registro>{
         
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setDate(++i, new java.sql.Date(entity.getDataEntrada().getTime()));
-        statement.setDate(++i, new java.sql.Date(entity.getDataSaida().getTime()));
+        if(entity.getDataSaida() != null){
+            statement.setDate(++i, new java.sql.Date(entity.getDataSaida().getTime()));
+        }else statement.setNull(++i, java.sql.Types.DATE);
         statement.setLong(++i, entity.getUsuarioEntrada().getId());
         statement.setLong(++i, entity.getAssistido().getId());
-        statement.setLong(++i, entity.getUsuarioSaida().getId());
+        if(entity.getUsuarioSaida() != null){
+            statement.setLong(++i, entity.getUsuarioSaida().getId());
+        }else statement.setNull(++i, java.sql.Types.INTEGER);
+        
         
         ResultSet rs = statement.executeQuery();
         if (rs.next()) {
@@ -174,7 +180,7 @@ public class RegistroDAO implements BaseDAO<Registro>{
         "       assistido.estado_civil assistido_estado_civil, assistido.mae assistido_mae, assistido.pai assistido_pai, \n" +
         "       assistido.rua assistido_rua, assistido.bairro assistido_bairro, assistido.numero assistido_numero, \n" +
         "       assistido.cidade assistido_cidade, assistido.estado assistido_estado, assistido.sexo assistido_sexo, assistido.data_nascimento assistido_data_nascimento, \n" +
-        "       assistido.observacoes assistido_observacoes, assistido.procedencia assistido_procedencia, assistido.cartao_sus assistio_cartao_sus, assistido.no_do_beneficio assistido_no_do_beneficio\n" +
+        "       assistido.observacoes assistido_observacoes, assistido.procedencia assistido_procedencia, assistido.cartao_sus assistido_cartao_sus, assistido.no_do_beneficio assistido_no_do_beneficio\n" +
         "  FROM registro\n" +
         "  LEFT JOIN usuario entrada ON registro.usuario_entrada_fk=entrada.id\n" +
         "  LEFT JOIN usuario saida ON registro.usuario_saida_fk=saida.id\n" +
@@ -187,7 +193,7 @@ public class RegistroDAO implements BaseDAO<Registro>{
             
             Long assistidoIdEq = (Long) criteria.get(RegistroCriteria.ASSISTIDO_ID_EQ);
             if (assistidoIdEq != null && assistidoIdEq > 0) {
-                sql += " and assistido.id != '" + assistidoIdEq + "'";
+                sql += " and assistido.id = '" + assistidoIdEq + "'";
             }
             
         }
@@ -197,6 +203,7 @@ public class RegistroDAO implements BaseDAO<Registro>{
         if (offset != null && offset >= 0) {
             sql += " limit 10 offset " + offset + "";
         }
+        
         
         ResultSet rs = statement.executeQuery(sql);
         List <Registro> entityList = new ArrayList<Registro>();

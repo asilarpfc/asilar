@@ -33,10 +33,37 @@
 
 
             <h1 align="center">${assistido.nome}</h1>
-            
-            <c:if test="${empty registroList}">
-                <a class="btn-lg btn-primary col-lg-offset-2" href="<c:url value="/cadastro/assistido/novo"/>"><span class="glyphicon glyphicon-plus"></span> Nova entrada</a>
-            </c:if>
+
+        <c:if test="${empty registroList}">
+            <button type="button" class="btn btn-primary col-lg-offset-2" data-toggle="modal" data-target="#modal-registro"><span class="glyphicon glyphicon-plus"></span> Novo registro</button>
+        </c:if>
+            <div class="modal fade" id="modal-registro">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">${assistido.nome}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-inline" method="post" action="<c:url value="/cadastro/assistido/${assistido.id}/novoregistro"/>">
+                                <div class="form-group">
+                                    <label for="dataEntrada">Data de entrada</label>
+                                    <input type="date" name="dataEntrada" class="form-control" placeholder="Data de entrada" onfocus="$(this).mask('00/00/0000');">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dataSaida">Data de saida</label>
+                                    <input type="date" name="dataSaida" class="form-control" placeholder="Data de saida" onfocus="$(this).mask('00/00/0000');">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Registrar</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+        
         <c:if test="${not empty registroList}">
             <div class="table-responsive col-lg-offset-2">
                 <table class="table table-hover">
@@ -53,15 +80,55 @@
                         <c:forEach items="${registroList}" var="registro">
                             <tr>
                                 <td>${registro.id}</td>
-                                <td>${registro.dataEntrada}</td>
+                                <td><fmt:formatDate value="${registro.dataEntrada}" pattern="dd/MM/yyyy"/></td>
                                 <td>${registro.usuarioEntrada.nome}</td>
-                                <td>${registro.dataSaida}</td>
+                                <td><fmt:formatDate value="${registro.dataSaida}" pattern="dd/MM/yyyy"/></td>
                                 <td>${registro.usuarioSaida.nome}</td>
+                                <td><button type="button" class="btn btn-primary col-lg-offset-2" data-toggle="modal" data-target="#modal-registro${registro.id}"><span class="glyphicon glyphicon-pencil"></span></button></td>
                             </tr>
+                            <c:if test="${not empty registro.dataSaida}">
+                                <c:set var="novo" value="true"/>
+                            </c:if>
+                            <c:if test="${empty registro.dataSaida}">
+                                <c:set var="novo" value="false"/>
+                            </c:if>
                         </c:forEach>
                     </tbody>
                 </table>
+                <c:if test="${novo eq true}">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-registro"><span class="glyphicon glyphicon-plus"></span> Novo registro</button>
+                </c:if>
             </c:if>
+
+            <c:forEach items="${registroList}" var="registro">
+                <div class="modal fade" id="modal-registro${registro.id}">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">${assistido.nome}</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-inline" method="post" action="<c:url value="/cadastro/assistido/${assistido.id}/${registro.id}/editarregistro"/>">
+                                    <input type="hidden" name="usuarioEntrada" value="${registro.usuarioEntrada.id}">
+                                    <div class="form-group">
+                                        <label for="dataEntrada">Data de entrada</label>
+                                        <input type="date" name="dataEntrada" class="form-control" placeholder="Data de entrada" value="<fmt:formatDate value="${registro.dataEntrada}" pattern="dd/MM/yyyy"/>" onfocus="$(this).mask('00/00/0000');">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dataSaida">Data de saida</label>
+                                        <input type="date" name="dataSaida" class="form-control" placeholder="Data de saida" value="<fmt:formatDate value="${registro.dataSaida}" pattern="dd/MM/yyyy"/>" onfocus="$(this).mask('00/00/0000');">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Registrar</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+            </c:forEach>
 
             <c:if test="${count > 10}">
                 <nav>
@@ -84,6 +151,8 @@
             </c:if>
 
         </div>
+
+        <jsp:include page="../modais.jsp"/>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="<c:url value="/js/jquery.min.js"/>"></script>

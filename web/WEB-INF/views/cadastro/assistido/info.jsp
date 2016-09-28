@@ -66,6 +66,7 @@
             </ul>
         </div>
 
+       <jsp:include page="../../modais.jsp"/>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="<c:url value="/js/jquery.min.js"/>"></script>

@@ -56,6 +56,8 @@ public class InstituicaoController {
     
     @RequestMapping (value = "/cadastro/instituicao/{id}/alterar", method = RequestMethod.POST)
     public ModelAndView update(Instituicao instituicao){
+        
+        
         try {
             ServiceLocator.getInstituicaoService().update(instituicao);
         } catch (Exception e) {

@@ -22,7 +22,7 @@
     </head>
     <body>
         
-        <jsp:include page="../../navusuarioinfo.jsp"/>
+        <jsp:include page="../../navusuariolista.jsp"/>
         
         <h1 align="center">${instituicao.nome}</h1>
         
@@ -41,7 +41,8 @@
             </ul>
         </div>
         
-
+        <jsp:include page="../../modais.jsp"/>
+        
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="<c:url value="/js/jquery.min.js"/>"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->

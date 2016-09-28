@@ -22,7 +22,7 @@
         <![endif]-->
     </head>
     <body>
-        <jsp:include page="navhome.jsp"/>
+        <jsp:include page="navusuariolista.jsp"/>
         
         <img src="<c:url value="/img/logo.jpg"/>" class="img-responsive center-block">
 
@@ -43,13 +43,13 @@
 
             
         </div>
+
+        <jsp:include page="modais.jsp"/>
+        
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="<c:url value="/js/jquery.min.js"/>"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
-
-        <script>
-            
-        </script>
+        
     </body>
 </html>

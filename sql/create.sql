@@ -71,3 +71,11 @@ CREATE TABLE registro (
 ALTER TABLE usuario DROP CONSTRAINT IF EXISTS usuario_instituicao_fk;
 ALTER TABLE usuario ADD CONSTRAINT usuario_instituicao_fk FOREIGN KEY (instituicao_fk) REFERENCES instituicao (id)
 ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+ALTER TABLE registro DROP CONSTRAINT IF EXISTS registro_usuario_entrada;
+ALTER TABLE registro ADD CONSTRAINT registro_usuario_entrada FOREIGN KEY (usuario_entrada_fk) REFERENCES usuario (id)
+ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+ALTER TABLE registro DROP CONSTRAINT IF EXISTS registro_usuario_saida;
+ALTER TABLE registro ADD CONSTRAINT registro_usuario_saida FOREIGN KEY (usuario_saida_fk) REFERENCES usuario (id)
+ON UPDATE RESTRICT ON DELETE RESTRICT;

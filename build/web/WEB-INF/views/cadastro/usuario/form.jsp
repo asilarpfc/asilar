@@ -67,7 +67,7 @@
             <div class="form-group <c:if test="${not empty errors.cpf}">has-error has-feedback</c:if>">
                 <label for="cpf" class="col-sm-2 control-label">CPF:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="cpf" class="form-control" placeholder="CPF" value="${usuario.cpf}" maxlength="30" required="">
+                    <input type="text" name="cpf" class="form-control" placeholder="CPF" value="${usuario.cpf}" maxlength="30" required="" onfocus="$(this).mask('000.000.000-00', {reverse: true});">
                     <c:if test="${not empty errors.cpf}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                     <c:if test="${not empty errors.cpf}"><span class="alert-danger">${errors.cpf}</span></c:if>
                 </div>
@@ -76,7 +76,7 @@
             <div class="form-group">
                 <label for="telfixo" class="col-sm-2 control-label">Telefone Fixo:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="telfixo" class="form-control" placeholder="Telefone Fixo" maxlength="20" value="${usuario.telfixo}" required="">
+                    <input id="telefone" type="text" name="telfixo" class="form-control" placeholder="Telefone Fixo" maxlength="20" value="${usuario.telfixo}" required="">
                     <c:if test="${not empty errors.telfixo}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                     <c:if test="${not empty errors.telfixo}"><span class="alert-danger">${errors.telfixo}</span></c:if>
                 </div>
@@ -85,7 +85,7 @@
             <div class="form-group">
                 <label for="celular" class="col-sm-2 control-label">Celular:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="celular" class="form-control" placeholder="Celular" maxlength="5" value="${usuario.celular}" required="">
+                    <input id="celular" type="text" name="celular" class="form-control" placeholder="Celular" maxlength="20" value="${usuario.celular}" required="">
                     <c:if test="${not empty errors.celular}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                     <c:if test="${not empty errors.celular}"><span class="alert-danger">${errors.celular}</span></c:if>
                 </div>
@@ -114,7 +114,7 @@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Cadastrar</button>
-                    <button type="button" class="btn btn-danger btnCancelar"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-cancelar"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
                 </div>
             </div>
 
@@ -124,6 +124,7 @@
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="<c:url value="/js/jquery.min.js"/>"></script>
+        <script src="<c:url value="/js/jquery.mask.min.js"/>"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
         <jsp:include page="../../scripts.jsp"/>

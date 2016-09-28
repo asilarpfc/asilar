@@ -11,46 +11,41 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class PrincipalController {
-    
+
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public ModelAndView home(){
-       
+    public ModelAndView home() {
+
         ModelAndView mv = new ModelAndView("/home");
         return mv;
     }
-    
+
     @RequestMapping(value = "/cadastro", method = RequestMethod.GET)
-    public ModelAndView cadastro(){
+    public ModelAndView cadastro() {
         ModelAndView mv = new ModelAndView("/cadastro");
         return mv;
     }
-    
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView login(){
+    public ModelAndView login() {
         ModelAndView mv = new ModelAndView("/login");
         return mv;
     }
-    
-        @RequestMapping(value = "/login", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(String login, String senha, HttpSession session) {
-            
+
         Usuario usuarioLogado = null;
-        Instituicao instituicao = null;
         String erro = "Login ou senha incorretos!!";
         ModelAndView mv = null;
         try {
             usuarioLogado = ServiceLocator.getUsuarioService().login(login, senha);
-            instituicao = ServiceLocator.getInstituicaoService().readyByCriteria(null, null).get(0);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         if (usuarioLogado != null) {
             session.setAttribute("usuarioLogado", usuarioLogado);
-            if (!usuarioLogado.getSenha().equals("123456")) {
-                mv = new ModelAndView("redirect:/");
-            } else {
-                mv = new ModelAndView("redirect:/login/novasenha/" + usuarioLogado.getId() + "");
-            }
+            mv = new ModelAndView("redirect:/");
         } else {
             mv = new ModelAndView("/login");
             mv.addObject("erro", erro);
@@ -58,11 +53,18 @@ public class PrincipalController {
 
         return mv;
     }
-    
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public ModelAndView logout(HttpSession session) {
+        session.invalidate();
+        ModelAndView mv = new ModelAndView("redirect:/");
+        return mv;
+    }
+
     @RequestMapping(value = "/erro", method = RequestMethod.GET)
-    public ModelAndView erroMessage(){
+    public ModelAndView erroMessage() {
         ModelAndView mv = new ModelAndView("/erro");
         return mv;
     }
-    
+
 }
