@@ -26,9 +26,6 @@
         <jsp:include page="../../navusuariolista.jsp"/>
         <jsp:include page="../../barralateral.jsp"/>
 
-        <c:if test="${empty assistidoList}">
-            <a class="btn btn-primary" href="<c:url value="/cadastro/assistido/novo"/>"><span class="glyphicon glyphicon-plus"></span> Adicionar</a>
-        </c:if>
 
         <c:if test="${!empty assistidoList}">
             <div class="form-group-lg">
@@ -44,11 +41,16 @@
                     <button type="submit" class="btn btn-primary">Pesquisar</button>
                 </form>
             </div>
-
+            
         </c:if>
-        <h1 align="center">Assistidos</h1>
+        
+        
 
-        <div class="table-responsive">
+        <h1 align="center">Assistidos</h1>
+        
+        <a class="btn btn-primary" href="<c:url value="/cadastro/assistido/novo"/>"><span class="glyphicon glyphicon-plus"></span> Adicionar</a>
+        
+        <div class="table-responsive col-lg-offset-2">
             <table class="table table-hover">
                 <thead>
                     <tr>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -24,20 +25,32 @@ public class UsuarioController {
         return mv;
     }
 
-    @RequestMapping(value = "/cadastro/usuario/novo", method = RequestMethod.POST)
-    public ModelAndView create(Usuario entity) {
+        @RequestMapping(value = "/cadastro/usuario/novo", method = RequestMethod.POST)
+    public ModelAndView create(WebRequest request) {
+       Usuario entity = new Usuario();        
+       
+        entity.setNome(request.getParameter("nome"));
+        entity.setRg(request.getParameter("rg"));
+        entity.setCpf(request.getParameter("cpf"));
+        entity.setTelfixo(request.getParameter("telfixo"));
+        entity.setCelular(request.getParameter("celular"));
+        entity.setSenha(request.getParameter("senha"));
+        entity.setEmail(request.getParameter("email"));
+        entity.setUsuario(request.getParameter("usuario"));
+        entity.setTipoUsuario(Integer.parseInt(request.getParameter("tipoUsuario")));
+        
         ModelAndView mv = null;
         try{
            Map<String, Object> fields = new HashMap<>();
-           fields.put("usuario", entity);
+           fields.put("entity", entity);
            fields.put("id", entity.getId());
            fields.put("cpf", entity.getCpf());
-           fields.put("mesmoUsuario", entity.getUsuario());
-           fields.put("mesmoEmail", entity.getEmail());
-           entity.setInstituicao(ServiceLocator.getInstituicaoService().readyByCriteria(null, null).get(0));
-           
+           fields.put("usuario", entity.getUsuario());
+           fields.put("email", entity.getEmail());
+                      
            Map<String, String> errors = ServiceLocator.getUsuarioService().validateForCreate(fields);
            if(errors.isEmpty()){
+               entity.setInstituicao(ServiceLocator.getInstituicaoService().readyByCriteria(null, null).get(0));
                entity.setSenha(ServiceLocator.getUsuarioService().encodePassword(entity.getSenha()));
                ServiceLocator.getUsuarioService().create(entity);
                mv = new ModelAndView("redirect:/cadastro/usuario/lista");               
@@ -127,15 +140,28 @@ public class UsuarioController {
     }
 
     @RequestMapping(value = "/cadastro/usuario/{id}/alterar", method = RequestMethod.POST)
-    public ModelAndView update(Usuario usuario) {
+    public ModelAndView update(WebRequest request) {
+        
+        Usuario usuario = new Usuario();
+        usuario.setId(Long.parseLong(request.getParameter("id")));
+        usuario.setNome(request.getParameter("nome"));
+        usuario.setRg(request.getParameter("rg"));
+        usuario.setCpf(request.getParameter("cpf"));
+        usuario.setTelfixo(request.getParameter("telfixo"));
+        usuario.setCelular(request.getParameter("celular"));
+        usuario.setSenha(request.getParameter("senha"));
+        usuario.setEmail(request.getParameter("email"));
+        usuario.setUsuario(request.getParameter("usuario"));
+        
+        
         ModelAndView mv = null;
         try {
             Map<String, Object> fields = new HashMap<>();
            fields.put("usuario", usuario);
            fields.put("id", usuario.getId());
            fields.put("cpf", usuario.getCpf());
-           fields.put("mesmoUsuario", usuario.getUsuario());
-           fields.put("mesmoEmail", usuario.getEmail());
+           fields.put("usuario", usuario.getUsuario());
+           fields.put("email", usuario.getEmail());
            
            Map<String, String> errors = ServiceLocator.getUsuarioService().validateForUpdate(fields);
            if(errors.isEmpty()){

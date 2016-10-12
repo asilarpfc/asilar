@@ -6,16 +6,18 @@ import asilar.model.entity.Registro;
 import asilar.model.service.base.BaseRegistroService;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RegistroService implements BaseRegistroService{
+public class RegistroService implements BaseRegistroService {
 
     @Override
     public void create(Registro entity) throws Exception {
         Connection conn = ConnectionManager.getInstance().getConnection();
         RegistroDAO dao = new RegistroDAO();
-        
+
         try {
             dao.create(conn, entity);
             conn.commit();
@@ -32,7 +34,7 @@ public class RegistroService implements BaseRegistroService{
         Connection conn = ConnectionManager.getInstance().getConnection();
         RegistroDAO dao = new RegistroDAO();
         Registro entity = new Registro();
-        
+
         try {
             entity = dao.readyById(conn, id);
             conn.commit();
@@ -50,7 +52,7 @@ public class RegistroService implements BaseRegistroService{
         Connection conn = ConnectionManager.getInstance().getConnection();
         RegistroDAO dao = new RegistroDAO();
         List<Registro> entityList = new ArrayList<Registro>();
-        
+
         try {
             entityList = dao.readyByCriteria(conn, Criteria, offset);
             conn.commit();
@@ -65,7 +67,40 @@ public class RegistroService implements BaseRegistroService{
 
     @Override
     public Map<String, String> validateForCreate(Map<String, Object> fields) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Map<String, String> errors = new HashMap<String, String>();
+
+        String dataEntrada = (String) fields.get("dataEntrada");
+        String dataSaida = (String) fields.get("dataSaida");
+
+        if (dataEntrada != null && !dataEntrada.isEmpty()) {
+            errors.put("dataEntrada", dataEntrada);
+        }
+        if (dataSaida != null && !dataSaida.isEmpty()) {
+            errors.put("dataSaida", dataSaida);
+        }
+
+        Date hoje = new Date();
+
+        Registro registro = (Registro) fields.get("registro");
+
+        if(registro.getDataEntrada() == null){
+            errors.put("dataEntrada", "Digite uma data de entrada valida!");
+        }else if (registro.getDataEntrada() != null) {
+            if (registro.getDataEntrada().after(hoje)) {
+                errors.put("dataEntrada", "Digite uma data anterior ao dia de hoje");
+            }
+        }
+
+        if (registro.getDataSaida() != null) {
+            if (registro.getDataSaida().after(hoje)) {
+                errors.put("dataSaida", "Digite uma data anterior ao dia de hoje");
+            }
+            if (registro.getDataEntrada().after(registro.getDataSaida())) {
+                errors.put("dataSaida", "Digite uma data maior que a data de entrada");
+            }
+        }
+        
+        return errors;
     }
 
     @Override
@@ -73,7 +108,7 @@ public class RegistroService implements BaseRegistroService{
         Connection conn = ConnectionManager.getInstance().getConnection();
         RegistroDAO dao = new RegistroDAO();
         Long count = 0L;
-        
+
         try {
             count = dao.countByCriteria(conn, criteria);
             conn.commit();
@@ -90,7 +125,7 @@ public class RegistroService implements BaseRegistroService{
     public void update(Registro entity) throws Exception {
         Connection conn = ConnectionManager.getInstance().getConnection();
         RegistroDAO dao = new RegistroDAO();
-        
+
         try {
             dao.update(conn, entity);
             conn.commit();
@@ -106,7 +141,7 @@ public class RegistroService implements BaseRegistroService{
     public void delete(Long id) throws Exception {
         Connection conn = ConnectionManager.getInstance().getConnection();
         RegistroDAO dao = new RegistroDAO();
-        
+
         try {
             dao.delete(conn, id);
             conn.commit();
@@ -120,7 +155,7 @@ public class RegistroService implements BaseRegistroService{
 
     @Override
     public Map<String, String> validateForUpdate(Map<String, Object> fields) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.validateForCreate(fields);
     }
-    
+
 }

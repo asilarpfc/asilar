@@ -21,8 +21,7 @@
             <script src="<c:url value="/js/respond.min.js"/>"></script>
         <![endif]-->
     </head>
-    <body>
-
+    <body <c:if test="${not empty errors}"> onload="$('#modal-registro${idr}').modal('show');"</c:if>>
         <jsp:include page="../navusuariolista.jsp"/>
         <jsp:include page="../barralateral.jsp"/>
 
@@ -45,20 +44,33 @@
                             <h4 class="modal-title">${assistido.nome}</h4>
                         </div>
                         <div class="modal-body">
-                            <form class="form-inline" method="post" action="<c:url value="/cadastro/assistido/${assistido.id}/novoregistro"/>">
-                                <div class="form-group">
-                                    <label for="dataEntrada">Data de entrada</label>
-                                    <input type="date" name="dataEntrada" class="form-control" placeholder="Data de entrada" onfocus="$(this).mask('00/00/0000');">
+                            <form class="form-horizontal" method="post" action="<c:url value="/cadastro/assistido/${assistido.id}/novoregistro"/>">
+                                <div class="form-group<c:if test="${not empty errors.dataEntrada}">has-error has-feedback</c:if>">
+                                    <label for="dataEntrada" class="col-sm-2 control-label">Data de entrada</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="dataEntrada" class="form-control" placeholder="Data de entrada" value="<fmt:formatDate value="${registroModal.dataEntrada}" pattern="dd/MM/yyyy"/>" onfocus="$(this).mask('00/00/0000');">
+                                        <c:if test="${not empty errors.dataEntrada}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                                        <c:if test="${not empty errors.dataEntrada}"><span class="alert-danger">${errors.dataEntrada}</span></c:if> 
+                                    </div>
+                                </div>
+                                <div class="form-group<c:if test="${not empty errors.dataSaida}">has-error has-feedback</c:if>">
+                                    <label for="dataSaida" class="col-sm-2 control-label">Data de saida</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="dataSaida" class="form-control" placeholder="Data de saida" value="<fmt:formatDate value="${registroModal.dataSaida}" pattern="dd/MM/yyyy"/>" onfocus="$(this).mask('00/00/0000');">
+                                        <c:if test="${not empty errors.dataSaida}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                                        <c:if test="${not empty errors.dataSaida}"><span class="alert-danger">${errors.dataSaida}</span></c:if> 
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="dataSaida">Data de saida</label>
-                                    <input type="date" name="dataSaida" class="form-control" placeholder="Data de saida" onfocus="$(this).mask('00/00/0000');">
-                                </div>
-                                <button type="submit" class="btn btn-primary">Registrar</button>
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-primary">Registrar</button>
+                                        </div>    
+                                </div>  
+                                
                             </form>
+                            
                         </div>
-                        <div class="modal-footer">
-                        </div>
+                        
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
@@ -105,22 +117,36 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <button type="button" onclick="window.location.href='<c:url value="/cadastro/assistido/${assistido.id}/registro"/>'" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title">${assistido.nome}</h4>
                             </div>
                             <div class="modal-body">
-                                <form class="form-inline" method="post" action="<c:url value="/cadastro/assistido/${assistido.id}/${registro.id}/editarregistro"/>">
+                                <form class="form-horizontal" method="post" action="<c:url value="/cadastro/assistido/${assistido.id}/${registro.id}/editarregistro"/>">
+                                <div class="form-group<c:if test="${not empty errors.dataEntrada}">has-error has-feedback</c:if>">
                                     <input type="hidden" name="usuarioEntrada" value="${registro.usuarioEntrada.id}">
-                                    <div class="form-group">
-                                        <label for="dataEntrada">Data de entrada</label>
-                                        <input type="date" name="dataEntrada" class="form-control" placeholder="Data de entrada" value="<fmt:formatDate value="${registro.dataEntrada}" pattern="dd/MM/yyyy"/>" onfocus="$(this).mask('00/00/0000');">
+                                    <label for="dataEntrada" class="col-sm-2 control-label">Data de entrada</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="dataEntrada" class="form-control" placeholder="Data de entrada" value="<c:if test="${empty registroModal}"><fmt:formatDate value="${registro.dataEntrada}" pattern="dd/MM/yyyy"/></c:if> <c:if test="${not empty registroModal}"><fmt:formatDate value="${registroModal.dataEntrada}" pattern="dd/MM/yyyy"/></c:if>" onfocus="$(this).mask('00/00/0000');">
+                                        <c:if test="${not empty errors.dataEntrada}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                                        <c:if test="${not empty errors.dataEntrada}"><span class="alert-danger">${errors.dataEntrada}</span></c:if> 
                                     </div>
-                                    <div class="form-group">
-                                        <label for="dataSaida">Data de saida</label>
-                                        <input type="date" name="dataSaida" class="form-control" placeholder="Data de saida" value="<fmt:formatDate value="${registro.dataSaida}" pattern="dd/MM/yyyy"/>" onfocus="$(this).mask('00/00/0000');">
+                                </div>
+                                <div class="form-group<c:if test="${not empty errors.dataSaida}">has-error has-feedback</c:if>">
+                                    <input type="hidden" name="usuarioSaida" value="${registro.usuarioSaida.id}">
+                                    <label for="dataSaida" class="col-sm-2 control-label">Data de saida</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="dataSaida" class="form-control" placeholder="Data de saida" value="<c:if test="${empty registroModal}"><fmt:formatDate value="${registro.dataSaida}" pattern="dd/MM/yyyy"/></c:if> <c:if test="${not empty registroModal}"><fmt:formatDate value="${registroModal.dataSaida}" pattern="dd/MM/yyyy"/></c:if>" onfocus="$(this).mask('00/00/0000');">
+                                        <c:if test="${not empty errors.dataSaida}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                                        <c:if test="${not empty errors.dataSaida}"><span class="alert-danger">${errors.dataSaida}</span></c:if> 
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Registrar</button>
-                                </form>
+                                </div>
+                                <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-primary">Registrar</button>
+                                        </div>    
+                                </div>  
+                                
+                            </form>
                             </div>
                             <div class="modal-footer">
                             </div>

@@ -68,6 +68,15 @@ CREATE TABLE registro (
   usuario_saida_fk   int8, 
   PRIMARY KEY (id));
 
+  DROP TABLE IF EXISTS produto CASCADE;
+  CREATE TABLE produto (
+  id                 BIGSERIAL NOT NULL, 
+  nome              varchar(60) NOT NULL, 
+  quantidade_Minima int8 NOT NULL, 
+  quantidade_Maxima int8 NOT NULL, 
+  Unidade_Medida    varchar(100) NOT NULL, 
+  PRIMARY KEY (id));
+
 ALTER TABLE usuario DROP CONSTRAINT IF EXISTS usuario_instituicao_fk;
 ALTER TABLE usuario ADD CONSTRAINT usuario_instituicao_fk FOREIGN KEY (instituicao_fk) REFERENCES instituicao (id)
 ON UPDATE RESTRICT ON DELETE RESTRICT;

@@ -69,7 +69,7 @@ public class UsuarioService implements BaseUsuarioService {
     public Map<String, String> validateForCreate(Map<String, Object> fields) throws Exception {
         
         Map<String, String> errors = new HashMap<String, String>(); 
-        Usuario usuario = (Usuario) fields.get("usuario");
+        Usuario usuario = (Usuario) fields.get("entity");
         if(usuario.getNome() == null || usuario.getNome().trim().equals("")){
             errors.put("nome", "Campo Obrigatório");
         }else if(usuario.getUsuario() == null || usuario.getUsuario().trim().equals("")){
