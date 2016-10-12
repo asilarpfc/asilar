@@ -87,7 +87,7 @@ public class UsuarioService implements BaseUsuarioService {
         }else if(usuario.getEmail() == null || usuario.getEmail().trim().equals("")){
             errors.put("email", "Campo Obrigatório");
         }else if(usuario.getTipoUsuario() == null || usuario.getTipoUsuario().equals("")){
-            errors.put("tipoUsuario", "Campo Usuário");
+            errors.put("tipoUsuario", "Campo Obrigatorio");
         }else{
             
             Map<Long, Object> criteria = new HashMap<>();
@@ -107,7 +107,7 @@ public class UsuarioService implements BaseUsuarioService {
             }
             usuarioList.clear();
             criteria.clear();
-            String mesmoUsuario = (String) fields.get("mesmoUsuario"); 
+            String mesmoUsuario = (String) fields.get("usuario"); 
             if(id != null && id > 0){
                 criteria.put(UsuarioCriteria.ID_NE, id);
             }
@@ -123,7 +123,7 @@ public class UsuarioService implements BaseUsuarioService {
             
             criteria.clear();
             usuarioList.clear();
-            String mesmoEmail = (String) fields.get("mesmoEmail");
+            String mesmoEmail = (String) fields.get("email");
             if(id != null && id > 0){
                 criteria.put(UsuarioCriteria.ID_NE, id);
             }

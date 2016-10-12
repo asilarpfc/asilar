@@ -1,6 +1,7 @@
 package asilar.model.service;
 
 import asilar.model.ConnectionManager;
+import asilar.model.criteria.RegistroCriteria;
 import asilar.model.dao.RegistroDAO;
 import asilar.model.entity.Registro;
 import asilar.model.service.base.BaseRegistroService;
@@ -83,9 +84,9 @@ public class RegistroService implements BaseRegistroService {
 
         Registro registro = (Registro) fields.get("registro");
 
-        if(registro.getDataEntrada() == null){
+        if (registro.getDataEntrada() == null) {
             errors.put("dataEntrada", "Digite uma data de entrada valida!");
-        }else if (registro.getDataEntrada() != null) {
+        } else if (registro.getDataEntrada() != null) {
             if (registro.getDataEntrada().after(hoje)) {
                 errors.put("dataEntrada", "Digite uma data anterior ao dia de hoje");
             }
@@ -99,7 +100,18 @@ public class RegistroService implements BaseRegistroService {
                 errors.put("dataSaida", "Digite uma data maior que a data de entrada");
             }
         }
+
+        Map<Long, Object> criteria = new HashMap<Long, Object>();
+        criteria.put(RegistroCriteria.ASSISTIDO_ID_EQ, registro.getAssistido().getId());
         
+        List<Registro> ultimo = this.readyByCriteria(criteria, null);
+
+        if (ultimo != null && ultimo.size() > 0) {
+            if (ultimo.get(ultimo.size() - 1).getDataSaida().after(registro.getDataEntrada())) {
+                errors.put("dataEntrada", "Coloque uma data posterior a ultima saida");
+            }
+        }
+
         return errors;
     }
 

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,6 +61,7 @@ public class UsuarioController {
                mv.addObject("usuario", entity);
                mv.addObject("errors", errors);
            }
+           
             
         }catch (Exception ex) {
             ex.printStackTrace();
@@ -152,12 +155,12 @@ public class UsuarioController {
         usuario.setSenha(request.getParameter("senha"));
         usuario.setEmail(request.getParameter("email"));
         usuario.setUsuario(request.getParameter("usuario"));
-        
+        usuario.setTipoUsuario(Integer.parseInt(request.getParameter("tipoUsuario")));
         
         ModelAndView mv = null;
         try {
             Map<String, Object> fields = new HashMap<>();
-           fields.put("usuario", usuario);
+           fields.put("entity", usuario);
            fields.put("id", usuario.getId());
            fields.put("cpf", usuario.getCpf());
            fields.put("usuario", usuario.getUsuario());
@@ -165,7 +168,6 @@ public class UsuarioController {
            
            Map<String, String> errors = ServiceLocator.getUsuarioService().validateForUpdate(fields);
            if(errors.isEmpty()){
-               usuario.setSenha(ServiceLocator.getUsuarioService().encodePassword(usuario.getSenha()));
                ServiceLocator.getUsuarioService().update(usuario);
                mv = new ModelAndView("redirect:/cadastro/usuario/lista");               
            }else{

@@ -108,6 +108,7 @@
                         <option value="1" <c:if test="${usuario.tipoUsuario eq 1}"> selected </c:if>>Administrador</option>
                         <option value="2" <c:if test="${usuario.tipoUsuario eq 2}"> selected </c:if>>Gerente de Estoque</option>
                         </select>
+                        <c:if test="${not empty errors.tipoUsuario}"><span class="alert-danger">${errors.tipoUsuario}</span></c:if>
                 </div>
              </div>
 

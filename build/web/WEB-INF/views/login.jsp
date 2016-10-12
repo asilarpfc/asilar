@@ -38,7 +38,8 @@
                 <br>
                 <label for="inputPassword" class="sr-only">Senha</label>
                 <input type="password" id="inputPassword" class="form-control" placeholder="Senha" name="senha" required>
-                <c:if test="${not empty erro}"><p color="#008040">${erro}<p></c:if>
+                <a href="<c:url value="/recuperarSenha"/>">Recuperar Senha</a>
+                <c:if test="${not empty erro}"><p>${erro}<p></c:if>
                 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
             </form>

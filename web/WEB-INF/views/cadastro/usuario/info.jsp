@@ -36,7 +36,7 @@
                 <li class="list-group-item"><b>Telefone:</b> ${usuario.telfixo}</li>
                 <li class="list-group-item"><b>Celular:</b> ${usuario.celular}</li>
                 <li class="list-group-item"><b>E-Mail:</b> ${usuario.email}</li>
-                <li class="list-group-item"><b>Tipo de Usuario:</b> ${usuario.tipoUsuario}</li>
+                <li class="list-group-item"><b>Tipo de Usuario:</b><c:if test="${usuario.tipoUsuario eq 1}"> Administrador</c:if> <c:if test="${usuario.tipoUsuario eq 2}"> Gerente de estoque</c:if></li>
             </ul>
         </div>
 
