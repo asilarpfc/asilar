@@ -6,5 +6,5 @@ public interface BaseUsuarioService extends BaseService<Usuario>{
      
     public Usuario login(String email, String senha) throws Exception;
     public String encodePassword(String input) throws Exception;
-
+    public String gerarSenha() throws Exception;
 }

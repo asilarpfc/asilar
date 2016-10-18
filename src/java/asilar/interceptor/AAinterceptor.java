@@ -15,11 +15,11 @@ public class AAinterceptor extends HandlerInterceptorAdapter {
         String context = "/asilar";
         Usuario usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
         int permissoes = 0;
-        if(ServiceLocator.getInstituicaoService().countByCriteria(null) < 1){
+        if (ServiceLocator.getInstituicaoService().countByCriteria(null) < 1) {
             permissoes = 1;
-        }else if(ServiceLocator.getUsuarioService().countByCriteria(null) < 1){
+        } else if (ServiceLocator.getUsuarioService().countByCriteria(null) < 1) {
             permissoes = 2;
-        }else if(ServiceLocator.getUsuarioService().countByCriteria(null) > 0 && ServiceLocator.getInstituicaoService().countByCriteria(null) > 0){
+        } else if (ServiceLocator.getUsuarioService().countByCriteria(null) > 0 && ServiceLocator.getInstituicaoService().countByCriteria(null) > 0) {
             permissoes = 3;
         }
         //UsuarioLogado
@@ -54,19 +54,31 @@ public class AAinterceptor extends HandlerInterceptorAdapter {
 
             if (!shallPass) {
                 //Livres
-                if(permissoes == 1 && uri.equals(context + "/cadastro/instituicao/novo")) shallPass = true;
-                else if(permissoes == 2 && uri.equals(context + "/cadastro/usuario/novo")) shallPass = true;
-                else if (permissoes == 3 && uri.equals(context + "/login")) shallPass = true;
-                else if (uri.equals(context + "/erro")) shallPass = true;
+                if (permissoes == 1 && uri.equals(context + "/cadastro/instituicao/novo")) {
+                    shallPass = true;
+                } else if (permissoes == 2 && uri.equals(context + "/cadastro/usuario/novo")) {
+                    shallPass = true;
+                } else if (permissoes == 3 && uri.equals(context + "/login")) {
+                    shallPass = true;
+                } else if (uri.equals(context + "/erro")) {
+                    shallPass = true;
+                } else if (uri.startsWith(context + "/recuperarSenha")) {
+                    shallPass = true;
+                } else if (uri.startsWith(context + "/redefinir")) {
+                    shallPass = true;
+                }
             }
 
             if (!shallPass) {
-                if(permissoes == 1) response.sendRedirect(context + "/cadastro/instituicao/novo");
-                else if(permissoes == 2) response.sendRedirect(context + "/cadastro/usuario/novo");
-                else if(permissoes == 3) response.sendRedirect(context + "/login");
+                if (permissoes == 1) {
+                    response.sendRedirect(context + "/cadastro/instituicao/novo");
+                } else if (permissoes == 2) {
+                    response.sendRedirect(context + "/cadastro/usuario/novo");
+                } else if (permissoes == 3) {
+                    response.sendRedirect(context + "/login");
+                }
             }
         }
         return shallPass;
     }
 }
-
