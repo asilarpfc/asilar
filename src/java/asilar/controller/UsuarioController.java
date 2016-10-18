@@ -1,5 +1,6 @@
 package asilar.controller;
 
+import asilar.email.Email;
 import asilar.model.ServiceLocator;
 import asilar.model.criteria.UsuarioCriteria;
 import asilar.model.entity.Usuario;
@@ -7,8 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,10 +27,10 @@ public class UsuarioController {
         return mv;
     }
 
-        @RequestMapping(value = "/cadastro/usuario/novo", method = RequestMethod.POST)
+    @RequestMapping(value = "/cadastro/usuario/novo", method = RequestMethod.POST)
     public ModelAndView create(WebRequest request) {
-       Usuario entity = new Usuario();        
-       
+        Usuario entity = new Usuario();
+
         entity.setNome(request.getParameter("nome"));
         entity.setRg(request.getParameter("rg"));
         entity.setCpf(request.getParameter("cpf"));
@@ -40,34 +40,38 @@ public class UsuarioController {
         entity.setEmail(request.getParameter("email"));
         entity.setUsuario(request.getParameter("usuario"));
         entity.setTipoUsuario(Integer.parseInt(request.getParameter("tipoUsuario")));
-        
+
         ModelAndView mv = null;
-        try{
-           Map<String, Object> fields = new HashMap<>();
-           fields.put("entity", entity);
-           fields.put("id", entity.getId());
-           fields.put("cpf", entity.getCpf());
-           fields.put("usuario", entity.getUsuario());
-           fields.put("email", entity.getEmail());
-                      
-           Map<String, String> errors = ServiceLocator.getUsuarioService().validateForCreate(fields);
-           if(errors.isEmpty()){
-               entity.setInstituicao(ServiceLocator.getInstituicaoService().readyByCriteria(null, null).get(0));
-               entity.setSenha(ServiceLocator.getUsuarioService().encodePassword(entity.getSenha()));
-               ServiceLocator.getUsuarioService().create(entity);
-               mv = new ModelAndView("redirect:/cadastro/usuario/lista");               
-           }else{
-               mv = new ModelAndView("cadastro/usuario/form");
-               mv.addObject("usuario", entity);
-               mv.addObject("errors", errors);
-           }
-           
+        try {
+            Map<String, Object> fields = new HashMap<>();
+            fields.put("entity", entity);
+            fields.put("id", entity.getId());
+            fields.put("cpf", entity.getCpf());
+            fields.put("usuario", entity.getUsuario());
+            fields.put("email", entity.getEmail());
+
+            Map<String, String> errors = ServiceLocator.getUsuarioService().validateForCreate(fields);
+
             
-        }catch (Exception ex) {
+            if (errors.isEmpty()) {
+                entity.setInstituicao(ServiceLocator.getInstituicaoService().readyByCriteria(null, null).get(0));
+                //entity.setSenha(ServiceLocator.getUsuarioService().encodePassword(entity.getSenha()));
+                entity.setSenha(ServiceLocator.getUsuarioService().gerarSenha());
+                ServiceLocator.getUsuarioService().create(entity);
+                Email email =  new Email(entity);
+                email.start();
+                mv = new ModelAndView("redirect:/cadastro/usuario/lista");
+            } else {
+                mv = new ModelAndView("cadastro/usuario/form");
+                mv.addObject("usuario", entity);
+                mv.addObject("errors", errors);
+            }
+
+        } catch (Exception ex) {
             ex.printStackTrace();
-            
+
         }
-        
+
         return mv;
     }
 
@@ -144,7 +148,7 @@ public class UsuarioController {
 
     @RequestMapping(value = "/cadastro/usuario/{id}/alterar", method = RequestMethod.POST)
     public ModelAndView update(WebRequest request) {
-        
+
         Usuario usuario = new Usuario();
         usuario.setId(Long.parseLong(request.getParameter("id")));
         usuario.setNome(request.getParameter("nome"));
@@ -156,25 +160,25 @@ public class UsuarioController {
         usuario.setEmail(request.getParameter("email"));
         usuario.setUsuario(request.getParameter("usuario"));
         usuario.setTipoUsuario(Integer.parseInt(request.getParameter("tipoUsuario")));
-        
+
         ModelAndView mv = null;
         try {
             Map<String, Object> fields = new HashMap<>();
-           fields.put("entity", usuario);
-           fields.put("id", usuario.getId());
-           fields.put("cpf", usuario.getCpf());
-           fields.put("usuario", usuario.getUsuario());
-           fields.put("email", usuario.getEmail());
-           
-           Map<String, String> errors = ServiceLocator.getUsuarioService().validateForUpdate(fields);
-           if(errors.isEmpty()){
-               ServiceLocator.getUsuarioService().update(usuario);
-               mv = new ModelAndView("redirect:/cadastro/usuario/lista");               
-           }else{
-               mv = new ModelAndView("cadastro/usuario/form");
-               mv.addObject("usuario", usuario);
-               mv.addObject("errors", errors);
-           }
+            fields.put("entity", usuario);
+            fields.put("id", usuario.getId());
+            fields.put("cpf", usuario.getCpf());
+            fields.put("usuario", usuario.getUsuario());
+            fields.put("email", usuario.getEmail());
+
+            Map<String, String> errors = ServiceLocator.getUsuarioService().validateForUpdate(fields);
+            if (errors.isEmpty()) {
+                ServiceLocator.getUsuarioService().update(usuario);
+                mv = new ModelAndView("redirect:/cadastro/usuario/lista");
+            } else {
+                mv = new ModelAndView("cadastro/usuario/form");
+                mv.addObject("usuario", usuario);
+                mv.addObject("errors", errors);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

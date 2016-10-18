@@ -103,15 +103,21 @@ public class RegistroService implements BaseRegistroService {
 
         Map<Long, Object> criteria = new HashMap<Long, Object>();
         criteria.put(RegistroCriteria.ASSISTIDO_ID_EQ, registro.getAssistido().getId());
-        
-        List<Registro> ultimo = this.readyByCriteria(criteria, null);
 
-        if (ultimo != null && ultimo.size() > 0) {
-            if (ultimo.get(ultimo.size() - 1).getDataSaida().after(registro.getDataEntrada())) {
+        List<Registro> ultimos = this.readyByCriteria(criteria, null);
+
+        if (ultimos != null && ultimos.size() > 0) {
+            Registro ultimo = new Registro();
+            for(Registro aux : ultimos){
+                if(aux.getDataSaida() != null){
+                    if(registro.getId() == null) ultimo = aux;
+                    else if (!registro.getId().equals(ultimo.getId())) ultimo = aux;
+                }
+            }
+            if (ultimo.getDataSaida().after(registro.getDataEntrada())) {
                 errors.put("dataEntrada", "Coloque uma data posterior a ultima saida");
             }
         }
-
         return errors;
     }
 

@@ -27,7 +27,8 @@
 
         <form class="form-horizontal col-lg-offset-2" method="post">
             <input type="hidden" name="id" value="${usuario.id}">
-           
+            <input type="hidden" name="senha" class="form-control" value="${usuario.senha}">
+                    
             <div class="form-group <c:if test="${not empty errors.nome}">has-error has-feedback</c:if>">
                 <label for="nome" class="col-sm-2 control-label">Nome:</label>
                 <div class="col-sm-6">
@@ -46,15 +47,6 @@
                 </div>
             </div>
                 
-            <div class="form-group">
-                <label for="senha" class="col-sm-2 control-label">Senha:</label>
-                <div class="col-sm-6">
-                    <input type="password" name="senha" class="form-control" placeholder="Senha" value="${usuario.senha}" maxlength="255" required="">
-                    <c:if test="${not empty errors.senha}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
-                    <c:if test="${not empty errors.senha}"><span class="alert-danger">${errors.senha}</span></c:if>
-                </div>
-            </div>
-
             <div class="form-group">
                 <label for="rg" class="col-sm-2 control-label">RG:</label>
                 <div class="col-sm-6">

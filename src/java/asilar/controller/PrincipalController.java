@@ -1,10 +1,18 @@
 package asilar.controller;
 
+import asilar.email.Email;
 import asilar.model.ServiceLocator;
-import asilar.model.entity.Instituicao;
+import asilar.model.criteria.UsuarioCriteria;
 import asilar.model.entity.Usuario;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -64,6 +72,76 @@ public class PrincipalController {
     @RequestMapping(value = "/erro", method = RequestMethod.GET)
     public ModelAndView erroMessage() {
         ModelAndView mv = new ModelAndView("/erro");
+        return mv;
+    }
+
+    @RequestMapping(value = "/recuperarSenha", method = RequestMethod.GET)
+    public ModelAndView recuperaSenha() {
+        ModelAndView mv = new ModelAndView("/recuperasenha");
+        return mv;
+    }
+
+    @RequestMapping(value = "/recuperarSenha", method = RequestMethod.POST)
+    public ModelAndView recuperaSenha(String email) {
+        Map<Long, Object> criteria = new HashMap<Long, Object>();
+        criteria.put(UsuarioCriteria.EMAIL_EQ, email);
+        List<Usuario> entityList = new ArrayList<Usuario>();
+        ModelAndView mv = null;
+        System.out.println("email: " +email);
+        try {
+            entityList = ServiceLocator.getUsuarioService().readyByCriteria(criteria, null);
+            Usuario entity = new Usuario();
+            if (entityList != null && entityList.size() > 0 && (email != null && !email.isEmpty())) {
+                entity = entityList.get(0);
+                entity.setSenha(ServiceLocator.getUsuarioService().gerarSenha());
+                ServiceLocator.getUsuarioService().update(entity);
+                Email sendEmail = new Email(entity);
+                sendEmail.start();
+                mv = new ModelAndView("redirect:/");
+            } else {
+                mv = new ModelAndView("/recuperasenha");
+                mv.addObject("erro", "Este email não existe");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return mv;
+    }
+
+    @RequestMapping(value = "/redefinir/{id}/{senha}", method = RequestMethod.GET)
+    public ModelAndView redefinir(@PathVariable Long id, @PathVariable String senha) {
+        ModelAndView mv = null;
+        Usuario entity = new Usuario();
+        try {
+            entity = ServiceLocator.getUsuarioService().readyById(id);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        if (entity.getSenha().equals(senha)) {
+            mv = new ModelAndView("/redefinir");
+        } else {
+            mv = new ModelAndView("redirect:/");
+        }
+
+        return mv;
+    }
+
+    @RequestMapping(value = "/redefinir/{id}/{senh}", method = RequestMethod.POST)
+    public ModelAndView redefinir(@PathVariable Long id, @PathVariable String senh, String senha, String confirma) {
+        ModelAndView mv = null;
+        Usuario entity = new Usuario();
+        try {
+            entity = ServiceLocator.getUsuarioService().readyById(id);
+            if (senha.equals(confirma)) {
+                entity.setSenha(ServiceLocator.getUsuarioService().encodePassword(senha));
+                ServiceLocator.getUsuarioService().update(entity);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        mv = new ModelAndView("redirect:/");
+
         return mv;
     }
 
