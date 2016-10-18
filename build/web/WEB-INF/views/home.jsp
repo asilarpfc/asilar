@@ -33,7 +33,7 @@
                     <div class="col-sm-6">
                         <h1>${instituicao.nome}</h1>
                         <a class="btn btn-primary btn-lg btn-block" href="<c:url value="/cadastro/assistido/lista"/>"> <span class="btn-primary"></span>Cadastro</a>  
-                        <a class="btn btn-primary btn-lg btn-block" href="#"> <span class="glyphicon btn-primary"></span>Estoque</a>
+                        <a class="btn btn-primary btn-lg btn-block" href="<c:url value="/estoque/produto/lista"/>"> <span class="btn-primary"></span>Estoque</a>
                     </div>
                     
                 </div>

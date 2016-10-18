@@ -25,12 +25,12 @@
         <h1 align="center">Cadastrar Produto</h1>
 
         <form class="form-horizontal col-lg-offset-2" method="post">
-            <input type="hidden" name="id" value="${usuario.id}">
+            <input type="hidden" name="id" value="${produto.id}">
 
             <div class="form-group <c:if test="${not empty errors.produto}">has-error has-feedback</c:if>">
                     <label for="nome" class="col-sm-2 control-label">Nome:</label>
                     <div class="col-sm-6">
-                        <input type="text" name="nome" class="form-control" placeholder="Nome" value="${usuario.produto}" maxlength="60" required="">
+                        <input type="text" name="nome" class="form-control" placeholder="Nome" value="${produto.nome}" maxlength="60" required="">
                     <c:if test="${not empty errors.produto}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                     <c:if test="${not empty errors.produto}"><span class="alert-danger">${errors.produto}</span></c:if>
                     </div>
@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <label for="quantidadeMaxima" class="col-sm-2 control-label">Quantidade Máxima:</label>
                     <div class="col-sm-6">
-                        <input type="text" name="quantidadeMaxima" class="form-control" placeholder="QUANTIDADE_MAXIMA" value="${produto.id}" maxlength="30" required="">
+                        <input type="text" name="quantidadeMaxima" class="form-control" placeholder="QUANTIDADE_MAXIMA" value="${produto.quantidadeMaxima}" maxlength="30" required="">
                     <c:if test="${not empty errors.rg}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                     <c:if test="${not empty errors.rg}"><span class="alert-danger">${errors.quantidade_maxima}</span></c:if>
                     </div>
@@ -49,7 +49,7 @@
                 <div class="form-group <c:if test="${not empty errors.quantidade_minima}">has-error has-feedback</c:if>">
                     <label for="quantidadeMinima" class="col-sm-2 control-label">Quantidade Minima:</label>
                     <div class="col-sm-6">
-                        <input type="text" name="quantidadeMinima" class="form-control" placeholder="QUANTIDADE_MINIMA" value="${Produto.quantidade_minima}" maxlength="30" required="" onfocus="$(this).mask('000.000.000-00', {reverse: true});">
+                        <input type="text" name="quantidadeMinima" class="form-control" placeholder="QUANTIDADE_MINIMA" value="${produto.quantidadeMinima}" maxlength="30" required="" onfocus="$(this).mask('000.000.000-00', {reverse: true});">
                     <c:if test="${not empty errors.quantidade_minima}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                     <c:if test="${not empty errors.quantidade_minima}"><span class="alert-danger">${errors.quantidade_minima}</span></c:if>
                     </div>
@@ -58,7 +58,7 @@
                 <div class="form-group">
                     <label for="unidadeMedida" class="col-sm-2 control-label">Unidade De Medida :</label>
                     <div class="col-sm-6">
-                        <input id="unidade_medida" type="text" name="unidadeMedida" class="form-control" placeholder="UNIDADE_MEDIDA" maxlength="20" value="${produto.unidade_medida}" required="">
+                        <input id="unidade_medida" type="text" name="unidadeMedida" class="form-control" placeholder="UNIDADE_MEDIDA" maxlength="20" value="${produto.unidadeMedida}" required="">
                     <c:if test="${not empty errors.unidade_medida}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                     <c:if test="${not empty errors.unidade_medida}"><span class="alert-danger">${errors.unidade_medida}</span></c:if>
                     </div>

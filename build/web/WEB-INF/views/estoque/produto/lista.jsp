@@ -23,17 +23,18 @@
         <![endif]-->
     </head>
     <body>
-        
+
         <jsp:include page="../../navusuariolista.jsp"/>
-        <jsp:include page="../../barralateral.jsp"/>
+       
         <h1 align="center">Produtos</h1>
-        
-        <a class="btn btn-primary" href="<c:url value="/cadastro/usuario/novo"/>"><span class="glyphicon glyphicon-plus"></span> Adicionar</a>
+
+        <a class="btn btn-primary" href="<c:url value="/estoque/produto/novo"/>"><span class="glyphicon glyphicon-plus"></span> Adicionar</a>
 
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
+
                         <th>Nome:</th>
                         <th>Quantidade Maxima:</th>
                         <th>Quantidade Minima:</th>
@@ -43,38 +44,41 @@
                 <tbody>
                     <c:forEach items="${produtoList}" var="produto">
                         <tr>
-                            <td>${produto.id}</td>
-                            <td><a href="<c:url value="/cadastro/produto/${produto.id}/info"/>">${produto.nome}</a></td>
-                            <td><a class="btn btn-primary" href="<c:url value="/cadastro/produto/${produto.id}/alterar"/>"><span class="glyphicon glyphicon-edit"></span> Alterar</a></td>
-                            <td><a class="btn btn-danger" href="<c:url value="/cadastro/produto/${produto.id}/excluir"/>"><span class="glyphicon glyphicon-trash"></span> Excluir</a></td>
+                            <td><a href="<c:url value="/estoque/produto/${produto.id}/info"/>">${produto.nome}</a></td>
+                            <td>${produto.quantidadeMaxima}</td>
+                            <td>${produto.quantidadeMinima}</td>
+                            <td>${produto.unidadeMedida}</td>
+                            <td><a class="btn btn-primary" href="<c:url value="/estoque/produto/${produto.id}/alterar"/>"><span class="glyphicon glyphicon-edit"></span> Alterar</a></td>
+                            <td><a class="btn btn-danger" href="<c:url value="/estoque/produto/${produto.id}/excluir"/>"><span class="glyphicon glyphicon-trash"></span> Excluir</a></td>
+
                         </tr>
                     </c:forEach>
                 </tbody>
-           </table>
+            </table>
             <c:if test="${count > 10}">
                 <nav>
-                <ul class="pagination">
-                    <li <c:if test="${offset <= 0}"> class="disabled" </c:if>>
-                        <a <c:if test="${offset > 0}">href="<c:url value="/cadastro/produto/lista?offset=${offset - 10}"/>"</c:if>aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
+                    <ul class="pagination">
+                        <li <c:if test="${offset <= 0}"> class="disabled" </c:if>>
+                            <a <c:if test="${offset > 0}">href="<c:url value="/estoque/produto/lista?offset=${offset - 10}"/>"</c:if>aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
                         <c:forEach var="conta" begin="0" step="10" end="${count -1}">
-                            <li <c:if test="${offset == conta}">class="active"</c:if>><a href="<c:url value="/cadastro/produto/lista?offset=${conta}"/>"><fmt:formatNumber value="${(conta + 10) / 10}" pattern="#"/></a></li>
-                        </c:forEach>
-                    <li <c:if test="${offset > count - 10}"> class="disabled" </c:if>>
-                        <a <c:if test="${offset < count - 10}"> href="<c:url value="/cadastro/produto/lista?offset=${offset + 10}"/>" </c:if> aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                            <li <c:if test="${offset == conta}">class="active"</c:if>><a href="<c:url value="/estoque/produto/lista?offset=${conta}"/>"><fmt:formatNumber value="${(conta + 10) / 10}" pattern="#"/></a></li>
+                            </c:forEach>
+                        <li <c:if test="${offset > count - 10}"> class="disabled" </c:if>>
+                            <a <c:if test="${offset < count - 10}"> href="<c:url value="/estoque/produto/lista?offset=${offset + 10}"/>" </c:if> aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
             </c:if>
-        
+
         </div>
-        
+
         <jsp:include page="../../modais.jsp"/>
-        
+
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="<c:url value="/js/jquery.min.js"/>"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->

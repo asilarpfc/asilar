@@ -76,6 +76,7 @@ public class ProdutoDAO implements BaseDAO<Produto> {
                 sql += " and produto.id != '" + idNe + "'";
             }
         }
+        
         ResultSet rs = statement.executeQuery(sql);
         Long count = 0L;
         if (rs.next()) {
@@ -86,7 +87,7 @@ public class ProdutoDAO implements BaseDAO<Produto> {
 
     @Override
     public List<Produto> readyByCriteria(Connection conn, Map<Long, Object> criteria, Long offset) throws Exception {
-        String sql = "SELECT id, nome, quantidade_minima, quantidade_maxima, unidade_medida, \n"
+        String sql = "SELECT id, nome, quantidade_minima, quantidade_maxima, unidade_medida \n"
                 + "FROM produto WHERE 1=1";
         Statement statement = conn.createStatement();
         if (criteria != null && criteria.size() > 0) {
@@ -110,7 +111,7 @@ public class ProdutoDAO implements BaseDAO<Produto> {
                 sql += "AND unidadeMedida '%" + unidadeMedidaEQ + "%'";
             }
         }
-        sql += "ORDER BY id ASC";
+        sql += "ORDER BY nome ASC";
 
         //paginando
         if (offset != null && offset >= 0) {
@@ -121,6 +122,7 @@ public class ProdutoDAO implements BaseDAO<Produto> {
 
         while (rs.next()) {
             Produto entity = new Produto();
+            entity.setId(rs.getLong("id"));
             entity.setNome(rs.getString("nome"));
             entity.setQuantidadeMaxima(rs.getLong("quantidade_maxima"));//arrumar igual ao banco ok Lucas
             entity.setQuantidadeMinima(rs.getLong("quantidade_minima"));
@@ -136,9 +138,9 @@ public class ProdutoDAO implements BaseDAO<Produto> {
 
     @Override
     public Produto readyById(Connection conn, Long id) throws Exception {
-        String sql = "SELECT id, nome, quantidade_minima, quantidade_maxima, unidade_medida, \n"
+        String sql = "SELECT id, nome, quantidade_minima, quantidade_maxima, unidade_medida \n"
                 + "FROM produto \n"
-                + "WHERE usuario.id=?";
+                + "WHERE produto.id=?";
         Produto entity = new Produto();
 
         PreparedStatement statement = conn.prepareStatement(sql);

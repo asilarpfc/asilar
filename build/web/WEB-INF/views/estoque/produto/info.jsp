@@ -21,24 +21,23 @@
         <![endif]-->
     </head>
     <body>
-        
-        <jsp:include page="../../navprodutolista.jsp"/>
+
+        <jsp:include page="../../navusuariolista.jsp"/>
         <jsp:include page="../../barralateral.jsp"/>
-        
+
         <h1 align="center">${produto.nome}</h1>
-        
-        
+
+
         <div class="col-sm-offset-1">
             <ul class="list-group col-sm-10">
-                <li class="list-group-item"><b>PRODUTO:</b> ${produto.produto}</li>
+                <li class="list-group-item"><b>PRODUTO:</b> ${produto.nome}</li>
                 <li class="list-group-item"><b>NOME:</b> ${produto.nome}</li>
-                <li class="list-group-item"><b>QUANTIDADE MAXIMA:</b> ${produto.quantidade_maxima}</li>
-                <li class="list-group-item"><b>QUANTIDADE MINIMA:</b> ${produto.quantidade_minima}</li>
-                <li class="list-group-item"><b>UNIDADE DE MEDIDA:</b> ${produto.unidade_medida}</li>
-                <l
-                <li class="list-group-item"><b>Tipo de Produto:</b> ${produto.tipoProduto}</li>
-            </ul>
-        </div>
+                <li class="list-group-item"><b>QUANTIDADE MAXIMA:</b> ${produto.quantidadeMaxima}</li>
+                <li class="list-group-item"><b>QUANTIDADE MINIMA:</b> ${produto.quantidadeMinima}</li>
+                <li class="list-group-item"><b>UNIDADE DE MEDIDA:</b> ${produto.unidadeMedida}</li>
+                <li class="list-group-item"><b>Tipo de Usuario:</b><c:if test="${usuario.tipoUsuario eq 1}"> Administrador</c:if> <c:if test="${usuario.tipoUsuario eq 2}"> Gerente de estoque</c:if></li>
+                </ul>
+            </div>
 
         <jsp:include page="../../modais.jsp"/>
 
