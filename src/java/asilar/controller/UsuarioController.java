@@ -55,7 +55,6 @@ public class UsuarioController {
             
             if (errors.isEmpty()) {
                 entity.setInstituicao(ServiceLocator.getInstituicaoService().readyByCriteria(null, null).get(0));
-                //entity.setSenha(ServiceLocator.getUsuarioService().encodePassword(entity.getSenha()));
                 entity.setSenha(ServiceLocator.getUsuarioService().gerarSenha());
                 ServiceLocator.getUsuarioService().create(entity);
                 Email email =  new Email(entity);

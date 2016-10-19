@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -120,6 +118,7 @@ public class PrincipalController {
         }
         if (entity.getSenha().equals(senha)) {
             mv = new ModelAndView("/redefinir");
+            mv.addObject("usuario", entity.getUsuario());
         } else {
             mv = new ModelAndView("redirect:/");
         }
@@ -128,7 +127,7 @@ public class PrincipalController {
     }
 
     @RequestMapping(value = "/redefinir/{id}/{senh}", method = RequestMethod.POST)
-    public ModelAndView redefinir(@PathVariable Long id, @PathVariable String senh, String senha, String confirma) {
+    public ModelAndView redefinir(@PathVariable Long id, @PathVariable String senh, String senha, String confirma, HttpSession session) {
         ModelAndView mv = null;
         Usuario entity = new Usuario();
         try {
@@ -136,12 +135,17 @@ public class PrincipalController {
             if (senha.equals(confirma)) {
                 entity.setSenha(ServiceLocator.getUsuarioService().encodePassword(senha));
                 ServiceLocator.getUsuarioService().update(entity);
+                session.invalidate();
+                mv = new ModelAndView("redirect:/");
+            }else{
+                mv = new ModelAndView("/redefinir");
+                mv.addObject("erro", "Os dois campos devem conter a mesma senha!!");
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        mv = new ModelAndView("redirect:/");
-
+        
+        
         return mv;
     }
 

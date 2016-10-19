@@ -39,7 +39,7 @@ public class Email extends Thread {
         email.setFrom("asilarpfc@gmail.com", "Asilar");
         email.setSubject("Criando Senha");
         email.setSSL(true);
-        email.setAuthentication("asilarpfc", "******");
+        email.setAuthentication("asilarpfc", "*********");
 
         
 // configura a mensagem para o formato HTML

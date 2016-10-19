@@ -34,7 +34,7 @@ public class ProdutoController {
         entity.setUnidadeMedida(request.getParameter("unidadeMedida"));
 
         ServiceLocator.getProdutoService().create(entity);
-        ModelAndView mv = new ModelAndView("redirect:/");
+        ModelAndView mv = new ModelAndView("redirect:/estoque/produto/lista");
         return mv;
 
     }

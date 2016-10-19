@@ -31,16 +31,17 @@
             
             <img src="<c:url value="/img/logo.jpg"/>" class="img-responsive center-block">
                     
-            <h1 align="center">Redefinir senha</h1>     
+            <h1 align="center">Usuario: ${usuario}</h1>     
             <form class="form-signin" method="post">
                 <label for="senha" class="sr-only">Senha:</label>
-                <input type="text" name="senha" class="form-control" placeholder="Senha" required autofocus>
+                <input type="password" name="senha" class="form-control" placeholder="Senha" required autofocus>
                 <br>
                 <label for="confirma" class="sr-only">Confirmar senha</label>
-                <input type="text" class="form-control" placeholder="Repetir senha" name="confirma" required>
+                <input type="password" class="form-control" placeholder="Repetir senha" name="confirma" required>
                 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Redefinir</button>
             </form>
+            <h5 align="center">${erro}</h5>
 
         </div> <!-- /container -->
 

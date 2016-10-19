@@ -15,7 +15,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${usuarioLogado.nome}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Alterar senha</a></li>
+                        <li><a href="<c:url value="/redefinir/${usuarioLogado.id}/${usuarioLogado.senha}"/>">Alterar senha</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a data-toggle="modal" data-target="#modal-sair">Sair</a></li>
                     </ul>
