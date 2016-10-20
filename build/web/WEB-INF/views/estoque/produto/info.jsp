@@ -23,8 +23,7 @@
     <body>
 
         <jsp:include page="../../navusuariolista.jsp"/>
-        <jsp:include page="../../barralateral.jsp"/>
-
+        
         <h1 align="center">${produto.nome}</h1>
 
 

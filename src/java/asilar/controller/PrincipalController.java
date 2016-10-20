@@ -85,7 +85,6 @@ public class PrincipalController {
         criteria.put(UsuarioCriteria.EMAIL_EQ, email);
         List<Usuario> entityList = new ArrayList<Usuario>();
         ModelAndView mv = null;
-        System.out.println("email: " +email);
         try {
             entityList = ServiceLocator.getUsuarioService().readyByCriteria(criteria, null);
             Usuario entity = new Usuario();

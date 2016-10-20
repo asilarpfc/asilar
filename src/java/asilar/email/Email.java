@@ -4,8 +4,6 @@ import asilar.model.entity.Usuario;
 import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.UnknownHostException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
@@ -18,6 +16,7 @@ public class Email extends Thread {
 
     
     
+    @Override
     public void run(){
         try {
             this.executar(interno);
@@ -39,7 +38,7 @@ public class Email extends Thread {
         email.setFrom("asilarpfc@gmail.com", "Asilar");
         email.setSubject("Criando Senha");
         email.setSSL(true);
-        email.setAuthentication("asilarpfc", "*********");
+        email.setAuthentication("asilarpfc", "*******");
 
         
 // configura a mensagem para o formato HTML

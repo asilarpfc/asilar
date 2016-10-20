@@ -37,6 +37,15 @@
                 </div>
 
 
+                <div class="form-group <c:if test="${not empty errors.quantidade_minima}">has-error has-feedback</c:if>">
+                    <label for="quantidadeMinima" class="col-sm-2 control-label">Quantidade Minima:</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="quantidadeMinima" class="form-control" placeholder="QUANTIDADE_MINIMA" value="${produto.quantidadeMinima}" maxlength="30" required="" onfocus="$(this).mask('000.000.000-00', {reverse: true});">
+                    <c:if test="${not empty errors.quantidade_minima}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                    <c:if test="${not empty errors.quantidade_minima}"><span class="alert-danger">${errors.quantidade_minima}</span></c:if>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="quantidadeMaxima" class="col-sm-2 control-label">Quantidade Máxima:</label>
                     <div class="col-sm-6">
@@ -46,14 +55,6 @@
                     </div>
                 </div>
 
-                <div class="form-group <c:if test="${not empty errors.quantidade_minima}">has-error has-feedback</c:if>">
-                    <label for="quantidadeMinima" class="col-sm-2 control-label">Quantidade Minima:</label>
-                    <div class="col-sm-6">
-                        <input type="text" name="quantidadeMinima" class="form-control" placeholder="QUANTIDADE_MINIMA" value="${produto.quantidadeMinima}" maxlength="30" required="" onfocus="$(this).mask('000.000.000-00', {reverse: true});">
-                    <c:if test="${not empty errors.quantidade_minima}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
-                    <c:if test="${not empty errors.quantidade_minima}"><span class="alert-danger">${errors.quantidade_minima}</span></c:if>
-                    </div>
-                </div>
 
                 <div class="form-group">
                     <label for="unidadeMedida" class="col-sm-2 control-label">Unidade De Medida :</label>

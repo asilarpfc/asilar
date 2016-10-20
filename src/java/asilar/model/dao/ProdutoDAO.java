@@ -22,8 +22,8 @@ public class ProdutoDAO implements BaseDAO<Produto> {
         int i = 0;
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(++i, entity.getNome());
-        statement.setLong(++i, entity.getQuantidadeMaxima());
         statement.setLong(++i, entity.getQuantidadeMinima());
+        statement.setLong(++i, entity.getQuantidadeMaxima());
         statement.setString(++i, entity.getUnidadeMedida());
         statement.setLong(++i, entity.getId());
         statement.execute();

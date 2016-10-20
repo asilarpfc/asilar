@@ -108,15 +108,22 @@ public class RegistroService implements BaseRegistroService {
 
         if (ultimos != null && ultimos.size() > 0) {
             Registro ultimo = new Registro();
-            for(Registro aux : ultimos){
-                if(aux.getDataSaida() != null){
-                    if(registro.getId() == null) ultimo = aux;
-                    else if (!registro.getId().equals(ultimo.getId())) ultimo = aux;
+            for (Registro aux : ultimos) {
+                if (aux.getDataSaida() != null) {
+                    if (registro.getId() == null) {
+                        ultimo = aux;
+                    } else if (!registro.getId().equals(aux.getId())) {
+                        ultimo = aux;
+                    }
                 }
             }
-            if (ultimo.getDataSaida().after(registro.getDataEntrada())) {
-                errors.put("dataEntrada", "Coloque uma data posterior a ultima saida");
+
+            if (ultimo.getDataSaida() != null && registro.getDataEntrada() != null) {
+                if (ultimo.getDataSaida().after(registro.getDataEntrada())) {
+                    errors.put("dataEntrada", "Coloque uma data posterior a ultima saida");
+                }
             }
+
         }
         return errors;
     }
