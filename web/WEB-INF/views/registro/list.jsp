@@ -81,7 +81,6 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Id:</th>
                             <th>Data de entrada:</th>
                             <th>Registrado por:</th>
                             <th>Data de saida:</th>
@@ -91,7 +90,6 @@
                     <tbody>
                         <c:forEach items="${registroList}" var="registro">
                             <tr>
-                                <td>${registro.id}</td>
                                 <td><fmt:formatDate value="${registro.dataEntrada}" pattern="dd/MM/yyyy"/></td>
                                 <td>${registro.usuarioEntrada.nome}</td>
                                 <td><fmt:formatDate value="${registro.dataSaida}" pattern="dd/MM/yyyy"/></td>

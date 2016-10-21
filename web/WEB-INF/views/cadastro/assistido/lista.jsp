@@ -54,7 +54,6 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Id:</th>
                         <th>Nome:</th>
                         <th>Alterar:</th>
                         <th>Excluir:</th>
@@ -63,7 +62,6 @@
                 <tbody>
                     <c:forEach items="${assistidoList}" var="assistido">
                         <tr>
-                            <td>${assistido.id}</td>
                             <td><a href="<c:url value="/cadastro/assistido/${assistido.id}/info"/>">${assistido.nome}</a></td>
                             <td><a class="btn btn-primary" href="<c:url value="/cadastro/assistido/${assistido.id}/alterar"/>"><span class="glyphicon glyphicon-edit"></span> Alterar</a></td>
                             <td><a class="btn btn-danger" href="<c:url value="/cadastro/assistido/${assistido.id}/excluir"/>"><span class="glyphicon glyphicon-trash"></span> Excluir</a></td>
