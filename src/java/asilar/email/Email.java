@@ -1,14 +1,11 @@
 package asilar.email;
 
 import asilar.model.entity.Usuario;
-import java.io.File;
 import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import ldsutils.TXTPersist;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
