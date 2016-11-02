@@ -33,9 +33,10 @@
 
 
         <h1 align="center">${assistido.nome}</h1>
-
+        
 
         <div class="col-sm-offset-2">
+            
             <ul class="list-group col-sm-10">
                 <li class="list-group-item"><b>Procedencia:</b> ${assistido.procedencia}</li>
                 <li class="list-group-item"><b>Estado Civil:</b> ${assistido.estadoCivil}</li>
@@ -64,7 +65,13 @@
                 <li class="list-group-item"><b>Agencia:</b> ${assistido.agencia}</li>
                 <li class="list-group-item"><b>Conta:</b> ${assistido.conta}</li>
             </ul>
+            
+            
         </div>
+           <!--  <div class="modal-footer">
+                 <a href="<c:url value="/logout"/>" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Sim</a>
+                 <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Não</button>
+            </div> -->
 
        <jsp:include page="../../modais.jsp"/>
 

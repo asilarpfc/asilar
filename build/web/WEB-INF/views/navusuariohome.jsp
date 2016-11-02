@@ -7,7 +7,6 @@
             <a class="navbar-brand" href="<c:url value="/"/>">
                 <img class="img-responsive" width="44" alt="Kpot" src="<c:url value="/img/logo.jpg"/>">
             </a>
-            <button type="button" id="btnVoltar" class="btn btn-primary navbar-btn" onClick="history.go(-1)"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</button>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

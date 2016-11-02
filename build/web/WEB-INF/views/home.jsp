@@ -22,7 +22,7 @@
         <![endif]-->
     </head>
     <body>
-        <jsp:include page="navusuariolista.jsp"/>
+        <jsp:include page="navusuariohome.jsp"/>
         
         <img src="<c:url value="/img/logo.jpg"/>" class="img-responsive center-block">
 
@@ -50,6 +50,7 @@
         <script src="<c:url value="/js/jquery.min.js"/>"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
+       
         
     </body>
 </html>

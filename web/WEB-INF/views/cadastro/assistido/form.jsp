@@ -107,7 +107,7 @@
                             <div id="formDatNasc" class="form-group <c:if test="${not empty errors.dataNascimento}"> has-error has-feedback</c:if>">
                     <label for="dataNascimento" class="col-sm-2 control-label">Data de Nascimento:</label>
                     <div class="col-sm-6" id="divDataNasc">
-                        <input id="datNasc" type="date" name="dataNascimento" class="form-control" placeholder="Data de Nascimento" value="<fmt:formatDate value="${assistido.dataNascimento}" pattern="dd/MM/yyyy"/>" maxlength="15">
+                        <input id="datNasc" type="text" name="dataNascimento" class="form-control" placeholder="Data de Nascimento" value="<fmt:formatDate value="${assistido.dataNascimento}" pattern="dd/MM/yyyy"/>" maxlength="15">
                         <c:if test="${not empty errors.dataNascimento}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                         <c:if test="${not empty errors.dataNascimento}"><span class="alert-danger">${errors.dataNascimento}</span></c:if>
                     </div>
