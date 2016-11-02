@@ -115,6 +115,13 @@ public class RegistroService implements BaseRegistroService {
                     } else if (!registro.getId().equals(aux.getId())) {
                         ultimo = aux;
                     }
+                    if(registro.getId() !=null){
+                        if(registro.getId().equals(aux.getId())){
+                            if(registro.getDataSaida() == null && aux.getDataSaida() != null){
+                                errors.put("dataSaida", "Este campo deve conter um valor");
+                            }
+                        }
+                    }
                 }
             }
 
