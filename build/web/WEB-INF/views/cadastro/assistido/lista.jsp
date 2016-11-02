@@ -30,26 +30,41 @@
         <c:if test="${!empty assistidoList}">
             <div class="form-group-lg">
                 <form class="form-inline">
-                    <div class="form-group">
-                        <label for="nome">Nome</label>
-                        <input type="text" name="nome" class="form-control" placeholder="Nome">
-                    </div>
-                    <div class="form-group">
-                        <label for="cpf">CPF:</label>
-                        <input id="cpf" type="text" name="cpf" class="form-control" placeholder="CPF">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Pesquisar</button>
-                </form>
-            </div>
-            
+                    <div class="radio-inline ">
+                        <label><input type="radio" name="presentes" value="presentes" onclick="javascript: submit()" <c:if test="${presentes eq 'presentes'}"> checked</c:if>>Presentes</label>
+                        </div>
+                        <div class="radio-inline">
+                            <label><input type="radio" name="presentes" value="ausentes" onclick="javascript: submit()" <c:if test="${presentes eq 'ausentes'}"> checked</c:if>>Ausentes</label>
+                        </div>
+                        <div class="radio-inline">
+                            <label><input type="radio" name="presentes" value="todos" onclick="javascript: submit()" <c:if test="${presentes eq 'todos'}"> checked</c:if>>Todos</label>
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" name="nome" class="form-control" placeholder="Nome">
+                        </div>
+                        <div class="form-group">
+                            <label for="cpf">CPF:</label>
+                            <input id="cpf" type="text" name="cpf" class="form-control" placeholder="CPF">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Pesquisar</button>
+                    </form>
+                </div>
+
         </c:if>
-        
-        
+
+
 
         <h1 align="center">Assistidos</h1>
+
         
-        <a class="btn btn-primary" href="<c:url value="/cadastro/assistido/novo"/>"><span class="glyphicon glyphicon-plus"></span> Adicionar</a>
-        
+
+            <div class="col-lg-offset-2">
+                <a class="btn btn-primary" href="<c:url value="/cadastro/assistido/novo"/>"><span class="glyphicon glyphicon-plus"></span> Adicionar</a>
+        </div>
+
+
         <div class="table-responsive col-lg-offset-2">
             <table class="table table-hover">
                 <thead>
@@ -92,7 +107,7 @@
         </div>
 
         <jsp:include page="../../modais.jsp"/>
-        
+
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="<c:url value="/js/jquery.min.js"/>"></script>
         <script src="<c:url value="/js/jquery.mask.min.js"/>"></script>

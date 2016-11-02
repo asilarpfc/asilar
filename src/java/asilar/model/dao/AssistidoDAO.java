@@ -165,7 +165,7 @@ public class AssistidoDAO implements BaseDAO<Assistido> {
         Statement statement = conn.createStatement();
         if (criteria != null && criteria.size() > 0) {
             String nome = (String) criteria.get(AssistidoCriteria.NOME_ILIKE);
-            if (nome != null) {
+            if (nome != null && !nome.isEmpty()) {
                 sql += " AND nome ilike '%" + nome + "%'";
             }
             Long idNe = (Long) criteria.get(AssistidoCriteria.ID_NE);
@@ -173,8 +173,16 @@ public class AssistidoDAO implements BaseDAO<Assistido> {
                 sql += " and assistido.id != '" + idNe + "'";
             }
             String cpfEq = (String) criteria.get(AssistidoCriteria.CPF_EQ);
-            if (cpfEq != null) {
+            if (cpfEq != null && !cpfEq.isEmpty()) {
                 sql += " and cpf = '" + cpfEq + "'";
+            }
+            String presentes = (String) criteria.get(AssistidoCriteria.PRESENTES);
+            if(presentes != null && !presentes.isEmpty()){
+                if(presentes.equals("presentes")){
+                    sql += " and assistido. id not in (select distinct assistido_fk from registro where data_saida is null)";
+                }else if(presentes.equals("ausentes")){
+                    sql += " and assistido. id in (select distinct assistido_fk from registro where data_saida is null)";
+                }
             }
         }
         sql += " ORDER BY id ASC";

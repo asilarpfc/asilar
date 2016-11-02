@@ -3,12 +3,16 @@ package asilar.controller;
 import asilar.model.ServiceLocator;
 import asilar.model.criteria.AssistidoCriteria;
 import asilar.model.entity.Assistido;
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -202,7 +206,8 @@ public class AssistidoController {
     
     
     @RequestMapping (value = "/cadastro/assistido/lista", method = RequestMethod.GET)
-    public ModelAndView readbyCriteria(String nome, String cpf ,Long offset){
+    public ModelAndView readbyCriteria(String nome, String cpf, String presentes, Long offset){
+
         
         boolean redirect = false;
         if (offset == null || offset < 0) {
@@ -211,20 +216,28 @@ public class AssistidoController {
         }
         
         List<Assistido> assistidoList = null;
-        Map<Long, Object> criteria = new HashMap<Long, Object>();
-        criteria.put(AssistidoCriteria.NOME_ILIKE, nome);
-        criteria.put(AssistidoCriteria.CPF_EQ, cpf);
         Long count = 0L;
         
         String uri = "";
         
+        if(presentes == null || presentes.isEmpty()){
+            presentes = "presentes";
+        }
         if(nome != null && !nome.isEmpty()){
             uri +="nome="+nome;
         }
         if(cpf != null && !cpf.isEmpty()){
             uri +="&cpf="+cpf;
+        }if(presentes != null && !presentes.isEmpty()){
+            uri +="&presentes="+presentes;
         }
         uri +="&offset="+offset;
+        
+        Map<Long, Object> criteria = new HashMap<Long, Object>();
+        criteria.put(AssistidoCriteria.NOME_ILIKE, nome);
+        criteria.put(AssistidoCriteria.CPF_EQ, cpf);
+        criteria.put(AssistidoCriteria.PRESENTES, presentes);
+        
         try {
             assistidoList = ServiceLocator.getAssistidoService().readyByCriteria(criteria, offset);
             count = ServiceLocator.getAssistidoService().countByCriteria(criteria);
@@ -244,6 +257,7 @@ public class AssistidoController {
             mv.addObject("count", count);
             String ativo = "assistido";
             mv.addObject("ativo", ativo);
+            mv.addObject("presentes", presentes);
         }
                 
         return mv;
