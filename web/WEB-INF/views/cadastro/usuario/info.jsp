@@ -30,13 +30,13 @@
         
         <div class="col-sm-offset-1">
             <ul class="list-group col-sm-10">
-                <li class="list-group-item"><b>Usuario:</b> ${usuario.usuario}</li>
+                <li class="list-group-item"><b>Usuário:</b> ${usuario.usuario}</li>
                 <li class="list-group-item"><b>CPF:</b> ${usuario.cpf}</li>
                 <li class="list-group-item"><b>RG:</b> ${usuario.rg}</li>
                 <li class="list-group-item"><b>Telefone:</b> ${usuario.telfixo}</li>
                 <li class="list-group-item"><b>Celular:</b> ${usuario.celular}</li>
                 <li class="list-group-item"><b>E-Mail:</b> ${usuario.email}</li>
-                <li class="list-group-item"><b>Tipo de Usuario:</b><c:if test="${usuario.tipoUsuario eq 1}"> Administrador</c:if> <c:if test="${usuario.tipoUsuario eq 2}"> Gerente de estoque</c:if></li>
+                <li class="list-group-item"><b>Tipo de Usuário:</b><c:if test="${usuario.tipoUsuario eq 1}"> Administrador</c:if> <c:if test="${usuario.tipoUsuario eq 2}"> Gerente de estoque</c:if></li>
             </ul>
         </div>
 

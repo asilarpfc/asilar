@@ -23,7 +23,7 @@
     <body>
         <jsp:include page="../../navusuariolista.jsp"/>
         <jsp:include page="../../barralateral.jsp"/>
-        <h1 align="center">Cadastrar Usuario</h1>
+        <h1 align="center">Cadastrar Usuário</h1>
 
         <form class="form-horizontal col-lg-offset-2" method="post">
             <input type="hidden" name="id" value="${usuario.id}">
@@ -39,9 +39,9 @@
             </div>
                 
             <div class="form-group <c:if test="${not empty errors.usuario}">has-error has-feedback</c:if>">
-                <label for="usuario" class="col-sm-2 control-label">Usuario:</label>
+                <label for="usuario" class="col-sm-2 control-label">Usuário:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="usuario" class="form-control" placeholder="Usuario" value="${usuario.usuario}" maxlength="150" required="">
+                    <input type="text" name="usuario" class="form-control" placeholder="Usuário" value="${usuario.usuario}" maxlength="150" required="">
                     <c:if test="${not empty errors.usuario}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                     <c:if test="${not empty errors.usuario}"><span class="alert-danger">${errors.usuario}</span></c:if>
                 </div>
@@ -93,7 +93,7 @@
             </div>
                 
             <div class="form-group">
-                <label for="tipoUsuario" class="col-sm-2 control-label">Tipo de usuario:</label>
+                <label for="tipoUsuario" class="col-sm-2 control-label">Tipo de usuário:</label>
                 <div class="col-sm-6">
                     <select class="form-control" name="tipoUsuario" required="">
                         <c:if test="${empty usuario.tipoUsuario}"><option value="">Selecione...</option></c:if>
