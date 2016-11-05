@@ -36,8 +36,8 @@
                     <tr>
 
                         <th>Nome:</th>
-                        <th>Quantidade Minima:</th>
-                        <th>Quantidade Maxima:</th>
+                        <th>Quantidade Mínima:</th>
+                        <th>Quantidade Máxima:</th>
                         <th>Unidade Medida:</th>
                     </tr>
                 </thead>

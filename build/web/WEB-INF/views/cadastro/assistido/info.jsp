@@ -38,7 +38,7 @@
         <div class="col-sm-offset-2">
             
             <ul class="list-group col-sm-10">
-                <li class="list-group-item"><b>Procedencia:</b> ${assistido.procedencia}</li>
+                <li class="list-group-item"><b>Procedência:</b> ${assistido.procedencia}</li>
                 <li class="list-group-item"><b>Estado Civil:</b> ${assistido.estadoCivil}</li>
                 <li class="list-group-item"><b>Sexo:</b> ${assistido.sexo}</li>
                 <li class="list-group-item"><b>Mãe:</b> ${assistido.mae}</li>
@@ -46,7 +46,7 @@
                 <li class="list-group-item"><b>CPF:</b> ${assistido.cpf}</li>
                 <li class="list-group-item"><b>RG:</b> ${assistido.rg}</li>
                 <li class="list-group-item"><b>Cartão do sus:</b> ${assistido.cartaoSus}</li>
-                <li class="list-group-item"><b>Nº do beneficio:</b> ${assistido.noDoBeneficio}</li>
+                <li class="list-group-item"><b>Nº do benefício:</b> ${assistido.noDoBeneficio}</li>
                 <li class="list-group-item"><b>Profissão:</b> ${assistido.profissao}</li>
                 <li class="list-group-item"><b>Telefone:</b> ${assistido.telfixo}</li>
                 <li class="list-group-item"><b>Celular:</b> ${assistido.celular}</li>
@@ -60,9 +60,9 @@
                 <li class="list-group-item"><b>Bairro:</b> ${assistido.bairro}</li>
                 <li class="list-group-item"><b>Cidade</b> ${assistido.cidade}</li>
                 <li class="list-group-item"><b>Estado:</b> ${assistido.estado}</li>
-                <h1 align="center">Dados Bancarios</h1>
+                <h1 align="center">Dados Bancários</h1>
                 <li class="list-group-item"><b>Banco:</b> ${assistido.banco}</li>
-                <li class="list-group-item"><b>Agencia:</b> ${assistido.agencia}</li>
+                <li class="list-group-item"><b>Agência:</b> ${assistido.agencia}</li>
                 <li class="list-group-item"><b>Conta:</b> ${assistido.conta}</li>
             </ul>
             

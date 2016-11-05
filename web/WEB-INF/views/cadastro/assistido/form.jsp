@@ -58,18 +58,18 @@
                 </div>
 
                 <div class="form-group <c:if test="${not empty errors.cartaoSus}">has-error has-feedback</c:if>">
-                    <label for="cartaoSus" class="col-sm-2 control-label">Cartão sus:</label>
+                    <label for="cartaoSus" class="col-sm-2 control-label">Cartão SUS:</label>
                     <div class="col-sm-6">
-                        <input type="text" name="cartaoSus" class="form-control" placeholder="Nº do cartão do sus" value="${assistido.cartaoSus}" maxlength="20" >
+                        <input type="text" name="cartaoSus" class="form-control" placeholder="Número do cartão do SUS" value="${assistido.cartaoSus}" maxlength="20" >
                         <c:if test="${not empty errors.cartaoSus}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                         <c:if test="${not empty errors.cartaoSus}"><span class="alert-danger">${errors.cartaoSus}</span></c:if>    
                     </div>
                 </div>
 
                 <div class="form-group <c:if test="${not empty errors.noDoBeneficio}">has-error has-feedback</c:if>">
-                    <label for="noDoBeneficio" class="col-sm-2 control-label">Nº do Beneficio:</label>
+                    <label for="noDoBeneficio" class="col-sm-2 control-label">Número do Benefício:</label>
                     <div class="col-sm-6">
-                        <input type="text" name="noDoBeneficio" class="form-control" placeholder="Nº do Beneficio" value="${assistido.noDoBeneficio}" maxlength="20">
+                        <input type="text" name="noDoBeneficio" class="form-control" placeholder="Número do Beneficio" value="${assistido.noDoBeneficio}" maxlength="20">
                         <c:if test="${not empty errors.noDoBeneficio}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                         <c:if test="${not empty errors.noDoBeneficio}"><span class="alert-danger">${errors.noDoBeneficio}</span></c:if>
                     </div>
@@ -172,15 +172,15 @@
                 <div class="form-group <c:if test="${not empty errors.observacoes}">has-error has-feedback</c:if>">
                     <label for="observacoes" class="col-sm-2 control-label">Observações:</label>
                     <div class="col-sm-6">
-                        <textarea name="observacoes" class="form-control" rows="3" placeholder="observacoes" required="">${assistido.observacoes}</textarea>
+                        <textarea name="observacoes" class="form-control" rows="3" placeholder="observações" required="">${assistido.observacoes}</textarea>
                         <c:if test="${not empty errors.observacoes}"><span>${errors.observacoes}</span></c:if>
                     </div>
                 </div>
 
                 <div class="form-group <c:if test="${not empty errors.procedencia}">has-error has-feedback</c:if>">
-                    <label for="procedencia" class="col-sm-2 control-label">Procedencia:</label>
+                    <label for="procedencia" class="col-sm-2 control-label">Procedência:</label>
                     <div class="col-sm-6">
-                        <textarea name="procedencia" class="form-control" rows="3" placeholder="procedencia" required="">${assistido.procedencia}</textarea>
+                        <textarea name="procedencia" class="form-control" rows="3" placeholder="procedência" required="">${assistido.procedencia}</textarea>
                         <c:if test="${not empty errors.procedencia}"><span>${errors.procedencia}</span></c:if>
                     </div>
                 </div>
@@ -196,9 +196,9 @@
                 </div>
 
                 <div class="form-group <c:if test="${not empty errors.numero}">has-error has-feedback</c:if>">
-                    <label for="numero" class="col-sm-2 control-label">Numero:</label>
+                    <label for="numero" class="col-sm-2 control-label">Número:</label>
                     <div class="col-sm-6">
-                        <input type="text" name="numero" class="form-control" placeholder="Numero" value="${assistido.numero}" maxlength="10">
+                        <input type="text" name="numero" class="form-control" placeholder="Número" value="${assistido.numero}" maxlength="10">
                         <c:if test="${not empty errors.numero}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                         <c:if test="${not empty errors.numero}"><span class="alert-danger">${errors.numero}</span></c:if>
                     </div>
@@ -222,7 +222,7 @@
                     </div>
                 </div>
                 <div class="form-group <c:if test="${not empty errors.estado}">has-error has-feedback</c:if>">
-                    <label for="estado" class="col-sm-2 control-label">Eestado:</label>
+                    <label for="estado" class="col-sm-2 control-label">Estado:</label>
                     <div class="col-sm-6">
                         <input type="text" name="estado" class="form-control" placeholder="Estado" value="${assistido.estado}" maxlength="5">
                         <c:if test="${not empty errors.estado}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
@@ -230,29 +230,29 @@
                     </div>
                 </div>
 
-                <h1 align="center">Dados Bancarios:</h1>
+                <h1 align="center">Dados Bancários:</h1>
                 <div class="form-group <c:if test="${not empty errors.banco}">has-error has-feedback</c:if>">
                     <label for="banco" class="col-sm-2 control-label">Banco:</label>
                     <div class="col-sm-6">
-                        <input type="text" name="banco" class="form-control" placeholder="Nº do banco" value="${assistido.banco}" maxlength="20">
+                        <input type="text" name="banco" class="form-control" placeholder="Número do banco" value="${assistido.banco}" maxlength="20">
                       <c:if test="${not empty errors.banco}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                       <c:if test="${not empty errors.banco}"><span class="alert-danger">${errors.banco}</span></c:if>
                     </div>
                 </div>
 
                 <div class="form-group <c:if test="${not empty errors.agencia}">has-error has-feedback</c:if>">
-                    <label for="agencia" class="col-sm-2 control-label">Agencia:</label>
+                    <label for="agencia" class="col-sm-2 control-label">Agência:</label>
                     <div class="col-sm-6">
-                        <input type="text" name="agencia" class="form-control" placeholder="Nº da agencia" value="${assistido.agencia}" maxlength="20">
+                        <input type="text" name="agencia" class="form-control" placeholder="Número da agencia" value="${assistido.agencia}" maxlength="20">
                         <c:if test="${not empty errors.agencia}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                         <c:if test="${not empty errors.agencia}"><span class="alert-danger">${errors.agencia}</span></c:if>
                     </div>
                 </div>
 
                 <div class="form-group <c:if test="${not empty errors.conta}">has-error has-feedback</c:if>">
-                    <label for="conta" class="col-sm-2 control-label">Conta Bancaria:</label>
+                    <label for="conta" class="col-sm-2 control-label">Conta Bancária:</label>
                     <div class="col-sm-6">
-                        <input type="text" name="conta" class="form-control" placeholder="Nº da conta" value="${assistido.conta}" maxlength="30">
+                        <input type="text" name="conta" class="form-control" placeholder="Número da conta" value="${assistido.conta}" maxlength="30">
                         <c:if test="${not empty errors.conta}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                         <c:if test="${not empty errors.conta}"><span class="alert-danger">${errors.conta}</span></c:if>
                     </div>

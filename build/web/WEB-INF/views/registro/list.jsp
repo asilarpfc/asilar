@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group<c:if test="${not empty errors.dataSaida}">has-error has-feedback</c:if>">
-                                    <label for="dataSaida" class="col-sm-2 control-label">Data de saida</label>
+                                    <label for="dataSaida" class="col-sm-2 control-label">Data de saída</label>
                                     <div class="col-sm-10">
                                         <input type="text" name="dataSaida" class="form-control" placeholder="Data de saida" value="<fmt:formatDate value="${registroModal.dataSaida}" pattern="dd/MM/yyyy"/>" onfocus="$(this).mask('00/00/0000');">
                                         <c:if test="${not empty errors.dataSaida}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
@@ -83,7 +83,7 @@
                         <tr>
                             <th>Data de entrada:</th>
                             <th>Registrado por:</th>
-                            <th>Data de saida:</th>
+                            <th>Data de saída:</th>
                             <th>Registrado por:</th>
                         </tr>
                     </thead>
@@ -131,7 +131,7 @@
                                 </div>
                                 <div class="form-group<c:if test="${not empty errors.dataSaida}">has-error has-feedback</c:if>">
                                     <input type="hidden" name="usuarioSaida" value="${registro.usuarioSaida.id}">
-                                    <label for="dataSaida" class="col-sm-2 control-label">Data de saida</label>
+                                    <label for="dataSaida" class="col-sm-2 control-label">Data de saída</label>
                                     <div class="col-sm-10">
                                         <input type="text" name="dataSaida" class="form-control" placeholder="Data de saida" value="<c:if test="${empty registroModal}"><fmt:formatDate value="${registro.dataSaida}" pattern="dd/MM/yyyy"/></c:if> <c:if test="${not empty registroModal}"><fmt:formatDate value="${registroModal.dataSaida}" pattern="dd/MM/yyyy"/></c:if>" onfocus="$(this).mask('00/00/0000');">
                                         <c:if test="${not empty errors.dataSaida}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
