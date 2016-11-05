@@ -97,9 +97,12 @@
                     <label for="estadoCivil" class="col-sm-2 control-label">Estado Civil:</label>
                     <div class="col-sm-6">
                         <select class="form-control" name="estadoCivil" required="">
-                        <c:if test="${empty assistido.sexo}"><option value="">Selecione...</option></c:if>
-                        <option value="Casado" <c:if test="${assistido.estadoCivil eq 'Casado'}"> selected </c:if>>Casado</option>
-                        <option value="Solteiro" <c:if test="${assistido.estadoCivil eq 'Solteiro'}"> selected </c:if>>Solteiro</option>
+                            <c:if test="${empty assistido.sexo}"><option value="">Selecione...</option></c:if>
+                            <option value="Casado" <c:if test="${assistido.estadoCivil eq 'Casado'}"> selected </c:if>>Casado</option>
+                            <option value="Solteiro" <c:if test="${assistido.estadoCivil eq 'Solteiro'}"> selected </c:if>>Solteiro</option>
+                            <option value="Separado" <c:if test="${assistido.estadoCivil eq 'Separado'}"> selected </c:if>>Separado</option>
+                            <option value="Divorciado" <c:if test="${assistido.estadoCivil eq 'Divorciado'}"> selected </c:if>>Divorciado</option>
+                            <option value="Viúvo" <c:if test="${assistido.estadoCivil eq 'Viúvo'}"> selected </c:if>>Viúvo</option>
                         </select>
                     </div>
                 </div>
@@ -213,20 +216,20 @@
                     </div>
                 </div>
 
-                <div class="form-group <c:if test="${not empty errors.cidade}">has-error has-feedback</c:if>">
-                    <label for="cidade" class="col-sm-2 control-label">Cidade:</label>
-                    <div class="col-sm-6">
-                        <input type="text" name="cidade" class="form-control" placeholder="Cidade" value="${assistido.cidade}" maxlength="150">
-                        <c:if test="${not empty errors.cidade}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
-                        <c:if test="${not empty errors.cidade}"><span class="alert-danger">${errors.cidade}</span></c:if>
-                    </div>
-                </div>
                 <div class="form-group <c:if test="${not empty errors.estado}">has-error has-feedback</c:if>">
                     <label for="estado" class="col-sm-2 control-label">Eestado:</label>
                     <div class="col-sm-6">
-                        <input type="text" name="estado" class="form-control" placeholder="Estado" value="${assistido.estado}" maxlength="5">
-                        <c:if test="${not empty errors.estado}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
-                        <c:if test="${not empty errors.estado}"><span class="alert-danger">${errors.estado}</span></c:if>
+                        <select class="form-control" name="estado" id="uf" required="">
+                    
+                        </select>
+                    </div>
+                </div>
+                
+               <div class="form-group <c:if test="${not empty errors.cidade}">has-error has-feedback</c:if>">
+                    <label for="cidade" class="col-sm-2 control-label">Cidade:</label>
+                    <div class="col-sm-6">
+                    <select class="form-control" name="cidade" id="cidade2" required="">
+                        </select>
                     </div>
                 </div>
 

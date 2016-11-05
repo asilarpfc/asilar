@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -262,6 +264,20 @@ public class AssistidoController {
                 
         return mv;
         
+    }
+    
+    @RequestMapping(value = "/cadastro/assistido/cidade", method = RequestMethod.GET)
+    public String readCidade(String estado){
+        JSONArray entity = new JSONArray();
+        System.out.println("estado: " + estado);
+        String retorno = "";
+        try {
+            entity = ServiceLocator.getAssistidoService().readCidade(estado);
+            retorno = entity.toJSONString();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return retorno;
     }
     
 }

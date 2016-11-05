@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.json.simple.JSONArray;
 
 public class AssistidoService implements BaseAssistidoService{
 
@@ -190,6 +191,23 @@ public class AssistidoService implements BaseAssistidoService{
     @Override
     public Map<String, String> validateForUpdate(Map<String, Object> fields) throws Exception {
         return this.validateForCreate(fields);
+    }
+
+    @Override
+    public JSONArray readCidade(String estado) throws Exception {
+        Connection conn = ConnectionManager.getInstance().getConnection();
+        AssistidoDAO dao = new AssistidoDAO();
+        JSONArray entity = new JSONArray();
+        try {
+            entity = dao.readCidade(conn, estado);
+            conn.commit();
+            conn.close();
+        } catch (Exception e) {
+            conn.rollback();
+            conn.close();
+            throw e;
+        }
+        return entity;
     }
     
 }

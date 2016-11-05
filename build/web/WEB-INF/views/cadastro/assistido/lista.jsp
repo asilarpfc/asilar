@@ -27,7 +27,6 @@
         <jsp:include page="../../barralateral.jsp"/>
 
 
-        <c:if test="${!empty assistidoList}">
             <div class="form-group-lg">
                 <form class="form-inline">
                     <div class="radio-inline ">
@@ -52,8 +51,7 @@
                     </form>
                 </div>
 
-        </c:if>
-
+        
 
 
         <h1 align="center">Assistidos</h1>

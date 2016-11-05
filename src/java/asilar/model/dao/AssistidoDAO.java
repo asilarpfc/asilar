@@ -10,6 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 public class AssistidoDAO implements BaseDAO<Assistido> {
 
@@ -255,6 +257,26 @@ public class AssistidoDAO implements BaseDAO<Assistido> {
         statement.close();
         
         return count;
+    }
+    
+    public JSONArray readCidade (Connection conn, String estado) throws Exception{
+        
+        String sql = "SELECT cidade.nome FROM cidade LEFT JOIN estado ON cidade.codigo_estado=estado.codigo_estado WHERE estado.nome = ?;";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        int i = 0;
+        
+        
+        JSONArray entity = new JSONArray();
+        statement.setString(++i, estado);
+        ResultSet rs = statement.executeQuery();
+        int j = 0;
+        while(rs.next()){
+            entity.add(rs.getString("nome"));
+        }
+        
+        rs.close();
+        statement.close();
+        return entity;
     }
 
 }
