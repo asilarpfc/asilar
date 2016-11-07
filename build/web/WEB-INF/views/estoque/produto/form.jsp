@@ -40,7 +40,7 @@
                 <div class="form-group <c:if test="${not empty errors.quantidade_minima}">has-error has-feedback</c:if>">
                     <label for="quantidadeMinima" class="col-sm-2 control-label">Quantidade Mínima:</label>
                     <div class="col-sm-6">
-                        <input type="text" name="quantidadeMinima" class="form-control" placeholder="Quantidade Mínima" value="${produto.quantidadeMinima}" maxlength="30" required="" onfocus="$(this).mask('000.000.000-00', {reverse: true});">
+                        <input type="text" name="quantidadeMinima" class="form-control" placeholder="Quantidade Mínima" value="${produto.quantidadeMinima}" maxlength="30" required="">
                     <c:if test="${not empty errors.quantidade_minima}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                     <c:if test="${not empty errors.quantidade_minima}"><span class="alert-danger">${errors.quantidade_minima}</span></c:if>
                     </div>

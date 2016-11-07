@@ -121,7 +121,7 @@ public class UsuarioDAO implements BaseDAO<Usuario> {
     }
 
     @Override
-    public List<Usuario> readyByCriteria(Connection conn, Map<Long, Object> criteria, Long offset) throws Exception {
+    public List<Usuario> readByCriteria(Connection conn, Map<Long, Object> criteria, Long offset) throws Exception {
         String sql = "SELECT id, email, telefone_celular, rg, nome, cpf, telefone_residencial, \n"
                 + "usuario, senha, tipo_usuario FROM usuario WHERE 1=1";
         Statement statement = conn.createStatement();

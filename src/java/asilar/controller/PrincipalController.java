@@ -86,7 +86,7 @@ public class PrincipalController {
         List<Usuario> entityList = new ArrayList<Usuario>();
         ModelAndView mv = null;
         try {
-            entityList = ServiceLocator.getUsuarioService().readyByCriteria(criteria, null);
+            entityList = ServiceLocator.getUsuarioService().readByCriteria(criteria, null);
             Usuario entity = new Usuario();
             if (entityList != null && entityList.size() > 0 && (email != null && !email.isEmpty())) {
                 entity = entityList.get(0);
@@ -129,12 +129,15 @@ public class PrincipalController {
     public ModelAndView redefinir(@PathVariable Long id, @PathVariable String senh, String senha, String confirma, HttpSession session) {
         ModelAndView mv = null;
         Usuario entity = new Usuario();
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
         try {
             entity = ServiceLocator.getUsuarioService().readyById(id);
             if (senha.equals(confirma)) {
                 entity.setSenha(ServiceLocator.getUsuarioService().encodePassword(senha));
                 ServiceLocator.getUsuarioService().update(entity);
-                session.invalidate();
+                if(usuarioLogado != null && usuarioLogado.getId().equals(entity.getId())){
+                    session.invalidate();
+                }
                 mv = new ModelAndView("redirect:/");
             }else{
                 mv = new ModelAndView("/redefinir");

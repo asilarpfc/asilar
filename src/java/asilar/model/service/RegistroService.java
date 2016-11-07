@@ -49,13 +49,13 @@ public class RegistroService implements BaseRegistroService {
     }
 
     @Override
-    public List<Registro> readyByCriteria(Map<Long, Object> Criteria, Long offset) throws Exception {
+    public List<Registro> readByCriteria(Map<Long, Object> Criteria, Long offset) throws Exception {
         Connection conn = ConnectionManager.getInstance().getConnection();
         RegistroDAO dao = new RegistroDAO();
         List<Registro> entityList = new ArrayList<Registro>();
 
         try {
-            entityList = dao.readyByCriteria(conn, Criteria, offset);
+            entityList = dao.readByCriteria(conn, Criteria, offset);
             conn.commit();
             conn.close();
         } catch (Exception e) {
@@ -104,7 +104,7 @@ public class RegistroService implements BaseRegistroService {
         Map<Long, Object> criteria = new HashMap<Long, Object>();
         criteria.put(RegistroCriteria.ASSISTIDO_ID_EQ, registro.getAssistido().getId());
 
-        List<Registro> ultimos = this.readyByCriteria(criteria, null);
+        List<Registro> ultimos = this.readByCriteria(criteria, null);
 
         if (ultimos != null && ultimos.size() > 0) {
             Registro ultimo = new Registro();

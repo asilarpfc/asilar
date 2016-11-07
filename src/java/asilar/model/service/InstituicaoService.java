@@ -47,12 +47,12 @@ public class InstituicaoService implements BaseInstituicaoService{
     }
 
     @Override
-    public List<Instituicao> readyByCriteria(Map<Long, Object> Criteria, Long offset) throws Exception {
+    public List<Instituicao> readByCriteria(Map<Long, Object> Criteria, Long offset) throws Exception {
         Connection conn = ConnectionManager.getInstance().getConnection();
         List<Instituicao> entityList = new ArrayList<Instituicao>();
         InstituicaoDAO dao = new InstituicaoDAO();
         try {
-            entityList = dao.readyByCriteria(conn, Criteria, offset);
+            entityList = dao.readByCriteria(conn, Criteria, offset);
             conn.commit();
             conn.close();
         } catch (Exception e) {
@@ -103,7 +103,7 @@ public class InstituicaoService implements BaseInstituicaoService{
             }
             
 
-            List<Instituicao> instituicaoList = ServiceLocator.getInstituicaoService().readyByCriteria(criteria, null);
+            List<Instituicao> instituicaoList = ServiceLocator.getInstituicaoService().readByCriteria(criteria, null);
 
             if (!instituicaoList.isEmpty()) {
                 errors.put("nome", "Este nome ja se encontra em uso!");

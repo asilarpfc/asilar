@@ -10,8 +10,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 public class AssistidoDAO implements BaseDAO<Assistido> {
 
@@ -158,7 +156,7 @@ public class AssistidoDAO implements BaseDAO<Assistido> {
     }
 
     @Override
-    public List<Assistido> readyByCriteria(Connection conn, Map<Long, Object> criteria, Long offset) throws Exception {
+    public List<Assistido> readByCriteria(Connection conn, Map<Long, Object> criteria, Long offset) throws Exception {
         String sql = "SELECT id, profissao, nacionalidade, nome, rg, cpf, telfixo, celular,\n"
                 + "banco, agencia, conta, naturalidade, estado_civil, mae, pai,\n"
                 + "rua, bairro, numero, cidade, estado, sexo, data_nascimento, observacoes,\n"
@@ -187,7 +185,7 @@ public class AssistidoDAO implements BaseDAO<Assistido> {
                 }
             }
         }
-        sql += " ORDER BY id ASC";
+        sql += " ORDER BY id DESC";
 
         //paginando
         if (offset != null && offset >= 0) {
@@ -259,24 +257,4 @@ public class AssistidoDAO implements BaseDAO<Assistido> {
         return count;
     }
     
-    public JSONArray readCidade (Connection conn, String estado) throws Exception{
-        
-        String sql = "SELECT cidade.nome FROM cidade LEFT JOIN estado ON cidade.codigo_estado=estado.codigo_estado WHERE estado.nome = ?;";
-        PreparedStatement statement = conn.prepareStatement(sql);
-        int i = 0;
-        
-        
-        JSONArray entity = new JSONArray();
-        statement.setString(++i, estado);
-        ResultSet rs = statement.executeQuery();
-        int j = 0;
-        while(rs.next()){
-            entity.add(rs.getString("nome"));
-        }
-        
-        rs.close();
-        statement.close();
-        return entity;
-    }
-
 }

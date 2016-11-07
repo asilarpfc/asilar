@@ -35,7 +35,7 @@ public class RegistroController {
         List<Registro> registroList = new ArrayList<Registro>();
         Assistido assistido = new Assistido();
         try {
-            registroList = ServiceLocator.getRegistroService().readyByCriteria(criteria, null);
+            registroList = ServiceLocator.getRegistroService().readByCriteria(criteria, null);
             assistido = ServiceLocator.getAssistidoService().readyById(id);
         } catch (Exception e) {
             e.printStackTrace();

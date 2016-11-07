@@ -3,18 +3,12 @@ package asilar.controller;
 import asilar.model.ServiceLocator;
 import asilar.model.criteria.AssistidoCriteria;
 import asilar.model.entity.Assistido;
-import java.io.File;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -223,7 +217,7 @@ public class AssistidoController {
         String uri = "";
         
         if(presentes == null || presentes.isEmpty()){
-            presentes = "presentes";
+            presentes = "todos";
         }
         if(nome != null && !nome.isEmpty()){
             uri +="nome="+nome;
@@ -241,7 +235,7 @@ public class AssistidoController {
         criteria.put(AssistidoCriteria.PRESENTES, presentes);
         
         try {
-            assistidoList = ServiceLocator.getAssistidoService().readyByCriteria(criteria, offset);
+            assistidoList = ServiceLocator.getAssistidoService().readByCriteria(criteria, offset);
             count = ServiceLocator.getAssistidoService().countByCriteria(criteria);
         } catch (Exception e) {
             e.printStackTrace();
@@ -266,18 +260,5 @@ public class AssistidoController {
         
     }
     
-    @RequestMapping(value = "/cadastro/assistido/cidade", method = RequestMethod.GET)
-    public String readCidade(String estado){
-        JSONArray entity = new JSONArray();
-        System.out.println("estado: " + estado);
-        String retorno = "";
-        try {
-            entity = ServiceLocator.getAssistidoService().readCidade(estado);
-            retorno = entity.toJSONString();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return retorno;
-    }
     
 }

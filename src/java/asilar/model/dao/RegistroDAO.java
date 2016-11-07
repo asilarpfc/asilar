@@ -169,7 +169,7 @@ public class RegistroDAO implements BaseDAO<Registro>{
     }
 
     @Override
-    public List<Registro> readyByCriteria(Connection conn, Map<Long, Object> criteria, Long offset) throws Exception {
+    public List<Registro> readByCriteria(Connection conn, Map<Long, Object> criteria, Long offset) throws Exception {
         String sql = "SELECT registro.id registro_id, registro.data_entrada registro_data_entrada, registro.data_saida registro_data_saida, \n" +
         "       entrada.id entrada_id, entrada.email entrada_email, entrada.telefone_celular entrada_telefone_celular, \n" +
         "       entrada.rg entrada_rg, entrada.nome entrada_nome, entrada.cpf entrada_cpf, entrada.telefone_residencial entrada_telefone_residencial, \n" +

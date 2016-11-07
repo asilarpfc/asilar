@@ -44,12 +44,12 @@ public class ProdutoService implements BaseProdutoService{
     }
 
     @Override
-    public List<Produto> readyByCriteria(Map<Long, Object> Criteria, Long offset) throws Exception {
+    public List<Produto> readByCriteria(Map<Long, Object> Criteria, Long offset) throws Exception {
         Connection conn = ConnectionManager.getInstance().getConnection();
         List<Produto> entityList = new ArrayList<Produto>();
        ProdutoDAO dao = new ProdutoDAO();
         try {
-            entityList = dao.readyByCriteria(conn, Criteria, offset);
+            entityList = dao.readByCriteria(conn, Criteria, offset);
             conn.commit();
             conn.close();
         } catch (Exception e) {

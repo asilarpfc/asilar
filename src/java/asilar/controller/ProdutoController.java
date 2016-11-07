@@ -145,7 +145,7 @@ public class ProdutoController {
         }
         uri +="&offset="+offset;
         try {
-            produtoList = ServiceLocator.getProdutoService().readyByCriteria(criteria, offset);
+            produtoList = ServiceLocator.getProdutoService().readByCriteria(criteria, offset);
             count = ServiceLocator.getProdutoService().countByCriteria(criteria);
         } catch (Exception e) {
             e.printStackTrace();

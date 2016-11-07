@@ -104,7 +104,7 @@ public class InstituicaoDAO implements BaseDAO<Instituicao>{
     }
 
     @Override
-    public List<Instituicao> readyByCriteria(Connection conn, Map<Long, Object> criteria, Long offset) throws Exception {
+    public List<Instituicao> readByCriteria(Connection conn, Map<Long, Object> criteria, Long offset) throws Exception {
         String sql = "SELECT id, cnpj, nome, email, telefone, rua, numero, bairro, cep, cidade, estado\n" +
                      "FROM instituicao WHERE 1=1";
         Statement statement = conn.createStatement();

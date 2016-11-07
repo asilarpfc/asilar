@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.json.simple.JSONArray;
 
 public class AssistidoService implements BaseAssistidoService{
 
@@ -47,12 +46,12 @@ public class AssistidoService implements BaseAssistidoService{
     }
 
     @Override
-    public List<Assistido> readyByCriteria(Map<Long, Object> Criteria, Long offset) throws Exception {
+    public List<Assistido> readByCriteria(Map<Long, Object> Criteria, Long offset) throws Exception {
         Connection conn = ConnectionManager.getInstance().getConnection();
         AssistidoDAO dao = new AssistidoDAO();
         List<Assistido> entityList = null;
         try {
-            entityList = dao.readyByCriteria(conn, Criteria, offset);
+            entityList = dao.readByCriteria(conn, Criteria, offset);
             conn.commit();
             conn.close();
         } catch (Exception e) {
@@ -132,7 +131,7 @@ public class AssistidoService implements BaseAssistidoService{
             
 
             List<Assistido> pacienteList
-                    = ServiceLocator.getAssistidoService().readyByCriteria(criteria, null);
+                    = ServiceLocator.getAssistidoService().readByCriteria(criteria, null);
 
             if (!pacienteList.isEmpty()) {
                 errors.put("cpf", "Este CPF ja se encontra em uso!");
@@ -193,21 +192,6 @@ public class AssistidoService implements BaseAssistidoService{
         return this.validateForCreate(fields);
     }
 
-    @Override
-    public JSONArray readCidade(String estado) throws Exception {
-        Connection conn = ConnectionManager.getInstance().getConnection();
-        AssistidoDAO dao = new AssistidoDAO();
-        JSONArray entity = new JSONArray();
-        try {
-            entity = dao.readCidade(conn, estado);
-            conn.commit();
-            conn.close();
-        } catch (Exception e) {
-            conn.rollback();
-            conn.close();
-            throw e;
-        }
-        return entity;
-    }
+    
     
 }

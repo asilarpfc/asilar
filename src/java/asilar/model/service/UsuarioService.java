@@ -50,12 +50,12 @@ public class UsuarioService implements BaseUsuarioService {
     }
 
     @Override
-    public List<Usuario> readyByCriteria(Map<Long, Object> Criteria, Long offset) throws Exception {
+    public List<Usuario> readByCriteria(Map<Long, Object> Criteria, Long offset) throws Exception {
         Connection conn = ConnectionManager.getInstance().getConnection();
         List<Usuario> entityList = new ArrayList<Usuario>();
         UsuarioDAO dao = new UsuarioDAO();
         try {
-            entityList = dao.readyByCriteria(conn, Criteria, offset);
+            entityList = dao.readByCriteria(conn, Criteria, offset);
             conn.commit();
             conn.close();
         } catch (Exception e) {
@@ -99,7 +99,7 @@ public class UsuarioService implements BaseUsuarioService {
                 criteria.put(UsuarioCriteria.CPF_EQ, cpf);
             }
 
-            List<Usuario> usuarioList = ServiceLocator.getUsuarioService().readyByCriteria(criteria, null);
+            List<Usuario> usuarioList = ServiceLocator.getUsuarioService().readByCriteria(criteria, null);
 
             if (!usuarioList.isEmpty()) {
                 errors.put("cpf", "este CPF já se encontra em uso");
@@ -114,7 +114,7 @@ public class UsuarioService implements BaseUsuarioService {
                 criteria.put(UsuarioCriteria.USUARIO_EQ, mesmoUsuario);
             }
 
-            usuarioList = ServiceLocator.getUsuarioService().readyByCriteria(criteria, null);
+            usuarioList = ServiceLocator.getUsuarioService().readByCriteria(criteria, null);
 
             if (!usuarioList.isEmpty()) {
                 errors.put("usuario", "este Usuario já se encontra em uso");
@@ -129,7 +129,7 @@ public class UsuarioService implements BaseUsuarioService {
             if (mesmoEmail != null && !mesmoEmail.isEmpty()) {
                 criteria.put(UsuarioCriteria.EMAIL_EQ, mesmoEmail);
             }
-            usuarioList = ServiceLocator.getUsuarioService().readyByCriteria(criteria, null);
+            usuarioList = ServiceLocator.getUsuarioService().readByCriteria(criteria, null);
 
             if (!usuarioList.isEmpty()) {
                 errors.put("email", "este e-mail já se encontra em uso");
@@ -215,7 +215,7 @@ public class UsuarioService implements BaseUsuarioService {
             criteria.put(UsuarioCriteria.SENHA_EQ, senha);
 
             List<Usuario> usuarioList
-                    = this.readyByCriteria(criteria, null);
+                    = this.readByCriteria(criteria, null);
 
             if (usuarioList != null && usuarioList.size() == 1) {
                 Usuario usuarioRetornado = usuarioList.get(0);

@@ -36,6 +36,7 @@
                         <th>Nome:</th>
                         <th>Alterar:</th>
                         <th>Excluir:</th>
+                        <th>Redefinir:</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,6 +45,7 @@
                             <td><a href="<c:url value="/cadastro/usuario/${usuario.id}/info"/>">${usuario.nome}</a></td>
                             <td><a class="btn btn-primary" href="<c:url value="/cadastro/usuario/${usuario.id}/alterar"/>"><span class="glyphicon glyphicon-edit"></span> Alterar</a></td>
                             <td><a class="btn btn-danger" href="<c:url value="/cadastro/usuario/${usuario.id}/excluir"/>"><span class="glyphicon glyphicon-trash"></span> Excluir</a></td>
+                            <c:if test="${usuarioLogado.tipoUsuario eq 1}"><td><a class="btn btn-primary" href="<c:url value="/redefinir/${usuario.id}/${usuario.senha}"/>"><span class="glyphicon glyphicon-user"></span> Redefinir</a></td></c:if>
                         </tr>
                     </c:forEach>
                 </tbody>

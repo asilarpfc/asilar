@@ -54,7 +54,7 @@ public class UsuarioController {
 
             
             if (errors.isEmpty()) {
-                entity.setInstituicao(ServiceLocator.getInstituicaoService().readyByCriteria(null, null).get(0));
+                entity.setInstituicao(ServiceLocator.getInstituicaoService().readByCriteria(null, null).get(0));
                 entity.setSenha(ServiceLocator.getUsuarioService().gerarSenha());
                 ServiceLocator.getUsuarioService().create(entity);
                 Email email =  new Email(entity);
@@ -103,7 +103,7 @@ public class UsuarioController {
         criteria.put(UsuarioCriteria.NOME_ILIKE, nome);
         Long count = 0L;
         try {
-            usuarioList = ServiceLocator.getUsuarioService().readyByCriteria(criteria, offset);
+            usuarioList = ServiceLocator.getUsuarioService().readByCriteria(criteria, offset);
             count = ServiceLocator.getUsuarioService().countByCriteria(criteria);
         } catch (Exception e) {
             e.printStackTrace();

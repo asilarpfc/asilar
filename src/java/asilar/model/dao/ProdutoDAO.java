@@ -86,7 +86,7 @@ public class ProdutoDAO implements BaseDAO<Produto> {
     }
 
     @Override
-    public List<Produto> readyByCriteria(Connection conn, Map<Long, Object> criteria, Long offset) throws Exception {
+    public List<Produto> readByCriteria(Connection conn, Map<Long, Object> criteria, Long offset) throws Exception {
         String sql = "SELECT id, nome, quantidade_minima, quantidade_maxima, unidade_medida \n"
                 + "FROM produto WHERE 1=1";
         Statement statement = conn.createStatement();
