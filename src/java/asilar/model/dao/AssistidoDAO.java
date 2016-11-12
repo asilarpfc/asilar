@@ -243,6 +243,14 @@ public class AssistidoDAO implements BaseDAO<Assistido> {
             if (idNe != null && idNe > 0) {
                 sql += " and assistido.id != '" + idNe + "'";
             }
+            String presentes = (String) criteria.get(AssistidoCriteria.PRESENTES);
+            if(presentes != null && !presentes.isEmpty()){
+                if(presentes.equals("presentes")){
+                    sql += " and assistido. id in (select distinct assistido_fk from registro where data_saida is null)";
+                }else if(presentes.equals("ausentes")){
+                    sql += " and assistido.id not in (select distinct assistido_fk from registro where data_saida is null)";
+                }
+            }
         }
 
         ResultSet rs = statement.executeQuery(sql);
