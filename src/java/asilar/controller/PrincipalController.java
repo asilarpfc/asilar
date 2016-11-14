@@ -33,7 +33,8 @@ public class PrincipalController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login() {
-        ModelAndView mv = new ModelAndView("/login");
+        ModelAndView mv = null;
+        mv = new ModelAndView("/login");
         return mv;
     }
 
@@ -135,19 +136,18 @@ public class PrincipalController {
             if (senha.equals(confirma)) {
                 entity.setSenha(ServiceLocator.getUsuarioService().encodePassword(senha));
                 ServiceLocator.getUsuarioService().update(entity);
-                if(usuarioLogado != null && usuarioLogado.getId().equals(entity.getId())){
+                if (usuarioLogado != null && usuarioLogado.getId().equals(entity.getId())) {
                     session.invalidate();
                 }
                 mv = new ModelAndView("redirect:/");
-            }else{
+            } else {
                 mv = new ModelAndView("/redefinir");
                 mv.addObject("erro", "Os dois campos devem conter a mesma senha!!");
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
-        
+
         return mv;
     }
 

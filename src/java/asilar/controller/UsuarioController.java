@@ -52,13 +52,17 @@ public class UsuarioController {
 
             Map<String, String> errors = ServiceLocator.getUsuarioService().validateForCreate(fields);
 
-            
             if (errors.isEmpty()) {
                 entity.setInstituicao(ServiceLocator.getInstituicaoService().readByCriteria(null, null).get(0));
                 entity.setSenha(ServiceLocator.getUsuarioService().gerarSenha());
+                if (ServiceLocator.getUsuarioService().countByCriteria(null) != 0) {
+                    Email email = new Email(entity);
+                    email.start();
+                }else{
+                    entity.setSenha(ServiceLocator.getUsuarioService().encodePassword("123456"));
+                    
+                }
                 ServiceLocator.getUsuarioService().create(entity);
-                Email email =  new Email(entity);
-                email.start();
                 mv = new ModelAndView("redirect:/cadastro/usuario/lista");
             } else {
                 mv = new ModelAndView("cadastro/usuario/form");
