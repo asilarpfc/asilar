@@ -45,7 +45,8 @@ public class Email extends Thread {
         email.addTo(entity.getEmail(), entity.getNome());
         email.setFrom("asilarpfc@gmail.com", "Asilar");
         email.setSubject("Criando Senha");
-        email.setSSL(true);
+        //email.setSSL(true); testando um novo comando por esse ser Deprecated
+        email.setSSLOnConnect(true);
         email.setAuthentication(username, senha);
 
 // configura a mensagem para o formato HTML
@@ -58,9 +59,19 @@ public class Email extends Thread {
         email.send();
     }
 
-    private void lerConfig() throws Exception {
-        List<String> entrada = TXTPersist.readFromFile("d://config.txt");
-        List<String> saida = new ArrayList<>();
+    private void lerConfig() {
+        List<String> entrada = new ArrayList<String>();
+        try {
+            entrada = TXTPersist.readFromFile("d://config.txt");
+        } catch (Exception ex) {
+            try {
+                entrada = TXTPersist.readFromFile("//opt//asilar//config.txt");
+            } catch (Exception ex1) {
+                System.out.println("Não foi possivel acessar as configurações do email");
+                ex.printStackTrace();
+                ex1.printStackTrace();
+            }
+        }
         for (String linha : entrada) {
             String[] config = linha.split("=");
             for (int i = 0; i < config.length; i++) {
