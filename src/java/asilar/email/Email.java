@@ -20,6 +20,8 @@ public class Email extends Thread {
 
     private String username;
     private String senha;
+    private String ip;
+    private String porta;
 
     @Override
     public void run() {
@@ -50,7 +52,7 @@ public class Email extends Thread {
         email.setAuthentication(username, senha);
 
 // configura a mensagem para o formato HTML
-        email.setHtmlMsg("<html><h1>Para cadastrar ou alterar uma senha, por favor clique no link abaixo<h1> <br> <a href='http://" + InetAddress.getLocalHost().getHostAddress() + ":8084/asilar/redefinir/" + entity.getId() + "/" + entity.getSenha() + "'>http://" + InetAddress.getLocalHost().getHostAddress() + ":8084/asilar/redefinir/" + entity.getId() + "/" + entity.getSenha() + " </a></html>");
+        email.setHtmlMsg("<html><h1>Para cadastrar ou alterar uma senha, por favor clique no link abaixo<h1> <br> <a href='http://" + ip + ":"+porta+"/asilar/redefinir/" + entity.getId() + "/" + entity.getSenha() + "'>http://" + ip + ":"+ porta +"/asilar/redefinir/" + entity.getId() + "/" + entity.getSenha() + " </a></html>");
 
 // configure uma mensagem alternativa caso o servidor nÃ£o suporte HTML
         email.setTextMsg("Seu servidor de e-mail nÃ£o suporta mensagem HTML");
@@ -79,6 +81,11 @@ public class Email extends Thread {
                     username = config[i + 1];
                 } else if (config[i].equals("senha")) {
                     senha = config[i + 1];
+                }
+                else if (config[i].equals("ip")) {
+                    ip = config[i + 1];
+                }else if (config[i].equals("porta")) {
+                    porta = config[i + 1];
                 }
             }
         }
