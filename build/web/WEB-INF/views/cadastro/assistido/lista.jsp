@@ -54,7 +54,7 @@
         
 
 
-        <h1 align="center">Assistidos</h1>
+        <h1>Cadastrados</h1>
 
         
 
@@ -68,8 +68,8 @@
                 <thead>
                     <tr>
                         <th>Nome:</th>
-                        <th>Alterar:</th>
-                        <th>Excluir:</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>

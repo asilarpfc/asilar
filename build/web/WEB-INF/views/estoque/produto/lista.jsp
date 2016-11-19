@@ -26,7 +26,7 @@
 
         <jsp:include page="../../navusuariolista.jsp"/>
        
-        <h1 align="center">Produtos</h1>
+        <h1>Produtos</h1>
 
         <a class="btn btn-primary" href="<c:url value="/estoque/produto/novo"/>"><span class="glyphicon glyphicon-plus"></span> Adicionar</a>
 

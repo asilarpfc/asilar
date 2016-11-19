@@ -25,7 +25,7 @@
         
         <jsp:include page="../../navusuariolista.jsp"/>
         <jsp:include page="../../barralateral.jsp"/>
-        <h1 align="center">Usuários</h1>
+        <h1>Usuários</h1>
         
         <a class="btn btn-primary" href="<c:url value="/cadastro/usuario/novo"/>"><span class="glyphicon glyphicon-plus"></span> Adicionar</a>
 

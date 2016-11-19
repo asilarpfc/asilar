@@ -76,9 +76,9 @@
                 </div>
 
                 <div class="form-group <c:if test="${not empty errors.telfixo}">has-error has-feedback</c:if>">
-                    <label for="telfixo" class="col-sm-2 control-label">Telefone Fixo:</label>
+                    <label for="telfixo" class="col-sm-2 control-label">Telefone:</label>
                     <div class="col-sm-6">
-                        <input id="telefone" type="text" name="telfixo" class="form-control" placeholder="Telefone Fixo" value="${assistido.telfixo}" maxlength="15">
+                        <input id="telefone" type="text" name="telfixo" class="form-control" placeholder="Telefone" value="${assistido.telfixo}" maxlength="15">
                         <c:if test="${not empty errors.telfixo}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                         <c:if test="${not empty errors.telfixo}"><span class="alert-danger">${errors.telfixo}</span></c:if>
                     </div>

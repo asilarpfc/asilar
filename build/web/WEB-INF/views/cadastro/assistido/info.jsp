@@ -45,7 +45,7 @@
                 <li class="list-group-item"><b>Pai:</b> ${assistido.pai}</li>
                 <li class="list-group-item"><b>CPF:</b> ${assistido.cpf}</li>
                 <li class="list-group-item"><b>RG:</b> ${assistido.rg}</li>
-                <li class="list-group-item"><b>Cartão do sus:</b> ${assistido.cartaoSus}</li>
+                <li class="list-group-item"><b>Cartão SUS:</b> ${assistido.cartaoSus}</li>
                 <li class="list-group-item"><b>Nº do benefício:</b> ${assistido.noDoBeneficio}</li>
                 <li class="list-group-item"><b>Profissão:</b> ${assistido.profissao}</li>
                 <li class="list-group-item"><b>Telefone:</b> ${assistido.telfixo}</li>

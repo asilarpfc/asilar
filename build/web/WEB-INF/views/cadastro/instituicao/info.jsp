@@ -31,11 +31,11 @@
             <ul class="list-group col-sm-10">
                 <li class="list-group-item"><b>CNPJ:</b> ${instituicao.cnpj}</li>
                 <li class="list-group-item"><b>Telefone:</b> ${instituicao.telefone}</li>
-                <li class="list-group-item"><b>E-MAIL:</b> ${instituicao.email}</li>
+                <li class="list-group-item"><b>E-mail:</b> ${instituicao.email}</li>
                 <li class="list-group-item"><b>Rua:</b> ${instituicao.rua}</li>
-                <li class="list-group-item"><b>Nº:</b> ${instituicao.numero}</li>
+                <li class="list-group-item"><b>Número:</b> ${instituicao.numero}</li>
                 <li class="list-group-item"><b>Bairro:</b> ${instituicao.bairro}</li>
-                <li class="list-group-item"><b>Cidade:</b> ${instituicao.cidade}</li>
+                <li class="list-group-item"><b>Município:</b> ${instituicao.cidade}</li>
                 <li class="list-group-item"><b>CEP:</b> ${instituicao.cep}</li>
                 <li class="list-group-item"><b>Estado:</b> ${instituicao.estado}</li>
             </ul>

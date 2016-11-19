@@ -1,7 +1,6 @@
 package asilar.email;
 
 import asilar.model.entity.Usuario;
-import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ import org.apache.commons.mail.HtmlEmail;
 
 public class Email extends Thread {
 
-    Usuario interno = new Usuario();
+    private Usuario interno = new Usuario();
 
     public Email(Usuario entity) {
         interno = entity;
@@ -79,10 +78,9 @@ public class Email extends Thread {
             for (int i = 0; i < config.length; i++) {
                 if (config[i].equals("username")) {
                     username = config[i + 1];
-                } else if (config[i].equals("senha")) {
+                }else if (config[i].equals("senha")) {
                     senha = config[i + 1];
-                }
-                else if (config[i].equals("ip")) {
+                }else if (config[i].equals("ip")) {
                     ip = config[i + 1];
                 }else if (config[i].equals("porta")) {
                     porta = config[i + 1];

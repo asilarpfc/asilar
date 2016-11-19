@@ -22,7 +22,7 @@
     </head>
     <body>
         <jsp:include page="../../navusuariolista.jsp"/>
-        <h1 align="center">Cadastrar de instituição</h1>
+        <h1 align="center">Cadastro de instituição</h1>
 
         <form class="form-horizontal" method="post">
             <input type="hidden" name="id" value="${instituicao.id}">
@@ -55,9 +55,9 @@
             </div>
                 
             <div class="form-group <c:if test="${not empty errors.email}">has-error has-feedback</c:if>">
-                <label for="email" class="col-sm-2 control-label">E-MAIL:</label>
+                <label for="email" class="col-sm-2 control-label">E-mail:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="email" class="form-control" placeholder="E-MAIL" value="${instituicao.email}" maxlength="150" required="">
+                    <input type="text" name="email" class="form-control" placeholder="E-mail" value="${instituicao.email}" maxlength="150" required="">
                     <c:if test="${not empty errors.email}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                     <c:if test="${not empty errors.email}"><span class="alert-danger">${errors.email}</span></c:if>
                 </div>
@@ -73,9 +73,9 @@
             </div>
 
             <div class="form-group <c:if test="${not empty errors.numero}">has-error has-feedback</c:if>">
-                <label for="numero" class="col-sm-2 control-label">Numero:</label>
+                <label for="numero" class="col-sm-2 control-label">Número:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="numero" class="form-control" placeholder="Numero" value="${instituicao.numero}" maxlength="5" required="">
+                    <input type="text" name="numero" class="form-control" placeholder="Número" value="${instituicao.numero}" maxlength="5" required="">
                     <c:if test="${not empty errors.numero}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                     <c:if test="${not empty errors.numero}"><span class="alert-danger">${errors.numero}</span></c:if>
                 </div>
@@ -100,9 +100,9 @@
             </div>
              
             <div class="form-group <c:if test="${not empty errors.cidade}">has-error has-feedback</c:if>">
-                <label for="cidade" class="col-sm-2 control-label">Cidade:</label>
+                <label for="cidade" class="col-sm-2 control-label">Município:</label>
                 <div class="col-sm-6">
-                    <input type="text" name="cidade" class="form-control" placeholder="Cidade" value="${instituicao.cidade}" maxlength="150" required="">
+                    <input type="text" name="cidade" class="form-control" placeholder="Município" value="${instituicao.cidade}" maxlength="150" required="">
                     <c:if test="${not empty errors.cidade}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
                     <c:if test="${not empty errors.cidade}"><span class="alert-danger">${errors.cidade}</span></c:if>
                 </div>
