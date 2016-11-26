@@ -24,6 +24,12 @@
     <body>
         <jsp:include page="../../navusuariolista.jsp"/>
         <jsp:include page="../../barralateral.jsp"/>
+        <ul class="breadcrumb col-sm-offset-2">
+            <li><a class="breadcrumb-item" href="<c:url value="/home"/>">Home</a></li>
+            <li><a class="breadcrumb-item" href="<c:url value="/cadastro/assistido/lista"/>">Cadastrados</a></li>
+            <c:if test="${empty assistido.nome}"><li><span class="breadcrumb-item active">Novo Assistido</span></li></c:if>
+            <c:if test="${not empty assistido.nome}"><li><span class="breadcrumb-item active">${assistido.nome}</span></li></c:if>
+        </ul>
         <h1 align="center">Cadastrar Assistido</h1>
 
         <form class="form-horizontal col-lg-offset-2" method="post" onsubmit="return fctValidaData(datNasc.value);">

@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<div class="col-lg-2">
+<div class="col-sm-2">
     <br><br>
     <ul class="nav nav-pills nav-stacked">
         <li role="presentation" <c:if test="${ativo eq 'usuario'}">class="active"</c:if>><a href="<c:url value="/cadastro/usuario/lista"/>"/>Usuário</a></li>

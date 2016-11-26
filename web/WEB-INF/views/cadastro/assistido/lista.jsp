@@ -25,6 +25,10 @@
 
         <jsp:include page="../../navusuariolista.jsp"/>
         <jsp:include page="../../barralateral.jsp"/>
+        <ul class="breadcrumb col-sm-offset-2">
+            <li><a class="breadcrumb-item" href="<c:url value="/home"/>">Home</a></li>
+            <li><span class="breadcrumb-item active">Cadastrados</span></li>
+        </ul>
 
 
             <div class="form-group-lg">
@@ -54,11 +58,11 @@
         
 
 
-        <h1>Cadastrados</h1>
+        <h1 class="col-sm-offset-2">Cadastrados</h1>
 
         
 
-            <div class="col-lg-offset-2">
+            <div class="col-sm-offset-2">
                 <a class="btn btn-primary" href="<c:url value="/cadastro/assistido/novo"/>"><span class="glyphicon glyphicon-plus"></span> Adicionar</a>
         </div>
 
@@ -73,13 +77,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                <c:if test="${empty assistidoList}"><h1>Não existem assistidos cadastrados!</h1></c:if>
                     <c:forEach items="${assistidoList}" var="assistido">
                         <tr>
                             <td><a href="<c:url value="/cadastro/assistido/${assistido.id}/info"/>">${assistido.nome}</a></td>
                             <td><a class="btn btn-primary" href="<c:url value="/cadastro/assistido/${assistido.id}/alterar"/>"><span class="glyphicon glyphicon-edit"></span> Alterar</a></td>
-                            <td><a class="btn btn-danger" href="<c:url value="/cadastro/assistido/${assistido.id}/excluir"/>"><span class="glyphicon glyphicon-trash"></span> Excluir</a></td>
+                            <td><button class="btn btn-danger" onclick="$('#confirma-exclusao').attr('href', '<c:url value="/cadastro/assistido/${assistido.id}/excluir"/>')" data-toggle="modal" data-target="#modal-confirmar"><span class="glyphicon glyphicon-trash"></span> Excluir</button></td>
                         </tr>
                     </c:forEach>
+                    
                 </tbody>
             </table>
             <c:if test="${count > 10}">

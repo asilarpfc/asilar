@@ -27,7 +27,6 @@ public class Assistido extends BaseEntity{
     private String cidade;
     private String estado;
     private String sexo;
-    //@DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dataNascimento;
     private String observacoes;
     private String procedencia;

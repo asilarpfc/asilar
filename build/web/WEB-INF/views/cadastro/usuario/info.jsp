@@ -25,6 +25,12 @@
         <jsp:include page="../../navusuariolista.jsp"/>
         <jsp:include page="../../barralateral.jsp"/>
         
+        <ul class="breadcrumb col-sm-offset-2">
+            <li><a class="breadcrumb-item" href="<c:url value="/home"/>">Home</a></li>
+            <li><a class="breadcrumb-item" href="<c:url value="/cadastro/usuario/lista"/>">Usuários</a></li>
+            <li><span class="breadcrumb-item active">${usuario.nome}</span></li>
+        </ul>
+        
         <h1 align="center">${usuario.nome}</h1>
         
         

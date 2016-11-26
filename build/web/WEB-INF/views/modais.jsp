@@ -37,3 +37,21 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
+            
+            <div class="modal fade" id="modal-confirmar">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Excluir?</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Deseja realmente excluir?&hellip;</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a id="confirma-exclusao" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Sim</a>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Não</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->

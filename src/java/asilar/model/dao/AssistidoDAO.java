@@ -179,9 +179,9 @@ public class AssistidoDAO implements BaseDAO<Assistido> {
             String presentes = (String) criteria.get(AssistidoCriteria.PRESENTES);
             if(presentes != null && !presentes.isEmpty()){
                 if(presentes.equals("presentes")){
-                    sql += " and assistido. id in (select distinct assistido_fk from registro where data_saida is null)";
+                    sql += " and assistido. id in (select distinct assistido_fk from movimento_assistido where data_saida is null)";
                 }else if(presentes.equals("ausentes")){
-                    sql += " and assistido.id not in (select distinct assistido_fk from registro where data_saida is null)";
+                    sql += " and assistido.id not in (select distinct assistido_fk from movimento_assistido where data_saida is null)";
                 }
             }
         }
@@ -246,9 +246,9 @@ public class AssistidoDAO implements BaseDAO<Assistido> {
             String presentes = (String) criteria.get(AssistidoCriteria.PRESENTES);
             if(presentes != null && !presentes.isEmpty()){
                 if(presentes.equals("presentes")){
-                    sql += " and assistido. id in (select distinct assistido_fk from registro where data_saida is null)";
+                    sql += " and assistido. id in (select distinct assistido_fk from movimento_assistido where data_saida is null)";
                 }else if(presentes.equals("ausentes")){
-                    sql += " and assistido.id not in (select distinct assistido_fk from registro where data_saida is null)";
+                    sql += " and assistido.id not in (select distinct assistido_fk from movimento_assistido where data_saida is null)";
                 }
             }
         }

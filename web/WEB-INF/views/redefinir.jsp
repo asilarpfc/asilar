@@ -28,9 +28,17 @@
     <body>
 
         <div class="container">
-            
+
+            <c:if test="${not empty usuarioLogado.nome}">
+                <ul class="breadcrumb col-sm-offset-2">
+                    <li><a class="breadcrumb-item" href="<c:url value="/home"/>">Home</a></li>
+                    <li><a class="breadcrumb-item" href="<c:url value="/cadastro/usuario/lista"/>">Usuários</a></li>
+                    <li><span class="breadcrumb-item active">Redefinir</span></li>
+                </ul>
+            </c:if>
+
             <img src="<c:url value="/img/logo.jpg"/>" class="img-responsive center-block">
-                    
+
             <h1 align="center">Usuario: ${usuario}</h1>     
             <form class="form-signin" method="post">
                 <label for="senha" class="sr-only">Senha:</label>
@@ -38,7 +46,7 @@
                 <br>
                 <label for="confirma" class="sr-only">Confirmar senha</label>
                 <input type="password" class="form-control" placeholder="Repetir senha" name="confirma" required>
-                
+
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Redefinir</button>
             </form>
             <h5 align="center">${erro}</h5>

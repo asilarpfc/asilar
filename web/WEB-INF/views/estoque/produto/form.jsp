@@ -22,46 +22,52 @@
     </head>
     <body>
         <jsp:include page="../../navusuariolista.jsp"/>
+        <ul class="breadcrumb col-sm-offset-2">
+            <li><a class="breadcrumb-item" href="<c:url value="/home"/>">Home</a></li>
+            <li><a class="breadcrumb-item" href="<c:url value="/estoque/produto/lista"/>">Produtos</a></li>
+            <c:if test="${empty produto.nome}"><li><span class="breadcrumb-item active">Novo Produto</span></li></c:if>
+            <c:if test="${not empty produto.nome}"><li><span class="breadcrumb-item active">${produto.nome}</span></li></c:if>
+        </ul>
         <h1 align="center">Cadastrar Produto</h1>
 
         <form class="form-horizontal col-lg-offset-2" method="post">
             <input type="hidden" name="id" value="${produto.id}">
 
-            <div class="form-group <c:if test="${not empty errors.produto}">has-error has-feedback</c:if>">
+            <div class="form-group <c:if test="${not empty errors.nome}">has-error has-feedback</c:if>">
                     <label for="nome" class="col-sm-2 control-label">Nome:</label>
                     <div class="col-sm-6">
-                        <input type="text" name="nome" class="form-control" placeholder="Nome" value="${produto.nome}" maxlength="60" required="">
-                    <c:if test="${not empty errors.produto}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
-                    <c:if test="${not empty errors.produto}"><span class="alert-danger">${errors.produto}</span></c:if>
+                        <input type="text" name="nome" class="form-control" placeholder="Nome" value="${produto.nome}" maxlength="60">
+                    <c:if test="${not empty errors.nome}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                    <c:if test="${not empty errors.nome}"><span class="alert-danger">${errors.nome}</span></c:if>
                     </div>
                 </div>
 
 
-                <div class="form-group <c:if test="${not empty errors.quantidade_minima}">has-error has-feedback</c:if>">
+                <div class="form-group <c:if test="${not empty errors.quantidadeMinima}">has-error has-feedback</c:if>">
                     <label for="quantidadeMinima" class="col-sm-2 control-label">Quantidade Mínima:</label>
                     <div class="col-sm-6">
-                        <input type="text" name="quantidadeMinima" class="form-control" placeholder="Quantidade Mínima" value="${produto.quantidadeMinima}" maxlength="30" required="">
-                    <c:if test="${not empty errors.quantidade_minima}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
-                    <c:if test="${not empty errors.quantidade_minima}"><span class="alert-danger">${errors.quantidade_minima}</span></c:if>
+                        <input type="number" name="quantidadeMinima" class="form-control" placeholder="Quantidade Mínima" value="${produto.quantidadeMinima}" maxlength="30">
+                    <c:if test="${not empty errors.quantidadeMinima}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                    <c:if test="${not empty errors.quantidadeMinima}"><span class="alert-danger">${errors.quantidadeMinima}</span></c:if>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group <c:if test="${not empty errors.quantidadeMaxima}">has-error has-feedback</c:if>">
                     <label for="quantidadeMaxima" class="col-sm-2 control-label">Quantidade Máxima:</label>
                     <div class="col-sm-6">
-                        <input type="text" name="quantidadeMaxima" class="form-control" placeholder="Quantidade Máxima" value="${produto.quantidadeMaxima}" maxlength="30" required="">
-                    <c:if test="${not empty errors.rg}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
-                    <c:if test="${not empty errors.rg}"><span class="alert-danger">${errors.quantidade_maxima}</span></c:if>
+                        <input type="number" name="quantidadeMaxima" class="form-control" placeholder="Quantidade Máxima" value="${produto.quantidadeMaxima}" maxlength="30">
+                    <c:if test="${not empty errors.quantidadeMaxima}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                    <c:if test="${not empty errors.quantidadeMaxima}"><span class="alert-danger">${errors.quantidadeMaxima}</span></c:if>
                     </div>
                 </div>
 
 
-                <div class="form-group">
+                <div class="form-group <c:if test="${not empty errors.unidadeMedida}">has-error has-feedback</c:if>">
                     <label for="unidadeMedida" class="col-sm-2 control-label">Unidade De Medida :</label>
                     <div class="col-sm-6">
-                        <input id="unidade_medida" type="text" name="unidadeMedida" class="form-control" placeholder="Unidade De Medida" maxlength="20" value="${produto.unidadeMedida}" required="">
-                    <c:if test="${not empty errors.unidade_medida}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
-                    <c:if test="${not empty errors.unidade_medida}"><span class="alert-danger">${errors.unidade_medida}</span></c:if>
+                        <input id="unidade_medida" type="text" name="unidadeMedida" class="form-control" placeholder="Unidade De Medida" maxlength="20" value="${produto.unidadeMedida}">
+                    <c:if test="${not empty errors.unidadeMedida}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                    <c:if test="${not empty errors.unidadeMedida}"><span class="alert-danger">${errors.unidadeMedida}</span></c:if>
                     </div>
                 </div>                
 

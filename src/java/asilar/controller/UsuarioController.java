@@ -55,6 +55,7 @@ public class UsuarioController {
             if (errors.isEmpty()) {
                 entity.setInstituicao(ServiceLocator.getInstituicaoService().readByCriteria(null, null).get(0));
                 entity.setSenha(ServiceLocator.getUsuarioService().gerarSenha());
+                ServiceLocator.getUsuarioService().create(entity);
                 if (ServiceLocator.getUsuarioService().countByCriteria(null) != 0) {
                     Email email = new Email(entity);
                     email.start();
@@ -62,7 +63,6 @@ public class UsuarioController {
                     entity.setSenha(ServiceLocator.getUsuarioService().encodePassword("123456"));
                     
                 }
-                ServiceLocator.getUsuarioService().create(entity);
                 mv = new ModelAndView("redirect:/cadastro/usuario/lista");
             } else {
                 mv = new ModelAndView("cadastro/usuario/form");

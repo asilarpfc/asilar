@@ -24,7 +24,23 @@ public class AAinterceptor extends HandlerInterceptorAdapter {
         }
         //UsuarioLogado
         if (usuarioLogado != null) {
-            shallPass = true;
+            if (usuarioLogado.getTipoUsuario() == 1) {
+                shallPass = true;
+            } else if (usuarioLogado.getTipoUsuario() == 2) {
+                if (uri.startsWith(context + "/estoque/")) {
+                    shallPass = true;
+                } else if (uri.startsWith(context + "/cadastro/") || uri.equals(context + "/home")) {
+                    response.sendRedirect(context + "/estoque/produto/lista");
+                } else if (uri.equals(context + "/erro")) {
+                    shallPass = true;
+                } else if (uri.startsWith(context + "/recuperarSenha")) {
+                    shallPass = true;
+                } else if (uri.startsWith(context + "/redefinir")) {
+                    shallPass = true;
+                } else if (uri.startsWith(context + "/logout")) {
+                    shallPass = true;
+                }
+            }
         } else {
             //resourses
             if (uri.startsWith(context + "/css/")) {
@@ -68,7 +84,6 @@ public class AAinterceptor extends HandlerInterceptorAdapter {
                     shallPass = true;
                 }
             }
-
             if (!shallPass) {
                 if (permissoes == 1) {
                     response.sendRedirect(context + "/cadastro/instituicao/novo");

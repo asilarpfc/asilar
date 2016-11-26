@@ -23,6 +23,14 @@
     <body>
         <jsp:include page="../../navusuariolista.jsp"/>
         <jsp:include page="../../barralateral.jsp"/>
+        
+        <ul class="breadcrumb col-sm-offset-2">
+            <li><a class="breadcrumb-item" href="<c:url value="/home"/>">Home</a></li>
+            <li><a class="breadcrumb-item" href="<c:url value="/cadastro/usuario/lista"/>">Usuários</a></li>
+            <c:if test="${empty usuario.nome}"><li><span class="breadcrumb-item active">Novo Usuário</span></li></c:if>
+            <c:if test="${not empty usuario.nome}"><li><span class="breadcrumb-item active">${usuario.nome}</span></li></c:if>
+        </ul>
+        
         <h1 align="center">Cadastrar Usuário</h1>
 
         <form class="form-horizontal col-lg-offset-2" method="post">

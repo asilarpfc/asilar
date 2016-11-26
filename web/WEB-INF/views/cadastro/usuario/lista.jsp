@@ -25,18 +25,22 @@
         
         <jsp:include page="../../navusuariolista.jsp"/>
         <jsp:include page="../../barralateral.jsp"/>
+        <ul class="breadcrumb col-sm-offset-2">
+            <li><a class="breadcrumb-item" href="<c:url value="/home"/>">Home</a></li>
+            <li><span class="breadcrumb-item active">Usuários</span></li>
+        </ul>
         <h1>Usuários</h1>
         
         <a class="btn btn-primary" href="<c:url value="/cadastro/usuario/novo"/>"><span class="glyphicon glyphicon-plus"></span> Adicionar</a>
 
-        <div class="table-responsive">
+        <div class="table-responsive col-sm-offset-2">
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Nome:</th>
-                        <th>Alterar:</th>
-                        <th>Excluir:</th>
-                        <th>Redefinir:</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,7 +48,7 @@
                         <tr>
                             <td><a href="<c:url value="/cadastro/usuario/${usuario.id}/info"/>">${usuario.nome}</a></td>
                             <td><a class="btn btn-primary" href="<c:url value="/cadastro/usuario/${usuario.id}/alterar"/>"><span class="glyphicon glyphicon-edit"></span> Alterar</a></td>
-                            <td><a class="btn btn-danger" href="<c:url value="/cadastro/usuario/${usuario.id}/excluir"/>"><span class="glyphicon glyphicon-trash"></span> Excluir</a></td>
+                            <td><button class="btn btn-danger" href="" onclick="$('#confirma-exclusao').attr('href', '<c:url value="/cadastro/usuario/${usuario.id}/excluir"/>')" data-toggle="modal" data-target="#modal-confirmar"><span class="glyphicon glyphicon-trash"></span> Excluir</button></td>
                             <c:if test="${usuarioLogado.tipoUsuario eq 1}"><td><a class="btn btn-primary" href="<c:url value="/redefinir/${usuario.id}/${usuario.senha}"/>"><span class="glyphicon glyphicon-user"></span> Redefinir</a></td></c:if>
                         </tr>
                     </c:forEach>

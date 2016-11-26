@@ -24,6 +24,11 @@
     <body <c:if test="${not empty errors}"> onload="$('#modal-registro${idr}').modal('show');"</c:if>>
         <jsp:include page="../navusuariolista.jsp"/>
         <jsp:include page="../barralateral.jsp"/>
+        <ul class="breadcrumb col-sm-offset-2">
+            <li><a class="breadcrumb-item" href="<c:url value="/home"/>">Home</a></li>
+            <li><a class="breadcrumb-item" href="<c:url value="/cadastro/assistido/lista"/>">Cadastrados</a></li>
+            <li><span class="breadcrumb-item active">${assistido.nome}</span></li>
+        </ul>
 
         <ul class="nav nav-tabs">
             <li <c:if test="${tab eq 'info'}"> class="active"</c:if>><a href="<c:url value="/cadastro/assistido/${assistido.id}/info"/>">Informações</a></li>

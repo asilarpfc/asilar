@@ -25,12 +25,17 @@
     <body>
 
         <jsp:include page="../../navusuariolista.jsp"/>
-       
-        <h1>Produtos</h1>
+        
+        <ul class="breadcrumb col-sm-offset-2">
+            <li><a class="breadcrumb-item" href="<c:url value="/home"/>">Home</a></li>
+            <li><span class="breadcrumb-item active">Produtos</span></li>
+        </ul>
+        
+        <h1 class="col-sm-offset-2">Produtos</h1>
 
-        <a class="btn btn-primary" href="<c:url value="/estoque/produto/novo"/>"><span class="glyphicon glyphicon-plus"></span> Adicionar</a>
+        <a class="btn btn-primary col-sm-offset-2" href="<c:url value="/estoque/produto/novo"/>"><span class="glyphicon glyphicon-plus"></span> Adicionar</a>
 
-        <div class="table-responsive">
+        <div class="table-responsive col-sm-offset-2">
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -49,7 +54,7 @@
                             <td>${produto.quantidadeMaxima}</td>
                             <td>${produto.unidadeMedida}</td>
                             <td><a class="btn btn-primary" href="<c:url value="/estoque/produto/${produto.id}/alterar"/>"><span class="glyphicon glyphicon-edit"></span> Alterar</a></td>
-                            <td><a class="btn btn-danger" href="<c:url value="/estoque/produto/${produto.id}/excluir"/>"><span class="glyphicon glyphicon-trash"></span> Excluir</a></td>
+                            <td><button class="btn btn-danger" onclick="$('#confirma-exclusao').attr('href', '<c:url value="/estoque/produto/${produto.id}/excluir"/>')" data-toggle="modal" data-target="#modal-confirmar"><span class="glyphicon glyphicon-trash"></span> Excluir</button></td>
 
                         </tr>
                     </c:forEach>

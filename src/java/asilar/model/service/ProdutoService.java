@@ -6,14 +6,15 @@ import asilar.model.entity.Produto;
 import asilar.model.service.base.BaseProdutoService;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProdutoService implements BaseProdutoService{
+public class ProdutoService implements BaseProdutoService {
 
     @Override
     public void create(Produto entity) throws Exception {
-         Connection conn = ConnectionManager.getInstance().getConnection();
+        Connection conn = ConnectionManager.getInstance().getConnection();
         try {
             ProdutoDAO dao = new ProdutoDAO();
             dao.create(conn, entity);
@@ -28,7 +29,7 @@ public class ProdutoService implements BaseProdutoService{
 
     @Override
     public Produto readyById(Long id) throws Exception {
-         Connection conn = ConnectionManager.getInstance().getConnection();
+        Connection conn = ConnectionManager.getInstance().getConnection();
         Produto entity = new Produto();
         ProdutoDAO dao = new ProdutoDAO();
         try {
@@ -47,7 +48,7 @@ public class ProdutoService implements BaseProdutoService{
     public List<Produto> readByCriteria(Map<Long, Object> Criteria, Long offset) throws Exception {
         Connection conn = ConnectionManager.getInstance().getConnection();
         List<Produto> entityList = new ArrayList<Produto>();
-       ProdutoDAO dao = new ProdutoDAO();
+        ProdutoDAO dao = new ProdutoDAO();
         try {
             entityList = dao.readByCriteria(conn, Criteria, offset);
             conn.commit();
@@ -62,7 +63,26 @@ public class ProdutoService implements BaseProdutoService{
 
     @Override
     public Map<String, String> validateForCreate(Map<String, Object> fields) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Map<String, String> errors = new HashMap<String, String>();
+
+        Produto produto = (Produto) fields.get("produto");
+        if (produto.getNome() == null || produto.getNome().isEmpty()) {
+            errors.put("nome", "Campo obrigatório");
+        } else if (produto.getQuantidadeMinima() == null || produto.getQuantidadeMinima() == 0) {
+            errors.put("quantidadeMinima", "Este campo deve possuir um valor maior que zero");
+        } else if (produto.getQuantidadeMaxima() == null || produto.getQuantidadeMaxima() == 0) {
+            errors.put("quantidadeMaxima", "Este campo deve possuir um valor maior que zero");
+        } else if (produto.getUnidadeMedida() == null || produto.getUnidadeMedida().isEmpty()) {
+            errors.put("unidadeMedida", "Este campo deve ser preenchido");
+        }
+
+        if (produto.getQuantidadeMaxima() != null && produto.getQuantidadeMinima() != null) {
+            if (produto.getQuantidadeMaxima() <= produto.getQuantidadeMinima()) {
+                errors.put("quantidadeMaxima", "A quantidade maxima deve ser maior que a quantidade minima!");
+            }
+        }
+
+        return errors;
     }
 
     @Override
@@ -84,7 +104,7 @@ public class ProdutoService implements BaseProdutoService{
 
     @Override
     public void update(Produto entity) throws Exception {
-         Connection conn = ConnectionManager.getInstance().getConnection();
+        Connection conn = ConnectionManager.getInstance().getConnection();
         ProdutoDAO dao = new ProdutoDAO();
         try {
             dao.update(conn, entity);
@@ -114,12 +134,7 @@ public class ProdutoService implements BaseProdutoService{
 
     @Override
     public Map<String, String> validateForUpdate(Map<String, Object> fields) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String encodePassword(String nome) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.validateForCreate(fields);
     }
 
 }

@@ -77,6 +77,18 @@ CREATE TABLE movimento_assistido (
   Unidade_Medida    varchar(100) NOT NULL, 
   PRIMARY KEY (id));
 
+ DROP TABLE IF EXISTS lote CASCADE;
+  CREATE TABLE lote (
+  id          BIGSERIAL NOT NULL, 
+  validade   date NOT NULL, 
+  quantidade int8 NOT NULL, 
+  produto_fk int8 NOT NULL, 
+  PRIMARY KEY (id));
+
+ALTER TABLE lote DROP CONSTRAINT IF EXISTS lote_produto_fk;
+ALTER TABLE lote ADD CONSTRAINT lote_produto_fk FOREIGN KEY (produto_fk) REFERENCES produto (id)
+ON UPDATE RESTRICT ON DELETE RESTRICT;
+
 ALTER TABLE usuario DROP CONSTRAINT IF EXISTS usuario_instituicao_fk;
 ALTER TABLE usuario ADD CONSTRAINT usuario_instituicao_fk FOREIGN KEY (instituicao_fk) REFERENCES instituicao (id)
 ON UPDATE RESTRICT ON DELETE RESTRICT;

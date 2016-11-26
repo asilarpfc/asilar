@@ -24,17 +24,34 @@ public class ProdutoController {
     }
 
     @RequestMapping(value = "/estoque/produto/novo", method = RequestMethod.POST)
-    public ModelAndView create(WebRequest request) throws Exception {
+    public ModelAndView create(WebRequest request) {
 
         Produto entity = new Produto();
 
         entity.setNome(request.getParameter("nome"));
-        entity.setQuantidadeMaxima(Long.parseLong(request.getParameter("quantidadeMaxima")));
-        entity.setQuantidadeMinima(Long.parseLong(request.getParameter("quantidadeMinima")));
+        if(request.getParameter("quantidadeMaxima") != null && !request.getParameter("quantidadeMaxima").isEmpty()) entity.setQuantidadeMaxima(Long.parseLong(request.getParameter("quantidadeMaxima")));
+        if(request.getParameter("quantidadeMinima") != null && !request.getParameter("quantidadeMinima").isEmpty()) entity.setQuantidadeMinima(Long.parseLong(request.getParameter("quantidadeMinima")));
         entity.setUnidadeMedida(request.getParameter("unidadeMedida"));
 
-        ServiceLocator.getProdutoService().create(entity);
-        ModelAndView mv = new ModelAndView("redirect:/estoque/produto/lista");
+        Map<String, Object> fields = new HashMap<String, Object>();
+        fields.put("produto", entity);
+        
+        ModelAndView mv = null;
+        try {
+            Map<String, String> errors = ServiceLocator.getProdutoService().validateForCreate(fields);
+            if(errors.isEmpty()){
+                ServiceLocator.getProdutoService().create(entity);
+                mv = new ModelAndView("redirect:/estoque/produto/lista");
+            }else{
+                mv = new ModelAndView("/estoque/produto/form");
+                mv.addObject("produto", entity);
+                mv.addObject("errors", errors);
+            }
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
         return mv;
 
     }
@@ -81,29 +98,24 @@ public class ProdutoController {
 
         produto.setId(Long.parseLong(request.getParameter("id")));
         produto.setNome(request.getParameter("nome"));
-        produto.setQuantidadeMaxima(Long.parseLong(request.getParameter("quantidadeMaxima")));
-        produto.setQuantidadeMinima(Long.parseLong(request.getParameter("quantidadeMinima")));
+        if(request.getParameter("quantidadeMaxima") != null && !request.getParameter("quantidadeMaxima").isEmpty()) produto.setQuantidadeMaxima(Long.parseLong(request.getParameter("quantidadeMaxima")));
+        if(request.getParameter("quantidadeMinima") != null && !request.getParameter("quantidadeMinima").isEmpty()) produto.setQuantidadeMinima(Long.parseLong(request.getParameter("quantidadeMinima")));
         produto.setUnidadeMedida(request.getParameter("unidadeMedida"));
 
         ModelAndView mv = null;
         try {
-            /*Map<String, Object> fields = new HashMap<>();
+            Map<String, Object> fields = new HashMap<>();
             fields.put("produto", produto);
-            fields.put("id", produto.getId());
-            fields.put("nome", produto.getNome());
-            fields.put("quantidadeMaxima", produto.getQuantidadeMaxima());
-            fields.put("quantidadeMinima", produto.getQuantidadeMinima());
-            fields.put("unidadeMedia", produto.getUnidadeMedida());
-
-            Map<String, String> errors = ServiceLocator.getProdutoService().validateForUpdate(fields);*/
-            //if (errors.isEmpty()) {
+            
+            Map<String, String> errors = ServiceLocator.getProdutoService().validateForUpdate(fields);
+            if (errors.isEmpty()) {
                 ServiceLocator.getProdutoService().update(produto);
                 mv = new ModelAndView("redirect:/estoque/produto/lista");
-            //} else {
-                //mv = new ModelAndView("/estoque/produto/form");
+            } else {
+                mv = new ModelAndView("/estoque/produto/form");
                 mv.addObject("produto", produto);
-              //  mv.addObject("errors", errors);
-            //}
+                mv.addObject("errors", errors);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

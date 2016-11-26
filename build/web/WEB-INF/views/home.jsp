@@ -24,33 +24,34 @@
     <body>
         <jsp:include page="navusuariohome.jsp"/>
         
+
         <img src="<c:url value="/img/logo.jpg"/>" class="img-responsive center-block">
 
-            
-            <!-- Stack the columns on mobile by making one full-width and the other half-width -->
-            <div class="row">
-                <div class="col-sm-offset-4">
-                    <div class="col-sm-6">
-                        <h1>${instituicao.nome}</h1>
-                        <a class="btn btn-primary btn-lg btn-block" href="<c:url value="/cadastro/assistido/lista"/>"> <span class="btn-primary"></span>Cadastro</a>  
-                        <a class="btn btn-primary btn-lg btn-block" href="<c:url value="/estoque/produto/lista"/>"> <span class="btn-primary"></span>Estoque</a>
-                    </div>
-                    
+
+        <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+        <div class="row">
+            <div class="col-sm-offset-4">
+                <div class="col-sm-6">
+                    <h1>${instituicao.nome}</h1>
+                    <a class="btn btn-primary btn-lg btn-block" href="<c:url value="/cadastro/assistido/lista"/>"> <span class="btn-primary"></span>Cadastro</a>  
+                    <a class="btn btn-primary btn-lg btn-block" href="<c:url value="/estoque/produto/lista"/>"> <span class="btn-primary"></span>Estoque</a>
                 </div>
-                
+
             </div>
-            <br>
 
-            
         </div>
+        <br>
 
-        <jsp:include page="modais.jsp"/>
-        
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="<c:url value="/js/jquery.min.js"/>"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
-       
-        
-    </body>
+
+    </div>
+
+    <jsp:include page="modais.jsp"/>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="<c:url value="/js/jquery.min.js"/>"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
+
+
+</body>
 </html>

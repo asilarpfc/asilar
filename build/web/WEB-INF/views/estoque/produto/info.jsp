@@ -23,6 +23,11 @@
     <body>
 
         <jsp:include page="../../navusuariolista.jsp"/>
+        <ul class="breadcrumb col-sm-offset-2">
+            <li><a class="breadcrumb-item" href="<c:url value="/home"/>">Home</a></li>
+            <li><a class="breadcrumb-item" href="<c:url value="/estoque/produto/lista"/>">Produtos</a></li>
+            <li><span class="breadcrumb-item active">${produto.nome}</span></li>
+        </ul>
         
         <h1 align="center">${produto.nome}</h1>
 
@@ -34,9 +39,8 @@
                 <li class="list-group-item"><b>QUANTIDADE MAXIMA:</b> ${produto.quantidadeMaxima}</li>
                 <li class="list-group-item"><b>QUANTIDADE MINIMA:</b> ${produto.quantidadeMinima}</li>
                 <li class="list-group-item"><b>UNIDADE DE MEDIDA:</b> ${produto.unidadeMedida}</li>
-                <li class="list-group-item"><b>Tipo de Usuario:</b><c:if test="${usuario.tipoUsuario eq 1}"> Administrador</c:if> <c:if test="${usuario.tipoUsuario eq 2}"> Gerente de estoque</c:if></li>
-                </ul>
-            </div>
+            </ul>
+        </div>
 
         <jsp:include page="../../modais.jsp"/>
 
