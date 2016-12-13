@@ -54,6 +54,7 @@ public class AssistidoController {
         entity.setBairro(request.getParameter("bairro"));
         entity.setCidade(request.getParameter("cidade"));
         entity.setEstado(request.getParameter("estado"));
+        entity.setCep(request.getParameter("cep"));
         entity.setBanco(request.getParameter("banco"));
         entity.setAgencia(request.getParameter("agencia"));
         entity.setConta(request.getParameter("conta"));
@@ -153,6 +154,7 @@ public class AssistidoController {
         assistido.setBairro(request.getParameter("bairro"));
         assistido.setCidade(request.getParameter("cidade"));
         assistido.setEstado(request.getParameter("estado"));
+        assistido.setCep(request.getParameter("cep"));
         assistido.setBanco(request.getParameter("banco"));
         assistido.setAgencia(request.getParameter("agencia"));
         assistido.setConta(request.getParameter("conta"));

@@ -41,6 +41,7 @@
                     <tr>
 
                         <th>Nome:</th>
+                        <th>Quantidade</th>
                         <th>Quantidade Mínima:</th>
                         <th>Quantidade Máxima:</th>
                         <th>Unidade Medida:</th>
@@ -50,6 +51,7 @@
                     <c:forEach items="${produtoList}" var="produto">
                         <tr>
                             <td><a href="<c:url value="/estoque/produto/${produto.id}/info"/>">${produto.nome}</a></td>
+                            <td>${produto.quantidade}</td>
                             <td>${produto.quantidadeMinima}</td>
                             <td>${produto.quantidadeMaxima}</td>
                             <td>${produto.unidadeMedida}</td>

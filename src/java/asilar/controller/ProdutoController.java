@@ -1,8 +1,11 @@
 package asilar.controller;
 
 import asilar.model.ServiceLocator;
+import asilar.model.criteria.LoteCriteria;
 import asilar.model.criteria.ProdutoCriteria;
+import asilar.model.entity.Lote;
 import asilar.model.entity.Produto;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,8 +80,12 @@ public class ProdutoController {
      @RequestMapping(value = "/estoque/produto/{id}/info", method = RequestMethod.GET)
     public ModelAndView readById(@PathVariable Long id) {
         Produto produto = new Produto();
+        List<Lote> loteList = new ArrayList<Lote>();
+        Map<Long, Object> criteria = new HashMap<Long, Object>();
+        criteria.put(LoteCriteria.PRODUTO_ID_EQ, id);
         try {
             produto = ServiceLocator.getProdutoService().readyById(id);
+            loteList = ServiceLocator.getLoteService().readByCriteria(criteria, null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -89,6 +96,7 @@ public class ProdutoController {
         mv.addObject("ativo", ativo);
         String tab = "info";
         mv.addObject("tab", tab);
+        mv.addObject("loteList", loteList);
         return mv;
     }
 

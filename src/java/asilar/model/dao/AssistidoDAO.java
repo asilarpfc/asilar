@@ -17,7 +17,7 @@ public class AssistidoDAO implements BaseDAO<Assistido> {
     public void update(Connection conn, Assistido entity) throws Exception {
         String sql = "UPDATE assistido SET profissao=?, nacionalidade=?, nome=?, rg=?, cpf=?, telfixo=?, \n"
                 + "celular=?, banco=?, agencia=?, conta=?, naturalidade=?, estado_civil=?, \n"
-                + "mae=?, pai=?, rua=?, bairro=?, numero=?, cidade=?, estado=?, \n"
+                + "mae=?, pai=?, rua=?, bairro=?, numero=?, cidade=?, estado=?, cep=?, \n"
                 + "sexo=?, data_nascimento=?, observacoes=?, procedencia=?, cartao_sus=?, no_do_beneficio=? WHERE id = ?;";
         int i = 0;
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -40,6 +40,7 @@ public class AssistidoDAO implements BaseDAO<Assistido> {
         statement.setString(++i, entity.getNumero());
         statement.setString(++i, entity.getCidade());
         statement.setString(++i, entity.getEstado());
+        statement.setString(++i, entity.getCep());
         statement.setString(++i, entity.getSexo());
         statement.setDate(++i, new java.sql.Date(entity.getDataNascimento().getTime()));
         statement.setString(++i, entity.getObservacoes());
@@ -66,9 +67,9 @@ public class AssistidoDAO implements BaseDAO<Assistido> {
     public void create(Connection conn, Assistido entity) throws Exception {
         String sql = "INSERT INTO assistido(profissao, nacionalidade, nome, rg, cpf, telfixo, celular, \n"
                 + "banco, agencia, conta, naturalidade, estado_civil, mae, pai, \n"
-                + "rua, bairro, numero, cidade, estado, sexo, data_nascimento, observacoes, \n"
+                + "rua, bairro, numero, cidade, estado, cep, sexo, data_nascimento, observacoes, \n"
                 + "procedencia, cartao_sus, no_do_beneficio)\n"
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id;";
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id;";
 
         int i = 0;
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -91,6 +92,7 @@ public class AssistidoDAO implements BaseDAO<Assistido> {
         statement.setString(++i, entity.getNumero());
         statement.setString(++i, entity.getCidade());
         statement.setString(++i, entity.getEstado());
+        statement.setString(++i, entity.getCep());
         statement.setString(++i, entity.getSexo());
         statement.setDate(++i, new java.sql.Date(entity.getDataNascimento().getTime()));
         statement.setString(++i, entity.getObservacoes());
@@ -111,7 +113,7 @@ public class AssistidoDAO implements BaseDAO<Assistido> {
     public Assistido readyById(Connection conn, Long id) throws Exception {
         String sql = "SELECT id, profissao, nacionalidade, nome, rg, cpf, telfixo, celular, \n"
                 + "banco, agencia, conta, naturalidade, estado_civil, mae, pai, \n"
-                + "rua, bairro, numero, cidade, estado, sexo, data_nascimento, observacoes, \n"
+                + "rua, bairro, numero, cidade, estado, cep, sexo, data_nascimento, observacoes, \n"
                 + "procedencia, cartao_sus, no_do_beneficio FROM assistido WHERE id =?;";
 
         int i = 0;
@@ -141,6 +143,7 @@ public class AssistidoDAO implements BaseDAO<Assistido> {
             entity.setNumero(rs.getString("numero"));
             entity.setCidade(rs.getString("cidade"));
             entity.setEstado(rs.getString("estado"));
+            entity.setCep(rs.getString("cep"));
             entity.setSexo(rs.getString("sexo"));
             entity.setDataNascimento(rs.getDate("data_nascimento"));
             entity.setObservacoes(rs.getString("observacoes"));
@@ -159,7 +162,7 @@ public class AssistidoDAO implements BaseDAO<Assistido> {
     public List<Assistido> readByCriteria(Connection conn, Map<Long, Object> criteria, Long offset) throws Exception {
         String sql = "SELECT id, profissao, nacionalidade, nome, rg, cpf, telfixo, celular,\n"
                 + "banco, agencia, conta, naturalidade, estado_civil, mae, pai,\n"
-                + "rua, bairro, numero, cidade, estado, sexo, data_nascimento, observacoes,\n"
+                + "rua, bairro, numero, cidade, estado, cep, sexo, data_nascimento, observacoes,\n"
                 + "procedencia, cartao_sus, no_do_beneficio  FROM assistido WHERE 1=1";
 
         Statement statement = conn.createStatement();
@@ -216,6 +219,7 @@ public class AssistidoDAO implements BaseDAO<Assistido> {
             entity.setNumero(rs.getString("numero"));
             entity.setCidade(rs.getString("cidade"));
             entity.setEstado(rs.getString("estado"));
+            entity.setCep(rs.getString("cep"));
             entity.setSexo(rs.getString("sexo"));
             entity.setDataNascimento(rs.getDate("data_nascimento"));
             entity.setObservacoes(rs.getString("observacoes"));

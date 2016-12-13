@@ -54,7 +54,7 @@
 
     });
 
-    function fctValidaData(obj)
+    function fctValidaData(obj, flag)
     {
         var data = obj;
         var dia = data.substring(0, 2)
@@ -72,11 +72,11 @@
         if (!((mesmoDia) && (mesmoMes) && (mesmoAno)))
         {
             $("#divDataNasc").append("<span class='glyphicon glyphicon-remove form-control-feedback'></span>");
-            $("#divDataNasc").append("<span class='alert-danger'>Data de nascimento invalida</span>");
+            $("#divDataNasc").append("<span class='alert-danger'>Data invalida</span>");
             $("#formDatNasc").attr("class", "form-group has-error has-feedback");
             $("#datNasc").focus();
             return false;
-        } else if (novaData > maiorData) {
+        } else if (novaData > maiorData && flag == 1) {
             $("#divDataNasc").append("<span class='glyphicon glyphicon-remove form-control-feedback'></span>");
             $("#divDataNasc").append("<span class='alert-danger'>Data de nascimento deve ser menor quea data atual</span>");
             $("#formDatNasc").attr("class", "form-group has-error has-feedback");

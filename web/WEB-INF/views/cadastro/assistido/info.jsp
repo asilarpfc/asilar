@@ -64,6 +64,7 @@
                 <li class="list-group-item"><b>Nº:</b> ${assistido.numero}</li>
                 <li class="list-group-item"><b>Bairro:</b> ${assistido.bairro}</li>
                 <li class="list-group-item"><b>Cidade</b> ${assistido.cidade}</li>
+                <li class="list-group-item"><b>CEP</b> ${assistido.cep}</li>
                 <li class="list-group-item"><b>Estado:</b> ${assistido.estado}</li>
                 <h1 align="center">Dados Bancários</h1>
                 <li class="list-group-item"><b>Banco:</b> ${assistido.banco}</li>

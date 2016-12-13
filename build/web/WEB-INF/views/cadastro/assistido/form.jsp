@@ -32,7 +32,7 @@
         </ul>
         <h1 align="center">Cadastrar Assistido</h1>
 
-        <form class="form-horizontal col-lg-offset-2" method="post" onsubmit="return fctValidaData(datNasc.value);">
+        <form class="form-horizontal col-lg-offset-2" method="post" onsubmit="return fctValidaData(datNasc.value, 1);">
             <input type="hidden" name="id" value="${assistido.id}">
 
             <div class="form-group <c:if test="${not empty errors.nome}">has-error has-feedback</c:if>">
@@ -222,6 +222,16 @@
                     </div>
                 </div>
 
+                <div class="form-group <c:if test="${not empty errors.cep}">has-error has-feedback</c:if>">
+                    <label for="cep" class="col-sm-2 control-label">CEP:</label>
+                    <div class="col-sm-6">
+                        <input id="cep" type="text" name="cep" class="form-control" placeholder="CEP" value="${assistido.cep}" maxlength="15">
+                        <c:if test="${not empty errors.cep}"><span class="glyphicon glyphicon-remove form-control-feedback"></span></c:if>
+                        <c:if test="${not empty errors.cep}"><span class="alert-danger">${errors.cep}</span></c:if>
+                    </div>
+                </div>
+                
+                
                 <div class="form-group <c:if test="${not empty errors.estado}">has-error has-feedback</c:if>">
                     <label for="estado" class="col-sm-2 control-label">Estado:</label>
                     <div class="col-sm-6">

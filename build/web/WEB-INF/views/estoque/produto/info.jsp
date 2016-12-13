@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page language="java" contentType="text/html;charset=ISO-8859-1" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,19 +29,49 @@
             <li><a class="breadcrumb-item" href="<c:url value="/estoque/produto/lista"/>">Produtos</a></li>
             <li><span class="breadcrumb-item active">${produto.nome}</span></li>
         </ul>
-        
+
         <h1 align="center">${produto.nome}</h1>
 
 
-        <div class="col-sm-offset-1">
+        <div class="col-sm-offset-2">
             <ul class="list-group col-sm-10">
                 <li class="list-group-item"><b>PRODUTO:</b> ${produto.nome}</li>
-                <li class="list-group-item"><b>NOME:</b> ${produto.nome}</li>
+                <li class="list-group-item"><b>QUANTIDADE:</b> ${produto.quantidade}</li>
                 <li class="list-group-item"><b>QUANTIDADE MAXIMA:</b> ${produto.quantidadeMaxima}</li>
                 <li class="list-group-item"><b>QUANTIDADE MINIMA:</b> ${produto.quantidadeMinima}</li>
                 <li class="list-group-item"><b>UNIDADE DE MEDIDA:</b> ${produto.unidadeMedida}</li>
             </ul>
         </div>
+
+        <c:if test="${empty registroList}">
+            <a class="btn btn-primary col-sm-offset-2" href="<c:url value="/estoque/produto/${produto.id}/lote/novo"/>"><span class="glyphicon glyphicon-plus"></span> Adicionar</a>
+        </c:if>
+
+        <h1 align="center">Lotes</h1>
+            
+        <c:if test="${not empty loteList}">
+
+            <table class="table table-striped col-sm-offset-2">
+                <thead>
+                    <tr>
+
+                        <th>Lote:</th>
+                        <th>Validade:</th>
+                        <th>Quantidade:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${loteList}" var="lote">
+                        <tr>
+                            <td>${lote.id}</td>
+                            <td><fmt:formatDate value="${lote.validade}" pattern="dd/MM/yyyy"/></td>
+                            <td>${lote.quantidade}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+
+        </c:if>
 
         <jsp:include page="../../modais.jsp"/>
 

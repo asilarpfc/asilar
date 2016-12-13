@@ -19,7 +19,8 @@ CREATE TABLE assistido (
   bairro          varchar(150) NOT NULL, 
   numero          varchar(10) NOT NULL, 
   cidade          varchar(150) NOT NULL, 
-  estado          varchar(5) NOT NULL, 
+  estado          varchar(5) NOT NULL,
+  cep             varchar (15) NOT NULL, 
   sexo            varchar(10) NOT NULL, 
   data_Nascimento  date NOT NULL, 
   observacoes      text NOT NULL, 
@@ -85,6 +86,15 @@ CREATE TABLE movimento_assistido (
   produto_fk int8 NOT NULL, 
   PRIMARY KEY (id));
 
+ DROP TABLE IF EXISTS movimento_estoque CASCADE;
+ CREATE TABLE movimento_estoque(
+ id           BIGSERIAL NOT NULL,
+ data_saida  date NOT NULL,
+ quantidade  int8 NOT NULL,
+ usuario_fk  int8 NOT NULL,
+ lote_fk     int8 NOT NULL,
+ PRIMARY KEY (id));
+
 ALTER TABLE lote DROP CONSTRAINT IF EXISTS lote_produto_fk;
 ALTER TABLE lote ADD CONSTRAINT lote_produto_fk FOREIGN KEY (produto_fk) REFERENCES produto (id)
 ON UPDATE RESTRICT ON DELETE RESTRICT;
@@ -99,4 +109,12 @@ ON UPDATE RESTRICT ON DELETE RESTRICT;
 
 ALTER TABLE movimento_assistido DROP CONSTRAINT IF EXISTS movimento_assistido_usuario_saida;
 ALTER TABLE movimento_assistido ADD CONSTRAINT movimento_assistido_usuario_saida FOREIGN KEY (usuario_saida_fk) REFERENCES usuario (id)
+ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+ALTER TABLE movimento_estoque DROP CONSTRAINT IF EXISTS movimento_estoque_lote_fk;
+ALTER TABLE movimento_estoque ADD CONSTRAINT movimento_estoque_lote_fk FOREIGN KEY (lote_fk) REFERENCES lote (id)
+ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+ALTER TABLE movimento_estoque DROP CONSTRAINT IF EXISTS movimento_estoque_usuario_fk;
+ALTER TABLE movimento_estoque ADD CONSTRAINT movimento_usuario_lote_fk FOREIGN KEY (usuario_fk) REFERENCES usuario (id)
 ON UPDATE RESTRICT ON DELETE RESTRICT;

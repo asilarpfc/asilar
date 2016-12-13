@@ -87,8 +87,9 @@ public class ProdutoDAO implements BaseDAO<Produto> {
 
     @Override
     public List<Produto> readByCriteria(Connection conn, Map<Long, Object> criteria, Long offset) throws Exception {
-        String sql = "SELECT id, nome, quantidade_minima, quantidade_maxima, unidade_medida \n"
-                + "FROM produto WHERE 1=1";
+        String sql = "SELECT produto.id, produto.nome, produto.quantidade_minima, produto.quantidade_maxima, \n" +
+                    "produto.unidade_medida, sum(lote.quantidade) quantidade \n" +
+                    "FROM produto LEFT JOIN lote ON lote.produto_fk=produto.id WHERE 1=1";
         Statement statement = conn.createStatement();
         if (criteria != null && criteria.size() > 0) {
             String nome = (String) criteria.get(ProdutoCriteria.NOME_ILIKE);
@@ -111,7 +112,7 @@ public class ProdutoDAO implements BaseDAO<Produto> {
                 sql += "AND unidadeMedida '%" + unidadeMedidaEQ + "%'";
             }
         }
-        sql += "ORDER BY nome ASC";
+        sql += "GROUP BY produto.id ORDER BY nome ASC";
 
         //paginando
         if (offset != null && offset >= 0) {
@@ -127,6 +128,7 @@ public class ProdutoDAO implements BaseDAO<Produto> {
             entity.setQuantidadeMaxima(rs.getLong("quantidade_maxima"));//arrumar igual ao banco ok Lucas
             entity.setQuantidadeMinima(rs.getLong("quantidade_minima"));
             entity.setUnidadeMedida(rs.getString("unidade_medida"));
+            entity.setQuantidade(rs.getLong("quantidade"));
 
             entityList.add(entity);
         }
@@ -138,9 +140,9 @@ public class ProdutoDAO implements BaseDAO<Produto> {
 
     @Override
     public Produto readyById(Connection conn, Long id) throws Exception {
-        String sql = "SELECT id, nome, quantidade_minima, quantidade_maxima, unidade_medida \n"
-                + "FROM produto \n"
-                + "WHERE produto.id=?";
+        String sql = "SELECT produto.id, produto.nome, produto.quantidade_minima, produto.quantidade_maxima, produto.unidade_medida, sum(lote.quantidade) quantidade \n"
+                + "FROM produto LEFT JOIN lote ON lote.produto_fk=produto.id\n"
+                + "WHERE produto.id=? GROUP BY produto.id";
         Produto entity = new Produto();
 
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -153,7 +155,7 @@ public class ProdutoDAO implements BaseDAO<Produto> {
             entity.setQuantidadeMaxima(rs.getLong("quantidade_maxima"));//atualizar igual ao banco OK Lucas
             entity.setQuantidadeMinima(rs.getLong("quantidade_minima"));
             entity.setUnidadeMedida(rs.getString("unidade_medida"));
-
+            entity.setQuantidade(rs.getLong("quantidade"));
         }
         rs.close();
         statement.close();

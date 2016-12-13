@@ -2,7 +2,6 @@ package asilar.model.entity;
 
 import asilar.model.entity.base.BaseEntity;
 import java.util.Date;
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class Assistido extends BaseEntity{
     
@@ -26,6 +25,7 @@ public class Assistido extends BaseEntity{
     private String numero;
     private String cidade;
     private String estado;
+    private String cep;
     private String sexo;
     private Date dataNascimento;
     private String observacoes;
@@ -232,6 +232,14 @@ public class Assistido extends BaseEntity{
 
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
     
     

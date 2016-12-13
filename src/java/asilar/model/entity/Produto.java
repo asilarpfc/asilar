@@ -8,6 +8,7 @@ public class Produto extends BaseEntity {
     private Long quantidadeMaxima;
     private Long quantidadeMinima;
     private String unidadeMedida;
+    private Long quantidade;
 
     public String getNome() {
         return nome;
@@ -39,6 +40,14 @@ public class Produto extends BaseEntity {
 
     public void setUnidadeMedida(String unidadeMedida) {
         this.unidadeMedida = unidadeMedida;
+    }
+
+    public Long getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Long quantidade) {
+        this.quantidade = quantidade;
     }
 
     
